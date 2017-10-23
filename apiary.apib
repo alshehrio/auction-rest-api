@@ -1,80 +1,70 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://auction.stc.com.sa/ 
+
 
 # Auction REST API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+TODO : Add auction intoduction.
 
-## Questions Collection [/questions]
+## HTTP request headers
 
-### List All Questions [GET]
+  * Content-Type - The format of the request body - only application/json is supported at this time
+  * Accept-Language - The language that you want the descriptions returned in - not currently supported
+  
+## HTTP response codes
 
-+ Response 200 (application/json)
+  * 200 - The request completed OK
+  * 201 - The specified object was created sucessfully
+  * 204 - The request completed OK (No Content)
+  * 400 - The request was not understood
+  * 403 - You do not have access to the requested object
+  * 404 - The object that was requested doesn't exist
+  * 405 - The resource exists, but the wrong method was used. 
+  * 500 - There was an internal API error
+  * 501 - You have used a method (GET/PUT/POST/DELETE/etc) not supported by this endpoint
+  
+## HTTP response headers
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+  * Content-Type - The format of the response body eg. application/json
+  * Location - When an object has been created following a POST, it's location will be contained here
 
-### Create a New Question [POST]
+## Bids Collection [/v1/bids]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Create a New Bids [POST]
+
+You may create your own bid using this action. It takes a JSON
+object containing a product id,user id and a amount of bid.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "user_id": 123,
+            "product_id":1004,
+            "bid_amount": 5000
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
+            Location: /bids/1458
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+               "number_of_bids": 37,
+               "bid_amount": 5000,
+               "is_highest_bidder:"true"
+
+            }
+            
++ Response 500 (application/json)
+    
+    + Body
+
+            {
+                "error":  {
+                "code": "AUC001",
+                "error_title": "A title",
+                "error_message": "A message" }
             }
