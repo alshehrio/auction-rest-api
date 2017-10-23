@@ -68,3 +68,52 @@ object containing a product id,user id and a amount of bid.
                 "error_title": "A title",
                 "error_message": "A message" }
             }
+            
+## Products Collection [/v1/products{?offset,limit,sort_by,fields,category_id}]
+
+### List All Products [GET]
+
+Return list of all products
+
++ Parameters
+    + offset   (number, optional)
+    + limit    (number, optional)
+    + sort_by     (optional)
+    + category_id (number, optional)
+    + fields (optional,enum[string])
+        + Default: `details`
+        + Members
+            + `summary`
+            + `details`
+    
++ Response 200 (application/json)
+
+            {
+                "totalNumberOfRecords": 500 ,
+                "products": [
+                    {   "id": 1001,
+                        "number": 533996655,
+                        "category_name": "silver",
+                        "category_id": 31 ,
+                        "image": "silver.jpg",
+                        "expiry_date": "12/13/2015 11:51:59.000000 AM" ,
+                        "minimum_bid": 200,
+                        "downPayment": 2000,
+                        "mostBid": 15,
+                        "highestBid": 8000 ,
+                        "is_sold": "false"
+                    },   {
+                        "id": 1001,
+                        "number": 533996655,
+                        "categoryName": "silver",
+                        "categoryId": 31 ,
+                        "image": "silver.jpg",
+                        "expiryDate": "12/13/2015 11:51:59.000000 AM" ,
+                        "minimumBid": 200,
+                        "downPayment": 2000,
+                        "mostBid": 15,
+                        "highestBid": 8000 ,
+                        "isSold": "false"
+                    }
+                ]
+            }
