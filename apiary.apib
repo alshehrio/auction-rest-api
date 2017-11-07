@@ -8,12 +8,12 @@ The Auction API provides a list of API for developers to interact with Auction s
  
 ## HTTP request headers
 
-The following is a mandatory header tag, that must be sent with each request.
+The following is a mandatory header tags, that must be sent with each request.
   * Content-Type - The format of the request body - only application/json is supported at this time
-  * Accept-Language - The language that you want the descriptions returned in.
-  * Channel-Id -  The identity of the caller - only predefined allowed to consume service
+  * Accept-Language - The language that you want the descriptions returned in - eg. en/ar.
+  * Channel-Id -  The identity of the caller - only predefined channels are allowed to consume the API.
   * Client-Ip -   The ip address of client.
-  * App-Version - The version of the application that tries to consume services.
+  * App-Version - The version of the mobile application that tries to consume the API.
   
 ## HTTP response codes
 
@@ -35,7 +35,7 @@ The following is a mandatory header tag, that must be sent with each request.
 
 ### List all Categorires [GET]  
 
-Returns a all Categorires
+Return list of all Categorires
 
 + Request (application/json)
 
@@ -48,20 +48,20 @@ Returns a all Categorires
         {
           "Categories": [
             {
-              "id": 1,
+              "id": 2,
               "name": "Diamond",
               "links": {
                 "self": {
-                  "href": "http://auction.stc.com.sa/v1/category/1"
+                  "href": "http://auction.stc.com.sa/v1/category/2"
                 }
               }
             },
             {
-              "id": 2,
+              "id": 1,
               "name": "Gold",
               "links": {
                 "self": {
-                  "href": "http://auction.stc.com.sa/v1/category/2"
+                  "href": "http://auction.stc.com.sa/v1/category/1"
                 }
               }
             }
@@ -97,18 +97,19 @@ Returns a single Category
             
 + Response 500 (application/json)
 
+
     + Attributes
         + code (string) - Auction error code 
-        + reason (string) - Used to populate title user message
-        + description(string) - Used to populate user message.
+        + reason (string) - Auction reason message returned by the auction API.
+        + description (string) -  Describes the reason message returned by the auction API.
         
     + Body      
     
             "error":  
             {
                 "code": "AUC006",
-                "reason": "Not found!",
-                "description": "Element Not found.",
+                "reason": "Element Not found.",
+                "description": "Element Not found."
             }
         
 
@@ -133,7 +134,6 @@ Returns a single Category
 + Response 204 (application/json)
 
 + Response 500 (application/json)
-
 
 ## Products Collection [/v1/products{?page,size,sort,order,categoryId}]
 
@@ -173,7 +173,8 @@ Return list of all products
               "currentPrice": 8000,
               "productStatus": "sold|new",
               "category": {
-                "categoryName": "Gold",
+                "id":1,
+                "name": "Gold",
                 "links": {
                   "self": {
                     "href": "http://auction.stc.com.sa/v1/category/1"
@@ -187,7 +188,8 @@ Return list of all products
               "currentPrice": 8000,
               "productStatus": "sold|new",
               "category": {
-                "categoryName": "Diamond",
+                "id":2,
+                "name": "Diamond",
                 "links": {
                   "self": {
                     "href": "http://auction.stc.com.sa/v1/category/2"
@@ -231,31 +233,32 @@ Returns a single product
 + Parameters
 
     + id: `1001` (number, required) - Id of a product.
-    + userId:  `anonymous` (optional) - 
-        
+    + userId: `anonymous`  (optional) - possible values anonymous or userId, send userId if you looking for user status. 
+                                        
 + Response 200 (application/json)
 
-    + Attributes 
+    + Attributes  
         + id (string) - Id of a product.
         + number (string) - auction number
         + currentPrice (string) - auction last price.
         + expiryDate  (string) - auction expiry date.
         + numberOfBids (number) - totale number of bids.
-        + hasAutoBid  (string) - 
-        + productStatus (enum[string]) - 
+        + hasAutoBid  (string) - return if auto bid featuer enabled or disable
+        + productStatus (enum[string]) - return list of product status
             + Members
                 + `sold` 
                 + `new`
-        + userStatus (enum[string]) - 
+        + userBidStatus (enum[string]) -  return list of bid status belongs to a specific user, return none if no user sent in the request 
             + Members
                 + `noBid`
                 + `highestBidder`
                 + `outbid` 
                 + `none`
-        + category (object) - 
-        
-        
-        
+        + category  - 
+            + id  (number) - Id of a product.
+            + name (string) - name of a category
+            + minimumIncrement (string)  - category minimum Increment
+ 
     + Body
     
             {
@@ -266,8 +269,9 @@ Returns a single product
               "numberOfBids": 15,
               "hasAutoBid": false,
               "productStatus": "sold",
-              "userStatus": "none",
+              "userBidStatus": "none",
               "category": {
+                "id":2,
                 "name": "Diamond",
                 "minimumIncrement": 200
                 "links": {
@@ -282,15 +286,15 @@ Returns a single product
 
         + Attributes
             + code (string) - Auction error code 
-            + reason (string) - Used to populate title user message
-            + description(string) - Used to populate user message.
+            + reason (string) - Auction reason message returned by the auction API.
+            + description (string) -  Describes the reason message returned by the auction API.
    
         + Body
    
             "error":  
             {
                 "code": "AUC006",
-                "reason": "Not found!",
+                "reason": "Element Not found!",
                 "description": "Element Not found",
             }
 
@@ -323,66 +327,81 @@ Return a list of all matched products
     + number (number, optional)
     
 + Response 200 (application/json)
- 
-        {     
-    
-              
-          "products": [
-            {
-              "id": 1001,
-              "number": "533996655",
-              "currentPrice": 8000,
-              "isSold": "false",
-              "category": {
-                "categoryName": "Gold",
-                "links": {
-                  "self": {
-                    "href": "http://auction.stc.com.sa/v1/category/1"
-                  }
-                }
-              }
-            },
-            {
-              "id": 1002,
-              "number": "5399999999",
-              "currentPrice": 8000,
-              "isSold": "false",
-              "category": {
-                "categoryName": "Diamond",
-                "links": {
-                  "self": {
-                    "href": "http://auction.stc.com.sa/v1/category/2"
-                  }
-                }
-              }
-            }
-          ],
-          "links": {
-            "self": {
-              "href": "http://auction.stc.com.sa/v1/products?page=1&size=2"
-            },
-            "first": {
-              "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
-            },
-            "prev": {
-              "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
-            },
-            "next": {
-              "href": "http://auction.stc.com.sa/v1/products?page=2&size=2"
-            },
-            "last": {
-              "href": "http://auction.stc.com.sa/v1/products?page=49&size=2"
-            }
-          },
-          "page": {
-            "size": 2,
-            "totalElements": 100,
-            "totalPages": 50,
-            "number": 1
-          }
 
-        }
+    + Attributes  
         
+        + id (string) - Id of a product.
+        + number (string) - auction number
+        + currentPrice (string) - auction last price.
+        + productStatus (enum[string]) - return list of product status
+            + Members
+                + `sold` 
+                + `new`
+        + category  - 
+        + id  (number) - Id of a product.
+        + name (string) - name of a category
+        + minimumIncrement (string)  - category minimum Increment
+
+    + Body  
+        
+            {
+              "products": [
+                {
+                  "id": 1001,
+                  "number": "533996655",
+                  "currentPrice": 8000,
+                  "productStatus": "new",
+                  "category": {
+                    "id": 1,
+                    "name": "Gold",
+                    "links": {
+                      "self": {
+                        "href": "http://auction.stc.com.sa/v1/category/1"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": 1002,
+                  "number": "5399999999",
+                  "currentPrice": 8000,
+                  "productStatus": "new",
+                  "category": {
+                    "id": 2,
+                    "name": "Diamond",
+                    "links": {
+                      "self": {
+                        "href": "http://auction.stc.com.sa/v1/category/2"
+                      }
+                    }
+                  }
+                }
+              ],
+              "links": {
+                "self": {
+                  "href": "http://auction.stc.com.sa/v1/products?page=1&size=2"
+                },
+                "first": {
+                  "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
+                },
+                "prev": {
+                  "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
+                },
+                "next": {
+                  "href": "http://auction.stc.com.sa/v1/products?page=2&size=2"
+                },
+                "last": {
+                  "href": "http://auction.stc.com.sa/v1/products?page=49&size=2"
+                }
+              },
+              "page": {
+                "size": 2,
+                "totalElements": 100,
+                "totalPages": 50,
+                "number": 1
+              }
+            }
+            
 ## Bids Collection [/v1/products/{id}/bids]
 
 + Parameters
@@ -414,9 +433,9 @@ object containing a user id and a amount of bid.
     + Attributes 
     
         + numberOfBids (number) - totale number of bids.
-        + hasAutoBid  (string) - 
-        + bidAmount (string) - 
-        + userStatus (enum[string]) - 
+        + hasAutoBid  (string) - return weather of auto bid featuer enabled or disable
+        + bidAmount (string) - return last bid amount.
+        + userBidStatus (enum[string]) -  return list of bid status belongs to a specific user, return none if no user sent in the request 
             + Members
                 + `noBid`
                 + `highestBidder`
@@ -428,7 +447,7 @@ object containing a user id and a amount of bid.
             {
                "numberOfBids": 37,
                "bidAmount": 5000,
-               "userStatus": "highestBidder",
+               "userBidStatus": "highestBidder",
                "hasAutoBid":true
             }
 
@@ -444,8 +463,8 @@ object containing a user id and a amount of bid.
     
     + Attributes
         + code (string) - Auction error code 
-        + reason (string) - Used to populate title user message
-        + description(string) - Used to populate user message.
+        + reason (string) - Auction reason message returned by the auction API.
+        + description (string) -  Describes the reason message returned by the auction API.
         
     + Body
 
@@ -458,7 +477,7 @@ object containing a user id and a amount of bid.
                 }
             }
             
-### View last Bid [GET]
+### Bid Status [GET]
 
 Returns a single bid
 
@@ -466,14 +485,12 @@ Returns a single bid
 
     + Attributes 
     
-        + userId  (string) -  123|anonymous
+        + userId  (string) -  possible values anonymous or userId, send userId if you looking for user status. 
         
    + Headers
 
             Accept-Language: en
 
-
-    
     + Body
             
             {
@@ -486,20 +503,20 @@ Returns a single bid
     + Attributes 
     
         + numberOfBids (number) - totale number of bids.
-        + hasAutoBid  (string) - 
-        + bidAmount (string) - 
-        + userStatus (enum[string]) - 
+        + hasAutoBid  (string) - return weather of auto bid featuer enabled or disable
+        + bidAmount (string) - return last bid amount
+        + userBidStatus (enum[string]) -  return list of bid status belongs to a specific user, return none if no user sent in the request 
             + Members
                 + `noBid`
                 + `highestBidder`
                 + `outbid` 
                 + `none`
 
-        + Body         
+    + Body         
     
             {
                "numberOfBids": 37,
                "bidAmount": 5000,
                "hasAutoBid":true,
-               "userStatus": "outbid"
+               "userBidStatus": "outbid"
             }
