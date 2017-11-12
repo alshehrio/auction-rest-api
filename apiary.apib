@@ -50,6 +50,7 @@ Return list of all Categorires
             {
               "id": 2,
               "name": "Diamond",
+              "minimumIncrement": 200,
               "links": {
                 "self": {
                   "href": "http://auction.stc.com.sa/v1/category/2"
@@ -59,6 +60,7 @@ Return list of all Categorires
             {
               "id": 1,
               "name": "Gold",
+              "minimumIncrement": 200,
               "links": {
                 "self": {
                   "href": "http://auction.stc.com.sa/v1/category/1"
@@ -68,7 +70,7 @@ Return list of all Categorires
           ]
         }
 
-## Categories  [/v1/categories/{id}]     
+## Categories Detail [/v1/categories/{id}]     
 
 + Parameters
     + id: `1` (number, required) - Id of a Category.
@@ -86,13 +88,15 @@ Returns a single Category
 + Response 200 (application/json)
 
             {
-               "id":1
+               "id":2,
                "name": "Diamond",
                "minimumIncrement": 200,
                "depositAmount":1000,
-               "features" : {
-                    "purchasePrice":100000
-               }
+               "isAutoBidAllowed" : "true",
+               "isPurchaseAllowed" : "true",
+               "purchasePrice":100000,
+               "numberOfBidToStartAutoBid" : 25,
+               "purchaseDisablePercentege" : 80
             }
             
 + Response 500 (application/json)
@@ -123,12 +127,16 @@ Returns a single Category
             
     + Body
             
-            {   "id": 1
-                "minimumIncrement": 1000,
-                "depositAmount": 5000,
-                "hasPurchasePrice": "true",
-                "hasAutoBid": "true",
-                "purchasePrice" : 10000
+            {   
+               "id":2,
+               "name": "Diamond",
+               "minimumIncrement": 200,
+               "depositAmount":1000,
+               "isAutoBidAllowed" : "true",
+               "isPurchaseAllowed" : "true",
+               "purchasePrice":100000,
+               "numberOfBidToStartAutoBid" : 25,
+               "purchaseDisablePercentege" : 80
             }
 
 + Response 204 (application/json)
@@ -171,10 +179,11 @@ Return list of all products
               "id": 1001,
               "number": "533996655",
               "currentPrice": 8000,
-              "productStatus": "sold|new",
+              "productStatus": "sold",
               "category": {
                 "id":1,
                 "name": "Gold",
+                "minimumIncrement": 200,
                 "links": {
                   "self": {
                     "href": "http://auction.stc.com.sa/v1/category/1"
@@ -186,10 +195,11 @@ Return list of all products
               "id": 1002,
               "number": "5399999999",
               "currentPrice": 8000,
-              "productStatus": "sold|new",
+              "productStatus": "new",
               "category": {
                 "id":2,
                 "name": "Diamond",
+                "minimumIncrement": 200,
                 "links": {
                   "self": {
                     "href": "http://auction.stc.com.sa/v1/category/2"
@@ -224,7 +234,7 @@ Return list of all products
         }
   
  
-## Products  [/v1/products/{id}{?userId}]     
+## Products Detail [/v1/products/{id}{?userId}]     
 
 ### View a product detail [GET]
 
@@ -354,6 +364,7 @@ Return a list of all matched products
                   "category": {
                     "id": 1,
                     "name": "Gold",
+                    "minimumIncrement": 200,
                     "links": {
                       "self": {
                         "href": "http://auction.stc.com.sa/v1/category/1"
@@ -369,6 +380,7 @@ Return a list of all matched products
                   "category": {
                     "id": 2,
                     "name": "Diamond",
+                    "minimumIncrement": 300,
                     "links": {
                       "self": {
                         "href": "http://auction.stc.com.sa/v1/category/2"
