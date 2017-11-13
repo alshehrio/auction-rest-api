@@ -9,11 +9,12 @@ The Auction API provides a list of API for developers to interact with Auction s
 ## HTTP request headers
 
 The following is a mandatory header tags, that must be sent with each request.
-  * Content-Type - The format of the request body - only application/json is supported at this time
-  * Accept-Language - The language that you want the descriptions returned in - eg. en/ar.
-  * Channel-Id -  The identity of the caller - only predefined channels are allowed to consume the API.
-  * Client-Ip -   The ip address of client.
-  * App-Version - The version of the mobile application that tries to consume the API.
+  * content-type - The format of the request body - only application/json is supported at this time
+  * accept-language - The language that you want the descriptions returned in - eg. en/ar.
+  * channel-Id - The identity of the caller - only predefined channels are allowed to consume the API.
+  * client-Ip  - The ip address of client.
+  * user-agent - The app version of the mobile application that tries to consume the API.
+  * api-version - The API version of auction application - eg. v1, otherwise don't send this tag to get the latest version 
   
 ## HTTP response codes
 
@@ -31,7 +32,7 @@ The following is a mandatory header tags, that must be sent with each request.
 
   * Content-Type - The format of the response body eg. application/json
 
-## Categories Collection [/v1/categories]     
+## Categories Collection [/categories]     
 
 ### List all Categorires [GET]  
 
@@ -70,7 +71,7 @@ Return list of all Categorires
           ]
         }
 
-## Categories Detail [/v1/categories/{id}]     
+## Categories Detail [/categories/{id}]     
 
 + Parameters
     + id: `1` (number, required) - Id of a Category.
@@ -128,7 +129,6 @@ Returns a single Category
     + Body
             
             {   
-               "id":2,
                "name": "Diamond",
                "minimumIncrement": 200,
                "depositAmount":1000,
@@ -143,7 +143,7 @@ Returns a single Category
 
 + Response 500 (application/json)
 
-## Products Collection [/v1/products{?page,size,sort,order,categoryId}]
+## Products Collection [/products{?page,size,sort,order,categoryId}]
 
 ### List All Products [GET]
 
@@ -234,7 +234,7 @@ Return list of all products
         }
   
  
-## Products Detail [/v1/products/{id}{?userId}]     
+## Products Detail [/products/{id}{?userId}]     
 
 ### View a product detail [GET]
 
@@ -309,7 +309,7 @@ Returns a single product
             }
 
        
-## Products Search  [/v1/products/search{?page,size,sort,order,categoryId,number,startPrice,endPrice}]
+## Products Search  [/products/search{?page,size,sort,order,categoryId,number,startPrice,endPrice}]
 
 ### Search [GET]
 
@@ -414,7 +414,7 @@ Return a list of all matched products
               }
             }
             
-## Bids Collection [/v1/products/{id}/bids]
+## Bids Collection [/products/{id}/bids]
 
 + Parameters
     + id: `1001` (number, required) - Id of a product.
