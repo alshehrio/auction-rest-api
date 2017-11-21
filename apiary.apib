@@ -238,7 +238,7 @@ Return list of all products
 
 ### View a product detail [GET]
 
-Returns a single product
+Return a single product detail resource.
 
 + Parameters
 
@@ -258,7 +258,7 @@ Returns a single product
             + Members
                 + `sold` 
                 + `new`
-        + userBidStatus (enum[string]) -  return list of bid status belongs to a specific user, return none if no user sent in the request 
+        + userBidStatus (enum[string]) -  return list of bid status belongs to a specific user, return none if anonymous user sent in the request 
             + Members
                 + `noBid`
                 + `highestBidder`
@@ -268,12 +268,15 @@ Returns a single product
             + id  (number) - Id of a product.
             + name (string) - name of a category
             + minimumIncrement (string)  - category minimum Increment
- 
+        + projection (enum[string]) -  possible values detail or summary. 
+            + Members
+                + `detail` - return all product detail fields. 
+                + `summary` - return currentPrice, numberOfBids , hasAutoBid , productStatus , userBidStatus fields.
     + Body
     
             {
               "id": 1001,
-              "number": "533996655",
+              "number": "533996655",add 
               "currentPrice": 8000,
               "expiryDate": "12/13/2015 11:51:59.000000 AM",
               "numberOfBids": 15,
