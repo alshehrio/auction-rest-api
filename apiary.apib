@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://auction.stc.com.sa/ 
+HOST: http://localhost:8086/
 
 
 # Auction REST API v1.0
@@ -145,6 +145,54 @@ Returns a single Category
 
 ## Products Collection [/products{?page,size,sort,order,categoryId}]
 
+### Add Products [POST]
+Add list of products
+
++ Request (application/json)
+    + Body
+            
+            {
+              "startDate": "2017-11-19T12:4:00.000",
+              "auctionNumbers": [
+                {
+                  "class": "SPECIAL",
+                  "number": "500008802"
+                },
+                {
+                  "class": "SPECIAL",
+                  "number": "500009020"
+                },
+                {
+                  "class": "SPECIAL",
+                  "number": "505555007"
+                }
+              ],
+              "endDate": "2017-11-29T12:2:59.999",
+              "batchId": "AUC1000057"
+            }
++ Response 204
+
+
++ Response 500 (application/json)
+
+    **Error Code:**
+    - AUC008 : Auction Batchs overlap is not allowed.
+    - AUC009 : Invalid Request body.
+    
+    + Attributes
+        + code (string) - Auction error code 
+        + reason (string) - Auction reason message returned by the auction API.
+        + description (string) -  Describes the reason message returned by the auction API.
+    
+    + Body
+    
+            "error":  
+            {
+                "code": "AUC008",
+                "reason": "Auction ovelap",
+                "description": "Auction Batchs overlap is not allowed",
+            }
+                    
 ### List All Products [GET]
 
 Return list of all products
