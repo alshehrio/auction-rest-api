@@ -105,16 +105,14 @@ Returns a single Category
 
     + Attributes
         + code (string) - Auction error code 
-        + reason (string) - Auction reason message returned by the auction API.
-        + description (string) -  Describes the reason message returned by the auction API.
+        + message (string) -  User message returned by the auction API.
         
     + Body      
     
             "error":  
             {
                 "code": "AUC006",
-                "reason": "Element Not found.",
-                "description": "Element Not found."
+                "message": "Element Not found."
             }
         
 
@@ -181,16 +179,14 @@ Add list of products
     
     + Attributes
         + code (string) - Auction error code 
-        + reason (string) - Auction reason message returned by the auction API.
-        + description (string) -  Describes the reason message returned by the auction API.
+        + message (string) -  user message returned by the auction API.
     
     + Body
     
             "error":  
             {
                 "code": "AUC008",
-                "reason": "Auction ovelap",
-                "description": "Auction Batchs overlap is not allowed",
+                "message": "Auction Batchs overlap is not allowed",
             }
                     
 ### List All Products [GET]
@@ -345,18 +341,18 @@ Return a single product detail resource.
 
 + Response 500 (application/json)
 
-        + Attributes
-            + code (string) - Auction error code 
-            + reason (string) - Auction reason message returned by the auction API.
-            + description (string) -  Describes the reason message returned by the auction API.
-   
-        + Body
-   
-            "error":  
+    + Attributes
+        + code (string) - Auction error code 
+        + message (string) - User message returned by the auction API.
+            
+    + Body
+            
             {
-                "code": "AUC006",
-                "reason": "Element Not found!",
-                "description": "Element Not found",
+                "error": 
+                {
+                    "code": "AUC006",
+                    "message": "Element Not found"
+                }
             }
 
        
@@ -526,8 +522,7 @@ object containing a user id and a amount of bid.
     
     + Attributes
         + code (string) - Auction error code 
-        + reason (string) - Auction reason message returned by the auction API.
-        + description (string) -  Describes the reason message returned by the auction API.
+        + message (string) -  User message returned by the auction API.
         
     + Body
 
@@ -535,7 +530,6 @@ object containing a user id and a amount of bid.
                 "error":  
                 {
                     "code": "AUC001",
-                    "reason": "Deposit Required",
-                    "description": "To complete the bidding process on this number,you must pay a deposit payment",
+                    "message": "To complete the bidding process on this number,you must pay a deposit payment",
                 }
             }
