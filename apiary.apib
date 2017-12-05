@@ -13,7 +13,7 @@ The following is a mandatory header tags, that must be sent with each request.
   * accept-language - The language that you want the descriptions returned in - eg. en/ar.
   * channel-Id - The identity of the caller - only predefined channels are allowed to consume the API.
   * client-Ip  - The ip address of client.
-  * user-agent - The app version of the mobile application that tries to consume the API.
+  * customer-agent - The app version of the mobile application that tries to consume the API.
   * api-version - The API version of auction application - eg. v1, otherwise don't send this tag to get the latest version 
   
 ## HTTP response codes
@@ -105,7 +105,7 @@ Returns a single Category
 
     + Attributes
         + code (string) - Auction error code 
-        + message (string) -  User message returned by the auction API.
+        + message (string) -  customer message returned by the auction API.
         
     + Body      
     
@@ -179,7 +179,7 @@ Add list of products
     
     + Attributes
         + code (string) - Auction error code 
-        + message (string) -  user message returned by the auction API.
+        + message (string) -  customer message returned by the auction API.
     
     + Body
     
@@ -278,7 +278,7 @@ Return list of all products
         }
   
  
-## Products Detail [/products/{id}{?userId}]     
+## Products Detail [/products/{id}{?customerId}]     
 
 ### View a product detail [GET]
 
@@ -287,7 +287,7 @@ Return a single product detail resource.
 + Parameters
 
     + id: `1001` (number, required) - Id of a product.
-    + userId: `anonymous`  (optional) - possible values anonymous or userId, send userId if you looking for user status. 
+    + customerId: `anonymous`  (optional) - possible values anonymous or customerId, send customerId if you looking for customer status. 
                                         
 + Response 200 (application/json)
 
@@ -302,7 +302,7 @@ Return a single product detail resource.
             + Members
                 + `sold` 
                 + `new`
-        + userBidStatus (enum[string]) -  return list of bid status belongs to a specific user, return none if anonymous user sent in the request 
+        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if anonymous customer sent in the request 
             + Members
                 + `noBid`
                 + `highestBidder`
@@ -315,7 +315,7 @@ Return a single product detail resource.
         + projection (enum[string]) -  possible values detail or summary. 
             + Members
                 + `detail` - return all product detail fields. 
-                + `summary` - return currentPrice, numberOfBids , hasAutoBid , productStatus , userBidStatus fields.
+                + `summary` - return currentPrice, numberOfBids , hasAutoBid , productStatus , customerBidStatus fields.
     + Body
     
             {
@@ -326,7 +326,7 @@ Return a single product detail resource.
               "numberOfBids": 15,
               "hasAutoBid": false,
               "productStatus": "sold",
-              "userBidStatus": "none",
+              "customerBidStatus": "none",
               "category": {
                 "id":2,
                 "name": "Diamond",
@@ -343,7 +343,7 @@ Return a single product detail resource.
 
     + Attributes
         + code (string) - Auction error code 
-        + message (string) - User message returned by the auction API.
+        + message (string) - customer message returned by the auction API.
             
     + Body
             
@@ -469,7 +469,7 @@ Return a list of all matched products
 ### Place a New Bids [POST]
 
 You may create your own bid using this action. It takes a JSON
-object containing a user id and a amount of bid.
+object containing a customer id and a amount of bid.
 
 
 + Request (application/json)
@@ -482,7 +482,7 @@ object containing a user id and a amount of bid.
     + Body
             
             {
-                "userId": 123,
+                "customerId": 123,
                 "bidAmount": 5000,
                 "hasAutoBid": "true"
             }
@@ -494,7 +494,7 @@ object containing a user id and a amount of bid.
         + numberOfBids (number) - totale number of bids.
         + hasAutoBid  (string) - return weather of auto bid featuer enabled or disable
         + bidAmount (string) - return last bid amount.
-        + userBidStatus (enum[string]) -  return list of bid status belongs to a specific user, return none if no user sent in the request 
+        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
             + Members
                 + `noBid`
                 + `highestBidder`
@@ -506,23 +506,23 @@ object containing a user id and a amount of bid.
             {
                "numberOfBids": 37,
                "bidAmount": 5000,
-               "userBidStatus": "highestBidder",
+               "customerBidStatus": "highestBidder",
                "hasAutoBid":true
             }
 
 + Response 400 (application/json)
         
   **Error Code:**
-    - AUC001 : User doesn't pay deposit payment.
-    - AUC002 : User is blacklisted in auction.
-    - AUC003 : User is already highest bidder.
+    - AUC001 : customer doesn't pay deposit payment.
+    - AUC002 : customer is blacklisted in auction.
+    - AUC003 : customer is already highest bidder.
     - AUC004 : Auction is not active.
     - AUC005 : Bid is less than minimum bid.
     - AUC007 : wrong bid type
     
     + Attributes
         + code (string) - Auction error code 
-        + message (string) -  User message returned by the auction API.
+        + message (string) -  customer message returned by the auction API.
         
     + Body
 
