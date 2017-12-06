@@ -104,14 +104,13 @@ Returns a single Category
 
 
     + Attributes
-        + code (string) - Auction error code 
+        + errorCode (string) - Auction error code 
         + message (string) -  customer message returned by the auction API.
         
     + Body      
     
-            "error":  
             {
-                "code": "AUC006",
+                "errorCode": "AUC006",
                 "message": "Element Not found."
             }
         
@@ -178,14 +177,13 @@ Add list of products
     - AUC009 : Invalid Request body.
     
     + Attributes
-        + code (string) - Auction error code 
+        + errorCode (string) - Auction error code 
         + message (string) -  customer message returned by the auction API.
     
     + Body
     
-            "error":  
             {
-                "code": "AUC008",
+                "errorCode": "AUC008",
                 "message": "Auction Batchs overlap is not allowed",
             }
                     
@@ -342,18 +340,15 @@ Return a single product detail resource.
 + Response 500 (application/json)
 
     + Attributes
-        + code (string) - Auction error code 
+        + errorCode (string) - Auction error code 
         + message (string) - customer message returned by the auction API.
             
     + Body
             
-            {
-                "error": 
                 {
-                    "code": "AUC006",
+                    "errorCode": "AUC006",
                     "message": "Element Not found"
                 }
-            }
 
        
 ## Products Search  [/products/search{?page,size,sort,order,categoryId,number,startPrice,endPrice}]
@@ -521,15 +516,12 @@ object containing a customer id and a amount of bid.
     - AUC007 : wrong bid type
     
     + Attributes
-        + code (string) - Auction error code 
+        + errorCode (string) - Auction error code 
         + message (string) -  customer message returned by the auction API.
         
     + Body
 
-            {
-                "error":  
                 {
-                    "code": "AUC001",
+                    "errorCode": "AUC001",
                     "message": "To complete the bidding process on this number,you must pay a deposit payment",
                 }
-            }
