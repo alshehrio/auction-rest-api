@@ -456,10 +456,7 @@ Return a list of all matched products
               }
             }
             
-## Bids Collection [/products/{id}/bids]
-
-+ Parameters
-    + id: `1001` (number, required) - Id of a product.
+## Bids Collection [/bids]
 
 ### Place a New Bids [POST]
 
@@ -486,7 +483,8 @@ object containing a customer id and a amount of bid.
                     "contactNumber": 055555555
                 }
                 "bidAmount": 5000,
-                "hasAutoBid": "true"
+                "hasAutoBid": "true",
+                "productId": 1
             }
 
 + Response 201 (application/json)
