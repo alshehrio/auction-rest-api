@@ -285,7 +285,7 @@ Return a single product detail resource.
 + Parameters
 
     + id: `1001` (number, required) - Id of a product.
-    + customerId: `anonymous`  (optional) - possible values anonymous or customerId, send customerId if you looking for customer status. 
+    + customerId:`1` (optional) - send customerId if you looking for customer status. 
                                         
 + Response 200 (application/json)
 
@@ -300,7 +300,7 @@ Return a single product detail resource.
             + Members
                 + `sold` 
                 + `new`
-        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if anonymous customer sent in the request 
+        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
             + Members
                 + `noBid`
                 + `highestBidder`
@@ -318,7 +318,7 @@ Return a single product detail resource.
     
             {
               "id": 1001,
-              "number": "533996655",add 
+              "number": "533996655",
               "currentPrice": 8000,
               "expiryDate": "12/13/2015 11:51:59.000000 AM",
               "numberOfBids": 15,
