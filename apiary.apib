@@ -54,7 +54,7 @@ Return list of all Categorires
               "minimumIncrement": 200,
               "links": {
                 "self": {
-                  "href": "http://auction.stc.com.sa/v1/category/2"
+                  "href": "http://auction.stc.com.sa/category/2"
                 }
               }
             },
@@ -64,7 +64,7 @@ Return list of all Categorires
               "minimumIncrement": 200,
               "links": {
                 "self": {
-                  "href": "http://auction.stc.com.sa/v1/category/1"
+                  "href": "http://auction.stc.com.sa/category/1"
                 }
               }
             }
@@ -214,9 +214,7 @@ Return list of all products
     
 + Response 200 (application/json)
  
-        {     
-    
-              
+        {
           "products": [
             {
               "id": 1001,
@@ -224,13 +222,18 @@ Return list of all products
               "currentPrice": 8000,
               "productStatus": "sold",
               "category": {
-                "id":1,
+                "id": 1,
                 "name": "Gold",
                 "minimumIncrement": 200,
                 "links": {
                   "self": {
-                    "href": "http://auction.stc.com.sa/v1/category/1"
+                    "href": "http://auction.stc.com.sa/category/1"
                   }
+                }
+              },
+              "links": {
+                "self": {
+                  "href": "http://auction.stc.com.sa/products/1001"
                 }
               }
             },
@@ -240,32 +243,37 @@ Return list of all products
               "currentPrice": 8000,
               "productStatus": "new",
               "category": {
-                "id":2,
+                "id": 2,
                 "name": "Diamond",
                 "minimumIncrement": 200,
                 "links": {
                   "self": {
-                    "href": "http://auction.stc.com.sa/v1/category/2"
+                    "href": "http://auction.stc.com.sa/category/2"
                   }
+                }
+              },
+              "links": {
+                "self": {
+                  "href": "http://auction.stc.com.sa/products/1002"
                 }
               }
             }
           ],
           "links": {
             "self": {
-              "href": "http://auction.stc.com.sa/v1/products?page=1&size=2"
+              "href": "http://auction.stc.com.sa/products?page=1&size=2"
             },
             "first": {
-              "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
+              "href": "http://auction.stc.com.sa/products?page=0&size=2"
             },
             "prev": {
-              "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
+              "href": "http://auction.stc.com.sa/products?page=0&size=2"
             },
             "next": {
-              "href": "http://auction.stc.com.sa/v1/products?page=2&size=2"
+              "href": "http://auction.stc.com.sa/products?page=2&size=2"
             },
             "last": {
-              "href": "http://auction.stc.com.sa/v1/products?page=49&size=2"
+              "href": "http://auction.stc.com.sa/products?page=49&size=2"
             }
           },
           "page": {
@@ -332,7 +340,7 @@ Return a single product detail resource.
                 "minimumIncrement": 200
                 "links": {
                   "self": {
-                    "href": "http://auction.stc.com.sa/v1/category/1"
+                    "href": "http://auction.stc.com.sa/category/1"
                   }
                 }
               }
@@ -410,7 +418,7 @@ Return a list of all matched products
                     "minimumIncrement": 200,
                     "links": {
                       "self": {
-                        "href": "http://auction.stc.com.sa/v1/category/1"
+                        "href": "http://auction.stc.com.sa/category/1"
                       }
                     }
                   }
@@ -426,7 +434,7 @@ Return a list of all matched products
                     "minimumIncrement": 300,
                     "links": {
                       "self": {
-                        "href": "http://auction.stc.com.sa/v1/category/2"
+                        "href": "http://auction.stc.com.sa/category/2"
                       }
                     }
                   }
@@ -434,19 +442,19 @@ Return a list of all matched products
               ],
               "links": {
                 "self": {
-                  "href": "http://auction.stc.com.sa/v1/products?page=1&size=2"
+                  "href": "http://auction.stc.com.sa/products?page=1&size=2"
                 },
                 "first": {
-                  "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
+                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
                 },
                 "prev": {
-                  "href": "http://auction.stc.com.sa/v1/products?page=0&size=2"
+                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
                 },
                 "next": {
-                  "href": "http://auction.stc.com.sa/v1/products?page=2&size=2"
+                  "href": "http://auction.stc.com.sa/products?page=2&size=2"
                 },
                 "last": {
-                  "href": "http://auction.stc.com.sa/v1/products?page=49&size=2"
+                  "href": "http://auction.stc.com.sa/products?page=49&size=2"
                 }
               },
               "page": {
