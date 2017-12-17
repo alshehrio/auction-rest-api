@@ -360,82 +360,51 @@ Return a single product detail resource.
                 }
 
        
-## Search  [/search{?page,size,sort,order,categoryId,msisdn,startPrice,endPrice}]
+## Search  [/search{?page,size,sort,order,msisdn}]
 
 ### Search [GET]
 
-Return a list of all matched products
+Return a list of all matched msisdn
 
 + Parameters
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
-      + Default: 100
+      + Default: 10
     + sort     (optional)
-      + Default: `id`
+      + Default: `msisdn`
       + Members
-            + `price`
-            + `id`
-            +  `number`
+            + `msisdn`
     + order     (optional)
       + Default: `ASC`
       + Members
             + `ASC`
             + `DESC`
-    + categoryId (number, optional)
-    + startPrice (number, optional)
-    + endPrice (number, optional)
     + msisdn (number, optional)
     
 + Response 200 (application/json)
 
     + Attributes  
         
-        + id (string) - Id of a product.
         + msisdn (string) - auction number
-        + currentPrice (string) - auction last price.
-        + productStatus (enum[string]) - return list of product status
-            + Members
-                + `sold` 
-                + `new`
-        + category  - 
-        + id  (number) - Id of a product.
-        + name (string) - name of a category
-        + minimumIncrement (string)  - category minimum Increment
 
     + Body  
         
             {
               "products": [
                 {
-                  "id": 1001,
-                  "msisdn": "533996655",
-                  "currentPrice": 8000,
-                  "productStatus": "new",
-                  "category": {
-                    "id": 1,
-                    "name": "Gold",
-                    "minimumIncrement": 200,
-                    "links": {
-                      "self": {
-                        "href": "http://auction.stc.com.sa/category/1"
-                      }
+                  "msisdn": "50000655",
+                  "links": {
+                    "self": {
+                      "href": "http://auction.stc.com.sa/products/1"
                     }
                   }
                 },
                 {
-                  "id": 1002,
-                  "msisdn": "5399999999",
-                  "currentPrice": 8000,
-                  "productStatus": "new",
-                  "category": {
-                    "id": 2,
-                    "name": "Diamond",
-                    "minimumIncrement": 300,
-                    "links": {
-                      "self": {
-                        "href": "http://auction.stc.com.sa/category/2"
-                      }
+                  "msisdn": "533996655",
+                  "links": {
+                    "self": {
+                      "href": "http://auction.stc.com.sa/products/2"
                     }
                   }
                 }
