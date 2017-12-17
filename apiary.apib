@@ -141,7 +141,7 @@ Returns a single Category
 
 + Response 500 (application/json)
 
-## Products Collection [/products{?page,size,sort,order,categoryId}]
+## Products Collection [/products{?page,size,sort,order,categoryId,msisdn}]
 
 ### Add Products [POST]
 Add list of products
@@ -210,6 +210,7 @@ Return list of all products
             + `ASC`
             + `DESC`
     + categoryId (number, optional)
+    + msisdn
     
 + Response 200 (application/json)
  
@@ -359,7 +360,7 @@ Return a single product detail resource.
                 }
 
        
-## Search  [/search{?page,size,order,msisdn}]
+## Search  [/search{?page,size,msisdn}]
 
 ### Search [GET]
 
@@ -370,18 +371,13 @@ Return a list of all matched msisdn
       + Default: 0
     + size      (number, optional)
       + Default: 10
-    + order     (optional)
-      + Default: `ASC`
-      + Members
-            + `ASC`
-            + `DESC`
     + msisdn (number, optional)
     
 + Response 200 (application/json)
 
     + Attributes  
         
-        + msisdn (string) - auction number
+        + msisdn (string) - The auction number
 
     + Body  
         
