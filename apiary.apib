@@ -210,7 +210,6 @@ Return list of all products
             + `ASC`
             + `DESC`
     + categoryId (number, optional)
-
     
 + Response 200 (application/json)
  
@@ -360,7 +359,7 @@ Return a single product detail resource.
                 }
 
        
-## Search  [/search{?page,size,sort,order,msisdn}]
+## Search  [/search{?page,size,order,msisdn}]
 
 ### Search [GET]
 
@@ -371,10 +370,6 @@ Return a list of all matched msisdn
       + Default: 0
     + size      (number, optional)
       + Default: 10
-    + sort     (optional)
-      + Default: `msisdn`
-      + Members
-            + `msisdn`
     + order     (optional)
       + Default: `ASC`
       + Members
