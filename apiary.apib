@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://localhost:8086/
+HOST: http://auction.stc.com.sa/
 
 
 # Auction REST API v1.0
@@ -13,8 +13,9 @@ The following is a mandatory header tags, that must be sent with each request.
   * accept-language - The language that you want the descriptions returned in - eg. en/ar.
   * channel-Id - The identity of the caller - only predefined channels are allowed to consume the API.
   * client-Ip  - The ip address of client.
-  * customer-agent - The app version of the mobile application that tries to consume the API.
+  * user-agent - The app version of the mobile application that tries to consume the API.
   * api-version - The API version of auction application - eg. v1, otherwise don't send this tag to get the latest version 
+  * authorization - base64 encoded credentials.
   
 ## HTTP response codes
 
@@ -32,6 +33,54 @@ The following is a mandatory header tags, that must be sent with each request.
 
   * Content-Type - The format of the response body eg. application/json
 
+## User Collection [/products{?page,size,sort,order,categoryId,msisdn}]
+
+### Add User [POST]
+Add User
+
++ Request (application/json)
+    + Body
+            
+            {
+              "username": "user",
+              "password": "password",
+              "channelId": "1",
+              "groups": [
+                {
+                "id": "AUC0003",
+                }
+               ]
+            }
++ Response 204
+    + Body
+            {
+                "username": "user", 
+                "channelId": "1"
+            }
+
++ Response 400 (application/json)
+
+    **Error Code:**
+    - AUC008 : Auction Batchs overlap is not allowed.
+    - AUC009 : Invalid Request body.
+    
+    + Attributes
+        + errorCode (string) - Auction error code 
+        + fieldErrors (string) -  fields that has errors.
+    
+    + Body
+    
+            {
+                "errorCode": "VALIDATION_ERROR",
+                "fieldErrors": [
+                    {
+                        "field": "channelId",
+                        "message": "may not be null"
+                    }
+                ]
+            }
+                 
+                 
 ## Categories Collection [/categories]     
 
 ### List all Categorires [GET]  
@@ -499,3 +548,30 @@ object containing a customer id and a amount of bid.
                     "errorCode": "AUC001",
                     "message": "To complete the bidding process on this number,you must pay a deposit payment",
                 }
+                
+## Batchs Collection [/batches]
+
+### List all Batches  [GET]
+
+Return list of all Batches
+
++ Request (application/json)
+
+    + Headers
+
+            Accept-Language: en
+            
++ Response 200 (application/json)
+
+        {
+          "batches": [
+            {
+              "id": "AUC0003",
+              "endDate": "2017-05-24T14: 25: 10"
+            },
+            {
+              "id": "AUC0004",
+              "endDate": "2016-05-24T14: 25: 10"
+            }
+          ]
+        }
