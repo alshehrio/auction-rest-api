@@ -33,14 +33,15 @@ The following is a mandatory header tags, that must be sent with each request.
 
   * Content-Type - The format of the response body eg. application/json
 
-## User Collection [/products{?page,size,sort,order,categoryId,msisdn}]
+## User Collection [/users]
 
 ### Add User [POST]
 Add User
 
 + Request (application/json)
+    
     + Body
-            
+        
             {
               "username": "user",
               "password": "password",
@@ -51,8 +52,11 @@ Add User
                 }
                ]
             }
-+ Response 204
+            
++ Response 201 (application/json)
+            
     + Body
+        
             {
                 "username": "user", 
                 "channelId": "1"
