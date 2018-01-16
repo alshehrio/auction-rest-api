@@ -57,27 +57,52 @@ Add User
 
 + Response 400 (application/json)
 
-    **Error Code:**
-    - AUC008 : Auction Batchs overlap is not allowed.
-    - AUC009 : Invalid Request body.
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + fieldErrors (string) -  fields that has errors.
-    
-    + Body
-    
+        **Error Code:**
+        - AUC008 : Auction Batchs overlap is not allowed.
+        - AUC009 : Invalid Request body.
+        
+        + Attributes
+            + errorCode (string) - Auction error code 
+            + fieldErrors (string) -  fields that has errors.
+        
+        + Body
+        
+                {
+                    "errorCode": "VALIDATION_ERROR",
+                    "fieldErrors": [
+                        {
+                            "field": "channelId",
+                            "message": "may not be null"
+                        }
+                    ]
+                }
+                 
+            
+## Users Detail [/users/{username}{?enabled}]
++ Parameters
+    + username: `user` (string, required) - username.
+    + enabled: `true` (boolean, required) - enabled.
+
+### Update User Status [PATCH]
+Update user active status
++ Request (application/json)
+
+    + Headers
+
+            Accept-Language: en
+            
++ Response 200 (application/json)
+
             {
-                "errorCode": "VALIDATION_ERROR",
-                "fieldErrors": [
+               "username": "user",
+                "groups": [
                     {
-                        "field": "channelId",
-                        "message": "may not be null"
+                        "id": 1
                     }
-                ]
+                ],
+                "enabled": true
             }
-                 
-                 
+
 ## Categories Collection [/categories]     
 
 ### List all Categorires [GET]  
