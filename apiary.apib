@@ -598,3 +598,58 @@ Return list of all Batches
             }
           ]
         }
+        
+## Payments Reconcile Collection [/payments/reconcile{?batchId,transactionType}]
+
+### List all Payments  [GET]
+
+Return a list of all payment transaction for specific transaction type
+
++ Parameters
+    + batchId            (String, required)
+    + transactionType    (enum[string]) 
+        + Members
+            + `capture` 
+            + `reversal`
+            
++ Response 200 (application/json)
+
+        {
+          "totalAmount": 999216,
+          "totalTransactions": 424,
+          "transactions": [
+            {
+              "id": "09b8acf0-9f08-43f3-9e54-ba6b6088b2cf",
+              "amount": 1300,
+              "date": "2017-04-25T15:05:33",
+              "confirmationNumber": "STC-304399382"
+            },
+            {
+              "id": "8095f868-9b2c-4100-b4b3-0b759e581506",
+              "amount": 500,
+              "date": "2017-04-25T07:08:36",
+              "confirmationNumber": "STC-304393705"
+            }
+          ]
+        }
+
++ Response 400 (application/json)
+
+  **Error Code:**
+    - MISSING_PARAM : Required PaymentTransactionType parameter "transactionType" is not present.
+    - INVALID_BATCH_ID : Batch Id is null or invalid.
+    - TYPE_MISMATCH : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
+
+    
+    + Attributes
+        + errorCode (string) - Auction error code 
+        + message (string) -  customer message returned by the auction API.
+        
+    + Body
+
+                {
+                    "errorCode": "INVALID_BATCH_ID",
+                    "message": "To complete the bidding process on this number,you must pay a deposit payment",
+                }
+
++ Response 500 (application/json)
