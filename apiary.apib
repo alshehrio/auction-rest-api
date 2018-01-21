@@ -145,9 +145,6 @@ Update user active status
 
 + Request (application/json)
 
-
-        
- 
         {
           "enabled": false,
           "groups": [
@@ -192,6 +189,30 @@ Update user active status
                 "errorCode": "GROUP_NOT_FOUND",
                 "message": "GROUP_NOT_FOUND"
             }
+            
+## Groups Collection [/groups]
+
+### List all Groups [GET]  
+
+Get All groups
+
++ Response 200 (application/json)
+
+            {
+                "groups": [
+                    {
+                        "id": 1,
+                        "name": "auction",
+                        "authorities": [
+                            {
+                                "id": 1,
+                                "name": "ADMIN"
+                            }
+                        ]
+                    }
+                ]
+            }
+
             
 ## Categories Collection [/categories]     
 
