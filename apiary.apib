@@ -39,12 +39,6 @@ The following is a mandatory header tags, that must be sent with each request.
 
 Get All Users
 
-+ Request (application/json)
-
-    + Headers
-
-            Authorization: base64 encoded credentials.
-            
 + Response 200 (application/json)
 
         {
@@ -90,44 +84,56 @@ Add User
 + Request (application/json)
     
     + Body
-        
+
             {
-              "username": "user",
-              "password": "password",
-              "channelId": "1",
+              "username": "test1234",
+              "password": "Aa123456",
+              "enabled": false,
               "groups": [
                 {
-                "id": 1
+                  "id": 1
                 }
-               ]
+              ]
             }
             
 + Response 201 (application/json)
 
-+ Response 400 (application/json)
-
-        **Error Code:**
-        - AUC008 : Auction Batchs overlap is not allowed.
-        - AUC009 : Invalid Request body.
-        
-        + Attributes
-            + errorCode (string) - Auction error code 
-            + fieldErrors (string) -  fields that has errors.
-        
-        + Body
-        
+        {
+            "username": "test1234",
+            "groups": [
                 {
-                    "errorCode": "VALIDATION_ERROR",
-                    "fieldErrors": [
+                    "id": 1,
+                    "name": "auction",
+                    "authorities": [
                         {
-                            "field": "channelId",
-                            "message": "may not be null"
+                            "id": 1,
+                            "name": "ADMIN"
                         }
                     ]
                 }
-                 
+            ],
+            "enabled": false
+        }
 
-           
+
++ Response 400 (application/json)
+
+    **Error Code:**
+    - USER_ALREADY_EXIST
+    - GROUP_NOT_FOUND
+    
+    + Attributes
+        + errorCode (string) - Auction error code 
+        + message (string) -  customer message returned by the auction API.
+    
+    + Body
+    
+            {
+                "errorCode": "GROUP_NOT_FOUND",
+                "message": "GROUP_NOT_FOUND"
+            }
+            
+
 ## Users Detail [/users/{username}{?enabled}]
 + Parameters
     + username: `user` (string, required) - username.
