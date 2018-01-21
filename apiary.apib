@@ -35,6 +35,55 @@ The following is a mandatory header tags, that must be sent with each request.
 
 ## User Collection [/users]
 
+### Get User [GET]
+
+Get All Users
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: base64 encoded credentials.
+            
++ Response 200 (application/json)
+
+        {
+          "users": [
+            {
+              "username": "ocp",
+              "groups": [
+                {
+                  "id": 1,
+                  "name": "auction",
+                  "authorities": [
+                    {
+                      "id": 1,
+                      "name": "ADMIN"
+                    }
+                  ]
+                }
+              ],
+              "enabled": false
+            },
+            {
+              "username": "payment",
+              "groups": [
+                {
+                  "id": 46,
+                  "name": "TEST_GROUP",
+                  "authorities": [
+                    {
+                      "id": 1,
+                      "name": "ADMIN"
+                    }
+                  ]
+                }
+              ],
+              "enabled": false
+            }
+          ]
+        }
+
 ### Add User [POST]
 Add User
 
@@ -77,7 +126,8 @@ Add User
                     ]
                 }
                  
-            
+
+           
 ## Users Detail [/users/{username}{?enabled}]
 + Parameters
     + username: `user` (string, required) - username.
