@@ -48,14 +48,28 @@ list of all APIs and their respective owners
     <tr>
         <td> OCP APIs</td>
         <td> <ul style="list-style-type:number">
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ul> </td>   
+              <li>Categories Collection </li>
+              <li>Categories Detail</li>
+              <li>Products Collection </li>
+              <li>Products Detail </li>
+              <li>Bids Collection </li>
+            </ul> </td>   
     </tr>
     <tr>
         <td> Auction Admin API's</td>              
-        <td> Second Column </td> 
+        <td> <ul style="list-style-type:number">
+              <li>User Collection</li>
+              <li>Users Detail</li>
+              <li>Groups Collection</li>
+              <li>Update Category</li>
+            </ul> </td> 
+    </tr>
+    <tr>
+        <td>Payment API's</td>              
+        <td> <ul style="list-style-type:number">
+              <li>Batchs Batchs Collection </li>
+              <li>Payments Reconcile Collection</li>
+            </ul> </td> 
     </tr>
 </table>
 
@@ -349,7 +363,7 @@ Returns a single Category
 
 + Response 500 (application/json)
 
-## Products Collection [/products{?page,size,sort,order,categoryId,msisdn}]
+## Products Collection [/products{?page,size,sort,order}]
 
 ### Add Products [POST]
 Add list of products
@@ -362,15 +376,15 @@ Add list of products
               "auctionNumbers": [
                 {
                   "categoryId": 31,
-                  "number": "500008802"
+                  "msisdn": "500008802"
                 },
                 {
                   "categoryId": 29,
-                  "number": "500009020"
+                  "msisdn": "500009020"
                 },
                 {
                   "categoryId": 26,
-                  "number": "505555007"
+                  "msisdn": "505555007"
                 }
               ],
               "endDate": "2017-11-29T12:2:59.999",
@@ -417,8 +431,6 @@ Return list of all products
       + Members
             + `ASC`
             + `DESC`
-    + categoryId (number, optional)
-    + msisdn (number, optional)
     
 + Response 200 (application/json)
  
