@@ -720,12 +720,17 @@ object containing a customer id and a amount of bid.
                     "message": "To complete the bidding process on this number,you must pay a deposit payment",
                 }
                 
-## Batchs Collection [/batches]
+## Batchs Collection [/batches{?startDate,endDate}]
 
 ### List all Batches  [GET]
 
 Return list of all Batches
 
++ Parameters
+    + startDate    (date)
+    + endDate      (date)
+
+    
 + Request (application/json)
 
     + Headers
@@ -787,6 +792,7 @@ Return a list of all payment transaction for specific transaction type
     - MISSING_PARAM : Required PaymentTransactionType parameter "transactionType" is not present.
     - INVALID_BATCH_ID : Batch Id is null or invalid.
     - TYPE_MISMATCH : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
+    - INVALID_TRANSACTION_TYPE : TransactionType value is invalid.
 
     
     + Attributes
