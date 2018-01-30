@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://auction.stc.com.sa/
+HOST: http://172.20.162.184:17011/auction
 
 
 # Auction REST API v1.0
@@ -9,29 +9,55 @@ The Auction API provides a list of API for developers to interact with Auction s
 ## HTTP request headers
 
 The following is a mandatory header tags, that must be sent with each request.
-  * content-type - The format of the request body - only application/json is supported at this time
-  * accept-language - The language that you want the descriptions returned in - eg. en/ar.
-  * channel-Id - The identity of the caller - only predefined channels are allowed to consume the API.
-  * client-Ip  - The ip address of client.
-  * user-agent - The app version of the mobile application that tries to consume the API.
-  * api-version - The API version of auction application - eg. v1, otherwise don't send this tag to get the latest version 
-  * authorization - base64 encoded credentials.
+  * `content-type` - The format of the request body - only application/json is supported at this time
+  * `accept-language` - The language that you want the descriptions returned in - eg. en/ar.
+  * `channel-name` - The channel name - example web,mobile.
+  * `client-ip`  - The ip address of client.
+  * `user-agent` - The app version of the mobile application that tries to consume the API.
+  * `api-version` - The API version of auction application - eg. v1.
+  * `authorization` - HTTP basic authentication. We use a HTTP header where we add 
+                     'username:password' encoded in base64, you have to add '<B>Basic</B>' as a static prefix with each encoded credential - 
+                      <P><B> example - authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ= </B></P>
+                      
   
 ## HTTP response codes
 
-  * 200 - The request completed OK
-  * 201 - The specified object was created sucessfully
-  * 204 - The request completed OK (No Content)
-  * 400 - The request was not understood
-  * 403 - You do not have access to the requested object
-  * 404 - The object that was requested doesn't exist
-  * 405 - The resource exists, but the wrong method was used. 
-  * 500 - There was an internal API error
-  * 501 - You have used a method (GET/PUT/POST/DELETE/etc) not supported by this endpoint
+  * `200` - The request completed OK
+  * `201` - The specified object was created sucessfully
+  * `204` - The request completed OK (No Content)
+  * `400` - The request was not understood
+  * `401` - authentication failed or user doesn't have permissions for requested operation.
+  * `403` - You do not have access to the requested object
+  * `404` - The object that was requested doesn't exist
+  * `405` - The resource exists, but the wrong method was used. 
+  * `500` - There was an internal API error
+  * `501` - You have used a method (GET/PUT/POST/PATCH) not supported by this endpoint
   
 ## HTTP response headers
 
-  * Content-Type - The format of the response body eg. application/json
+  * `content-type` - The format of the response body - only application/json is supported at this time
+  * `cache-control` - used to specify directives for caching mechanisms in both requests and responses
+  * `content-language` - describe the language(s) intended for the audience.
+  * `date` -the date and time at which the message was originated.
+  
+# API catalog
+
+list of all APIs and their respective owners
+
+<table>
+    <tr>
+        <td> OCP APIs</td>
+        <td> <ul style="list-style-type:number">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul> </td>   
+    </tr>
+    <tr>
+        <td> Auction Admin API's</td>              
+        <td> Second Column </td> 
+    </tr>
+</table>
 
 ## User Collection [/users]
 
