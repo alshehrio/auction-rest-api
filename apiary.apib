@@ -752,7 +752,33 @@ Return list of all expired batches
             }
           ]
         }
+
++ Response 400 (application/json)
+
+  **Error Code:**
+    - RANGE_ERROR : End date must me greater than start date.
+    - TYPE_CONVERSION_ERROR : The value null of the field startDate is of the wrong type or the date format is incorrect.
+ 
+    + Attributes
+        + errorCode (string) - Auction error code 
+        + message (string) -  message returned by the auction API.
         
+    + Body
+
+                {
+                    "errorCode": "RANGE_ERROR",
+                    "message": "End date must me greater than start date",
+                }
+
++ Response 500 (application/json)
+
+    + Body
+
+                {
+                    "errorCode": "RANGE_ERROR",
+                    "message": "End date must me greater than start date",
+                }
+
 ## Payments Reconcile Collection [/payments/reconcile{?batchId,transactionType}]
 
 ### List all Payments Reconcile Transaction [GET]
