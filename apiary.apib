@@ -833,7 +833,8 @@ The customer type must be individual, the corporate customer is not allowed to b
                 "firstName": "test",
                 "lastName": "test",
                 "username": "test",
-                "contactNumber": "0578595468"
+                "contactNumber": "0578595468",
+                "type": "individual"
             }
             
 + Response 201 (application/json)
@@ -841,8 +842,8 @@ The customer type must be individual, the corporate customer is not allowed to b
 + Response 400 (application/json)
         
   **Error Code:**
-    - INVALID_CUSTOMER_TYPE : The customer type must be individual
-    - VALIDATION_ERROR : 
+    - INVALID_CUSTOMER_TYPE.
+    - VALIDATION_ERROR.
         
     + Body
     
