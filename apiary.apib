@@ -48,8 +48,7 @@ list of all APIs and their respective owners
     <tr>
         <td> OCP APIs</td>
         <td> <ul style="list-style-type:number">
-              <li>Categories Collection </li>
-              <li>Categories Detail</li>
+              <li>List all Categories</li>
               <li>Products Collection </li>
               <li>Products Detail </li>
               <li>Bids Collection </li>
@@ -73,6 +72,7 @@ list of all APIs and their respective owners
     </tr>
 </table>
 
+ 
 ## User Collection [/users]
 
 ### Get User [GET]
@@ -256,9 +256,9 @@ Get All groups
             
 ## Categories Collection [/categories]     
 
-### List all Categorires [GET]  
+### List all Categories [GET]  
 
-Return list of all Categorires
+Used to return a list of all available categories in the auction system.
 
 + Request (application/json)
 
@@ -269,30 +269,29 @@ Return list of all Categorires
 + Response 200 (application/json)
 
         {
-          "Categories": [
-            {
-              "id": 2,
-              "name": "Diamond",
-              "minimumIncrement": 200,
-              "links": {
-                "self": {
-                  "href": "http://auction.stc.com.sa/category/2"
-                }
-              }
-            },
-            {
-              "id": 1,
-              "name": "Gold",
-              "minimumIncrement": 200,
-              "links": {
-                "self": {
-                  "href": "http://auction.stc.com.sa/category/1"
-                }
-              }
-            }
-          ]
+            "Categories": [
+                    {
+                        "id": 1,
+                        "name": "Diamond"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Silver"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Gold"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Bronze"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Momaiz"
+                    }
+            ]
         }
-
 ## Categories Detail [/categories/{id}]     
 
 + Parameters
@@ -843,8 +842,8 @@ The customer type must be individual, the corporate customer is not allowed to b
 
   **Error Code:**
  
-    - INVALID_CUSTOMER_TYPE.
-    - VALIDATION_ERROR.
+    - INVALID_CUSTOMER_TYPE : The customer type must be individual
+    - VALIDATION_ERROR : ** Get error message from fieldErrors attribute in validation error response body
         
     + Body
     
