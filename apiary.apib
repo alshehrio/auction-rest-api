@@ -840,16 +840,31 @@ The customer type must be individual, the corporate customer is not allowed to b
 + Response 201 (application/json)
 
 + Response 400 (application/json)
-        
+
   **Error Code:**
+ 
     - INVALID_CUSTOMER_TYPE.
     - VALIDATION_ERROR.
         
     + Body
     
+            // response bady in case of invalide customer type.
+            
             {
                 "errorCode": "INVALID_CUSTOMER_TYPE",
                 "message": "The customer type must be individual",
             }
-
+            
+            // response bady in case of validation error  
+            
+            {
+                "errorCode": "VALIDATION_ERROR",
+                "fieldErrors": [
+                    {
+                        "field": "email",
+                        "message": "may not be null"
+                    }
+                ]
+            }
+            
 + Response 500 (application/json)
