@@ -67,7 +67,7 @@ list of all APIs and their respective owners
     <tr>
         <td>Payment API's</td>              
         <td> <ul style="list-style-type:number">
-              <li>Batchs Batchs Collection </li>
+              <li>Batches Batches Collection </li>
               <li>Payments Reconcile Collection</li>
             </ul> </td> 
     </tr>
@@ -396,7 +396,7 @@ Add list of products
 + Response 500 (application/json)
 
     **Error Code:**
-    - AUC008 : Auction Batchs overlap is not allowed.
+    - AUC008 : Auction Batches overlap is not allowed.
     - AUC009 : Invalid Request body.
     
     + Attributes
@@ -407,7 +407,7 @@ Add list of products
     
             {
                 "errorCode": "AUC008",
-                "message": "Auction Batchs overlap is not allowed",
+                "message": "Auction Batches overlap is not allowed",
             }
                     
 ### List All Products [GET]
@@ -709,7 +709,7 @@ object containing a customer id and a amount of bid.
                     "message": "To complete the bidding process on this number,you must pay a deposit payment",
                 }
                 
-## Batchs Collection [/batches{?startDate,endDate}]
+## Batches Collection [/batches{?startDate,endDate}]
 
 ### List all Expired Batches  [GET]
 
