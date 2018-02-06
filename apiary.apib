@@ -269,7 +269,7 @@ Used to return a list of all available categories in the auction system.
 
     + Headers
 
-            Accept-Language: en/ar
+            Accept-Language: en
             Authorization: Basic [Encoded channel user credential]
             
 + Response 200 (application/json)
@@ -440,76 +440,47 @@ Return list of all products
     
 + Response 200 (application/json)
  
-        {
-          "products": [
             {
-              "id": 1001,
-              "msisdn": "533996655",
-              "currentPrice": 8000,
-              "productStatus": "sold",
-              "category": {
-                "id": 1,
-                "name": "Gold",
-                "minimumIncrement": 200,
-                "links": {
-                  "self": {
-                    "href": "http://auction.stc.com.sa/category/1"
+                  "products": [
+                    {
+                      "id": 1001,
+                      "msisdn": "533996655",
+                      "currentPrice": 8000,
+                      "productStatus": "sold",
+                      "categoryName": "Gold"
+                    },
+                    {
+                      "id": 1002,
+                      "msisdn": "5399999999",
+                      "currentPrice": 8000,
+                      "productStatus": "new",
+                      "categoryName": "Gold"
+                    }
+                  ],
+                  "links": {
+                    "self": {
+                      "href": "http://auction.stc.com.sa/products?page=1&size=2"
+                    },
+                    "first": {
+                      "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                    },
+                    "prev": {
+                      "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                    },
+                    "next": {
+                      "href": "http://auction.stc.com.sa/products?page=2&size=2"
+                    },
+                    "last": {
+                      "href": "http://auction.stc.com.sa/products?page=49&size=2"
+                    }
+                  },
+                  "page": {
+                    "size": 2,
+                    "totalElements": 100,
+                    "totalPages": 50,
+                    "number": 1
                   }
-                }
-              },
-              "links": {
-                "self": {
-                  "href": "http://auction.stc.com.sa/products/1001"
-                }
-              }
-            },
-            {
-              "id": 1002,
-              "msisdn": "5399999999",
-              "currentPrice": 8000,
-              "productStatus": "new",
-              "category": {
-                "id": 2,
-                "name": "Diamond",
-                "minimumIncrement": 200,
-                "links": {
-                  "self": {
-                    "href": "http://auction.stc.com.sa/category/2"
-                  }
-                }
-              },
-              "links": {
-                "self": {
-                  "href": "http://auction.stc.com.sa/products/1002"
-                }
-              }
             }
-          ],
-          "links": {
-            "self": {
-              "href": "http://auction.stc.com.sa/products?page=1&size=2"
-            },
-            "first": {
-              "href": "http://auction.stc.com.sa/products?page=0&size=2"
-            },
-            "prev": {
-              "href": "http://auction.stc.com.sa/products?page=0&size=2"
-            },
-            "next": {
-              "href": "http://auction.stc.com.sa/products?page=2&size=2"
-            },
-            "last": {
-              "href": "http://auction.stc.com.sa/products?page=49&size=2"
-            }
-          },
-          "page": {
-            "size": 2,
-            "totalElements": 100,
-            "totalPages": 50,
-            "number": 1
-          }
-        }
-  
  
 ## Products Detail [/products/{id}{?nationalId}]     
 
