@@ -269,34 +269,36 @@ Used to return a list of all available categories in the auction system.
 
     + Headers
 
-            Accept-Language: en
+            Accept-Language: en/ar
+            Authorization: Basic [Encoded channel user credential]
             
 + Response 200 (application/json)
 
         {
-            "Categories": [
-                    {
-                        "id": 1,
-                        "name": "Diamond"
-                    },
-                    {
-                        "id": 2,
-                        "name": "Silver"
-                    },
-                    {
-                        "id": 3,
-                        "name": "Gold"
-                    },
-                    {
-                        "id": 4,
-                        "name": "Bronze"
-                    },
-                    {
-                        "id": 5,
-                        "name": "Momaiz"
-                    }
+            "categories": [
+                {
+                    "name": "Bronze Numbers",
+                    "id": 32
+                },
+                {
+                    "name": "Diamond Numbers",
+                    "id": 30
+                },
+                {
+                    "name": "Gold Numbers",
+                    "id": 27
+                },
+                {
+                    "name": "Momaiz Numbers",
+                    "id": 31
+                },
+                {
+                    "name": "Silver Numbers",
+                    "id": 28
+                }
             ]
         }
+        
 ## Categories Detail [/categories/{id}]     
 
 + Parameters
