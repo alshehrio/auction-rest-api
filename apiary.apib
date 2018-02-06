@@ -484,6 +484,23 @@ Return list of all products
                   }
             }
 
++ Response 400 (application/json)
+
+  **Error Code:**
+    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+  
+    
+    + Attributes
+        + errorCode (string) - Auction error code 
+        + message (string) -  customer message returned by the auction API.
+        
+    + Body
+
+                {
+                    "errorCode": "CATEGORY_NOT_FOUND",
+                    "message": "category id not found.",
+                }
+                
 ## Category Products [/categories/{id}/products{?page,size,sort,order}]
 
 ### List All Products by category [GET]
@@ -558,6 +575,7 @@ Return a list of all products in a specific category
 
   **Error Code:**
     - INVALID_CATEGORY_ID : category id is null or invalid.
+    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
   
     
     + Attributes
@@ -570,6 +588,7 @@ Return a list of all products in a specific category
                     "errorCode": "INVALID_CATEGORY_ID",
                     "message": "category id is null or invalid.",
                 }
+                
 ## Products Detail [/products/{id}{?nationalId}]     
 
 ### Get Product Detail [GET]
