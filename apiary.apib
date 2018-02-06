@@ -484,7 +484,7 @@ Return list of all products
                   }
             }
 
-## Products category [/categories/{id}/products{?page,size,sort,order}]
+## Category Products [/categories/{id}/products{?page,size,sort,order}]
 
 ### List All Products by category [GET]
 
@@ -554,7 +554,22 @@ Return a list of all products in a specific category
                   }
             }
  
++ Response 400 (application/json)
+
+  **Error Code:**
+    - INVALID_CATEGORY_ID : category id is null or invalid.
   
+    
+    + Attributes
+        + errorCode (string) - Auction error code 
+        + message (string) -  customer message returned by the auction API.
+        
+    + Body
+
+                {
+                    "errorCode": "INVALID_CATEGORY_ID",
+                    "message": "category id is null or invalid.",
+                }
 ## Products Detail [/products/{id}{?nationalId}]     
 
 ### Get Product Detail [GET]
