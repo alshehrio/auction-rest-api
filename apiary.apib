@@ -49,17 +49,22 @@ list of all APIs and their respective owners
         <td> OCP APIs</td>
         <td> <ul style="list-style-type:number">
               <li>List all Categories</li>
-              <li>Products Collection </li>
-              <li>Products Detail </li>
-              <li>Bids Collection </li>
+              <li>Add Products </li>
+              <li>List All Products </li>
+              <li>Get Product Details</li>
+              <li>Search</li>
+              <li>Please Bid</li>
+              <li>Add Customer</li>
             </ul> </td>   
     </tr>
     <tr>
         <td> Auction Admin API's</td>              
         <td> <ul style="list-style-type:number">
-              <li>User Collection</li>
-              <li>Users Detail</li>
-              <li>Groups Collection</li>
+              <li>Get User</li>
+              <li>Add User</li>
+              <li>Update User</li>
+              <li>List All Group</li>
+              <li>Get Category</li>
               <li>Update Category</li>
             </ul> </td> 
     </tr>
@@ -178,7 +183,7 @@ Add User
 + Parameters
     + username: `test` (string, required) - username.
 
-### Update User Status [PATCH]
+### Update User [PATCH]
 
 Update user active status
 
@@ -297,7 +302,7 @@ Used to return a list of all available categories in the auction system.
 + Parameters
     + id: `1` (number, required) - Id of a Category.
     
-### Retrieve a Category [GET]  
+### Get Category [GET]  
 
 Returns a single Category
 
@@ -336,7 +341,7 @@ Returns a single Category
             }
         
 
-### Update a Category [PUT]
+### Update Category [PUT]
 
 + Request (application/json)
 
@@ -506,7 +511,7 @@ Return list of all products
  
 ## Products Detail [/products/{id}{?nationalId}]     
 
-### View a product detail [GET]
+### Get Product Detail [GET]
 
 Return a single product detail resource.
 
@@ -642,7 +647,7 @@ Return a list of all matched msisdn
             
 ## Bids Collection [/bids]
 
-### Place a New Bids [POST]
+### Place Bid [POST]
 
 You may create your own bid using this action. It takes a JSON
 object containing a customer id and a amount of bid.
@@ -847,14 +852,14 @@ The customer type must be individual, the corporate customer is not allowed to b
         
     + Body
     
-            // response bady in case of invalide customer type.
+            // General Response body
             
             {
                 "errorCode": "INVALID_CUSTOMER_TYPE",
                 "message": "The customer type must be individual",
             }
             
-            // response bady in case of validation error  
+            // validation error response body
             
             {
                 "errorCode": "VALIDATION_ERROR",
