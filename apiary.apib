@@ -750,11 +750,10 @@ object containing a customer id and a amount of bid.
     + Attributes 
     
         + numberOfBids (number) - totale number of bids.
-        + hasAutoBid  (string) - return weather of auto bid featuer enabled or disable
-        + bidAmount (string) - return last bid amount.
+        + isAutoBidAllowed  (string) - return weather of auto bid featuer enabled or disable
+        + currentPrice (string) - return latest bid amount.
         + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
             + Members
-                + `noBid`
                 + `highestBidder`
                 + `outbid` 
 
@@ -762,9 +761,9 @@ object containing a customer id and a amount of bid.
     
             {
                "numberOfBids": 37,
-               "bidAmount": 5000,
+               "currentPrice": 5000,
                "customerBidStatus": "highestBidder",
-               "hasAutoBid":true
+               "isAutoBidAllowed":true
             }
 
 + Response 400 (application/json)
