@@ -40,7 +40,40 @@ The following is a mandatory header tags, that must be sent with each request.
   * `content-language` - describe the language(s) intended for the audience.
   * `date` -the date and time at which the message was originated.
   
-# API catalog
+## Error
+
+In the responses for failed requests, Auction returns HTTP `4XX` or `5XX` status codes.
+
+For all errors except validation errors, auction returns an error response body in following format:
+
+     
+```
+{
+    "errorCode": "ERROR_NAME",
+    "message"  : "ERROR_MESSAGE"
+}
+```
+##  Validation errors
+For validation errors, Auction returns the HTTP 400 Bad Request status code.
+
+To prevent validation errors, ensure that parameters are of the right type.
+
+The response body for validation errors includes additional error details in this format:
+
+```
+{
+  "errorCode": "VALIDATION_ERROR",
+  "fieldErrors": [
+    {
+      "field": "email",
+      "message": "may not be null"
+    }
+  ]
+}
+
+```
+
+## API Catalog
 
 list of all APIs and their respective owners
 
