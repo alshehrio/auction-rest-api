@@ -54,9 +54,18 @@ For all errors except validation errors, auction returns an error response body 
 }
 ```
 ##  Validation errors
+
 For validation errors, Auction returns the HTTP 400 Bad Request status code.
 
-To prevent validation errors, ensure that parameters are of the right type.
+To prevent validation errors, ensure that parameters are of the right type. 
+
+The server could not understand the request. Indicates one of these conditions:
+
+* The API cannot convert the payload data to the underlying data type.
+* The data is not in the expected data format.
+* A required field is not available.
+* A simple data validation error occurred.
+
 
 The response body for validation errors includes additional error details in following format:
 
@@ -200,17 +209,9 @@ Add User
     **Error Code:**
     - USER_ALREADY_EXIST
     - GROUP_NOT_FOUND
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-    
+ 
     + Body
-    
-            {
-                "errorCode": "GROUP_NOT_FOUND",
-                "message": "GROUP_NOT_FOUND"
-            }
+     
             
 
 ## Users Detail [/users/{username}]
@@ -257,18 +258,10 @@ Update user active status
 
     **Error Code:**
     - GROUP_NOT_FOUND
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-    
+ 
     + Body
     
-            {
-                "errorCode": "GROUP_NOT_FOUND",
-                "message": "GROUP_NOT_FOUND"
-            }
-            
+          
 ## Groups Collection [/groups]
 
 ### List all Groups [GET]  
@@ -366,18 +359,10 @@ Returns a single Category
 
   **Error Code:**
     - CATEGORY_NOT_FOUND : category id not found.
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-        
+   
     + Body
 
-                {
-                    "errorCode": "INVALID_CATEGORY_ID",
-                    "message": "category id is null or invalid.",
-                }
-                
+             
 + Response 500 (application/json)
 
 ### Update Category [PUT]
@@ -440,17 +425,10 @@ Add list of products
 
     **Error Code:**
     - AUC008 : Auction Batches overlap is not allowed.
-
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-    
+ 
     + Body
     
-            {
-                "errorCode": "AUC008",
-                "message": "Auction Batches overlap is not allowed",
-            }
+            
                     
 ### List All Products [GET]
 
@@ -523,18 +501,9 @@ Return list of all products
 
   **Error Code:**
     - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
-  
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-        
+   
     + Body
-
-                {
-                    "errorCode": "CATEGORY_NOT_FOUND",
-                    "message": "category id not found.",
-                }
+ 
                 
 ## Category Products [/categories/{id}/products{?page,size,sort,order}]
 
@@ -611,19 +580,9 @@ Return a list of all products in a specific category
   **Error Code:**
     - INVALID_CATEGORY_ID : category id is null or invalid.
     - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
-  
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-        
+   
     + Body
-
-                {
-                    "errorCode": "INVALID_CATEGORY_ID",
-                    "message": "category id is null or invalid.",
-                }
-                
+ 
 ## Products Detail [/products/{id}{?nationalId}]     
 
 ### Get Product Detail [GET]
@@ -808,17 +767,9 @@ object containing a customer id and a amount of bid.
     - AUCTION_IS_NOT_ACTIVE : Auction time is finished or not started yet.
     - BID_IS_LESS_THAN_MINIMUM_INCREMENT : Bid is less than minimum bid.
     - WRONG_BID_TYPE : bid type in request does not match auction bid type. (auto bid / regular bid) 
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-        
+  
     + Body
-
-                {
-                    "errorCode": "DEPOSIT_NOT_PAID",
-                    "message": "To complete the bidding process on this number, you must pay a deposit payment",
-                }
+ 
                 
 ## Batches Collection [/batches{?startDate,endDate}]
 
@@ -859,18 +810,9 @@ Return list of all expired batches
   **Error Code:**
     - RANGE_ERROR : End date must me greater than start date.
     - TYPE_CONVERSION_ERROR : The value null of the field startDate is of the wrong type or the date format is incorrect.
- 
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  message returned by the auction API.
-        
+  
     + Body
-
-                {
-                    "errorCode": "RANGE_ERROR",
-                    "message": "End date must me greater than start date",
-                }
-
+ 
 + Response 500 (application/json)
 
 
@@ -916,17 +858,9 @@ Return a list of all payment reconcile transaction for specific batch and transa
     - TYPE_MISMATCH : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
     - INVALID_TRANSACTION_TYPE : TransactionType value is invalid.
 
-    
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) -  customer message returned by the auction API.
-        
+     
     + Body
-
-                {
-                    "errorCode": "INVALID_BATCH_ID",
-                    "message": "To complete the bidding process on this number,you must pay a deposit payment",
-                }
+ 
 
 + Response 500 (application/json)
 
@@ -960,24 +894,6 @@ The customer type must be individual.
     - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
         
     + Body
-    
-            // General Response body
-            
-            {
-                "errorCode": "INVALID_CUSTOMER_TYPE",
-                "message": "The customer type must be individual",
-            }
-            
-            // validation error response body
-            
-            {
-                "errorCode": "VALIDATION_ERROR",
-                "fieldErrors": [
-                    {
-                        "field": "email",
-                        "message": "may not be null"
-                    }
-                ]
-            }
+     
             
 + Response 500 (application/json)
