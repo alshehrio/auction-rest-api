@@ -958,3 +958,37 @@ Used to remove an item from watchlist
      
             
 + Response 500 (application/json)
+
+
+
+## Add Watchlist [/customers/{customerId}/watchlist/]
+
+### Add watchlist item [POST]
+Used to remove an item from watchlist
+
++ Parameters
+
+    + customerId: `1001` (number, required) - Id of a customer.
+
++ Request (application/json)
+    
+    + Body
+
+            {
+                "productId": 15
+            }           
++ Response 204 (application/json)
+
++ Response 400 (application/json)
+
+  **Error Code:**
+    - INVALID_PRODUCT_ID : product id is not valid 
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+    - INVALID_CUSTOMER_ID : customer id is not valid 
+    - MAX_NUMBER_OF_PRODUCTS_EXCEEDED: max number of items in watchlist has been exceeded.
+    - PRODUCT_IS_EXPIRED : product is expired 
+        
+    + Body
+     
+            
++ Response 500 (application/json)
