@@ -891,3 +891,42 @@ The customer type must be individual.
      
             
 + Response 500 (application/json)
+
+
+
+## Transfer Deposit [/customers/{id}/deposit/transfer]
+
+### Transfer Deposit [POST]
+Used to the transfer a deposit from a product to another product
+
++ Parameters
+
+    + id: `1001` (number, required) - Id of a customer.
++ Request (application/json)
+    
+    + Body
+
+            {
+                "fromProduct": 15,
+                "toProduct": 45
+            }
+            
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
+  **Error Code:**
+ 
+    - DEPOSIT_REVERSED : deposit to be transfered has been reversed.
+    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
+    - PRODUCT_IS_EXPIRED : product is expired
+    - DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY : transfer must be between products in same category
+    - TRANSFER_BACK_NOT_ALLOWED : transfer not allowed
+    - HIGHEST_BIDDER_CANNOT_TRANSFER : highest bidderse cannot transfer their deposit
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+    - TRANSFER_NOT_ALLOWED : transfer not allowed
+        
+    + Body
+     
+            
++ Response 500 (application/json)
