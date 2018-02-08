@@ -930,3 +930,31 @@ Used to the transfer a deposit from a product to another product
      
             
 + Response 500 (application/json)
+
+
+
+
+## Watchlist [/customers/{customerId}/watchlist/product/{productId}]
+
+### remove watchlist item [DELETE]
+Used to remove an item from watchlist
+
++ Parameters
+
+    + customerId: `1001` (number, required) - Id of a customer.
+    + productId: `1001` (number, required) - Id of a product.
+
+            
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
+  **Error Code:**
+    - INVALID_PRODUCT_ID : product id is not valid 
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+    - INVALID_CUSTOMER_ID : customer id is not valid 
+        
+    + Body
+     
+            
++ Response 500 (application/json)
