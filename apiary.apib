@@ -601,6 +601,7 @@ Return a single product detail resource.
         + expiryDate  (string) - auction expiry date.
         + numberOfBids (number) - totale number of bids.
         + isAutoBidAllowed  (string) - return if auto bid featuer enabled or disable
+        + isProductInWatchlist - used to know the product in watchlist or no.
         + productStatus (enum[string]) - return list of product status
             + Members
                 + `sold` 
@@ -894,14 +895,15 @@ The customer type must be individual.
 
 
 
-## Transfer Deposit [/customers/{id}/deposit/transfer]
+## Transfer Deposit [/customers/{nationalId}/deposit/transfer]
 
 ### Transfer Deposit [POST]
 Used to the transfer a deposit from a product to another product
 
 + Parameters
 
-    + id: `1001` (number, required) - Id of a customer.
+    + nationalId: `2125487985` (number, required) - national Id of a customer.
+    
 + Request (application/json)
     
     + Body
@@ -932,16 +934,15 @@ Used to the transfer a deposit from a product to another product
 + Response 500 (application/json)
 
 
+## Remove Watchlist [/watchlist/product{?productId,nationalId}]
 
+### Remove watchlist item [DELETE]
 
-## Watchlist [/customers/{customerId}/watchlist/product/{productId}]
-
-### remove watchlist item [DELETE]
 Used to remove an item from watchlist
 
 + Parameters
 
-    + customerId: `1001` (number, required) - Id of a customer.
+    + nationalId: `21254879985` (number, required) - national Id of a customer.
     + productId: `1001` (number, required) - Id of a product.
 
             
@@ -952,23 +953,21 @@ Used to remove an item from watchlist
   **Error Code:**
     - INVALID_PRODUCT_ID : product id is not valid 
     - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-    - INVALID_CUSTOMER_ID : customer id is not valid 
+    - INVALID_CUSTOMER_ID : customer id is not valid.
+    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+
         
     + Body
      
             
 + Response 500 (application/json)
 
-
-
-## Add Watchlist [/customers/{customerId}/watchlist/]
+## Add Watchlist [/watchlist/product]
 
 ### Add watchlist item [POST]
+
 Used to remove an item from watchlist
-
-+ Parameters
-
-    + customerId: `1001` (number, required) - Id of a customer.
+ 
 
 + Request (application/json)
     
@@ -976,12 +975,14 @@ Used to remove an item from watchlist
 
             {
                 "productId": 15
-            }           
+            }    
+            
 + Response 204 (application/json)
 
 + Response 400 (application/json)
 
-  **Error Code:**
+ **Error Code:**
+    
     - INVALID_PRODUCT_ID : product id is not valid 
     - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
     - INVALID_CUSTOMER_ID : customer id is not valid 
@@ -990,5 +991,4 @@ Used to remove an item from watchlist
         
     + Body
      
-            
 + Response 500 (application/json)
