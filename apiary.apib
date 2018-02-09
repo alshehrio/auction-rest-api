@@ -284,7 +284,7 @@ Get All groups
             }
 
             
-## Categories Collection [/categories]     
+## Categories Collection [/catalog/categories]     
 
 ### List all Categories [GET]  
 
@@ -324,10 +324,10 @@ Used to return a list of all available categories in the auction system.
             ]
         }
         
-## Categories Detail [/categories/{id}]     
+## Categories Detail [/catalog/categories/{categoriesId}]     
 
 + Parameters
-    + id: `1` (number, required) - Id of a Category.
+    + categoriesId: `1` (number, required) - Id of a Category.
     
 ### Get Category [GET]  
 
@@ -389,7 +389,7 @@ Returns a single Category
 
 + Response 500 (application/json)
 
-## Products Collection [/products{?page,size,sort,order}]
+## Products Collection [/catalog/products{?page,size,sort,order}]
 
 ### Add Products [POST]
 Add list of products
@@ -503,7 +503,7 @@ Return list of all products
     + Body
  
                 
-## Category Products [/categories/{id}/products{?page,size,sort,order}]
+## Category Products [/catalog/categories/{categoryId}/products{?page,size,sort,order}]
 
 ### List All Products by category [GET]
 
@@ -511,7 +511,7 @@ Return a list of all products in a specific category
 
 + Parameters
     
-    + id (number)
+    + categoryId (number)
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
@@ -581,7 +581,7 @@ Return a list of all products in a specific category
    
     + Body
  
-## Products Detail [/products/{id}{?nationalId}]     
+## Products Detail [/catalog/products/{productId}{?nationalId}]     
 
 ### Get Product Detail [GET]
 
@@ -589,7 +589,7 @@ Return a single product detail resource.
 
 + Parameters
 
-    + id: `1001` (number, required) - Id of a product.
+    + productId: `1001` (number, required) - Id of a product.
     + nationalId:`1` (optional) - send nationalId if you looking for customer status. 
                                         
 + Response 200 (application/json)
@@ -637,19 +637,8 @@ Return a single product detail resource.
 
 + Response 500 (application/json)
 
-    + Attributes
-        + errorCode (string) - Auction error code 
-        + message (string) - customer message returned by the auction API.
-            
-    + Body
-            
-                {
-                    "errorCode": "AUC006",
-                    "message": "Element Not found"
-                }
-
-       
-## Search  [/search{?page,size,msisdn}]
+  
+## Search  [/catalog/search{?page,size,msisdn}]
 
 ### Search [GET]
 
