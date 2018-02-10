@@ -537,14 +537,11 @@ Add list of products
 
 + Response 500 (application/json)
 
+## Products widget [/catalog/widgets/product{?page,size,order,widgetsType}]   
 
-    
-    
-            
-                    
-### List All Products [GET]
+### Products Widgets [GET]
 
-Return list of all products
+Return a list of all product widgets
 ---
 **Error Code:**
 - `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
@@ -554,13 +551,12 @@ Return list of all products
       + Default: 0
     + size      (number, optional)
       + Default: 100
-    + sort     (optional)
-      + Default: `id`
+    + widgetsType     (optional)
+      + Default: `views`
       + Members
             + `price`
             + `numberOfBids`
             + `views` 
-            + `id`
     + order     (optional)
       + Default: `ASC`
       + Members
@@ -614,9 +610,7 @@ Return list of all products
 
 + Response 400 (application/json)
 
-
- 
-                
+     
 ## Category Products [/catalog/categories/{id}/products{?page,size,sort,order}]
 
 ### List All Products by category [GET]
@@ -754,7 +748,7 @@ Return a single product detail resource.
 + Response 500 (application/json)
 
   
-## Search  [/catalog/search{?page,size,msisdn}]
+## Search  [/catalog/search/products{?page,size,msisdn}]
 
 ### Search [GET]
 
