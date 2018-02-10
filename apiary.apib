@@ -317,6 +317,37 @@ The customer type must be individual.
             
 + Response 500 (application/json)
 
+## Customer Eligibility [/customers/{nationalId}/eligibility]
+
+### Customer eligibility [POST]
+
+Used to check if the customer is allowed to bid in auction.
+ 
+---
+**Error Code:**
+
+- CUSTOMER_NOT_FOUND  . 
+- INTERNAL_SERVER_ERROR  .
+- CUSTOMER_IS_BLACKLISTED  .
+ 
+---
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+               "isEligible": true
+            }
+            
++ Response 404 (application/json)
+    
++ Response 400 (application/json)
+  
++ Response 500 (application/json)
+
+
+    
 ## Transfer Deposit [/customers/{nationalId}/deposit/transfer]
 
 ### Transfer Deposit [POST]
