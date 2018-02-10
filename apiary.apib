@@ -561,7 +561,21 @@ Used to return a list of all product widgets
             + `DESC`
     
 + Response 200 (application/json)
- 
+    
+     + Attributes  
+        + id (string) - Id of a product.
+        + msisdn (string) - auction number
+        + currentPrice (string) - auction last price.
+        + productStatus (enum[string]) - return list of product status
+            + Members
+                + `sold` 
+                + `new`
+        + category  - 
+            + id  (number) - Id of a product.
+            + name (string) - name of a category
+
+        + Body
+        
             {
                   "products": [
                     {
@@ -640,7 +654,21 @@ Return a list of all products in a specific category
             + `DESC`
     
 + Response 200 (application/json)
- 
+
+     + Attributes  
+        + id (string) - Id of a product.
+        + msisdn (string) - auction number
+        + currentPrice (string) - auction last price.
+        + productStatus (enum[string]) - return list of product status
+            + Members
+                + `sold` 
+                + `new`
+        + category  - 
+            + id  (number) - Id of a product.
+            + name (string) - name of a category
+            
+        + Body            
+        
             {
                   "products": [
                     {
