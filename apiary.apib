@@ -723,7 +723,7 @@ Return a single product detail resource.
 + Parameters
 
     + id: `1001` (number, required) - Id of a product.
-    + nationalId:`2154879542    ` (optional) - send nationalId if you looking for customer status. 
+    + nationalId:`2154879542` (string, optional) - send nationalId if you looking for customer bid status. 
                                         
 + Response 200 (application/json)
 
@@ -733,8 +733,10 @@ Return a single product detail resource.
         + currentPrice (string) - auction last price.
         + expiryDate  (string) - auction expiry date.
         + numberOfBids (number) - totale number of bids.
-        + isAutoBidAllowed  (string) - return if auto bid featuer enabled or disable
+        + isAutoBidAllowed  (string) - return if auto bid featuer allowed  
         + isProductInWatchlist - used to know the product in watchlist or not.
+        + depositAmount - product deposit amount.
+        + minimumIncrement (string)  - product minimum Increment
         + productStatus (enum[string]) - return list of product status
             + Members
                 + `sold` 
@@ -747,7 +749,11 @@ Return a single product detail resource.
         + category  - 
             + id  (number) - Id of a product.
             + name (string) - name of a category
-            + minimumIncrement (string)  - category minimum Increment
+        + purchase  - 
+            + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
+            + price (number)- fixed product price. 
+            + depositAmount (number) - product deposit amount.
+            
       
     + Body
     
@@ -762,7 +768,7 @@ Return a single product detail resource.
               "customerBidStatus": "noBid",
               "isProductInWatchlist" : true,
               "depositAmount": 300,
-              "minimumIncrement": 200
+              "minimumIncrement": 200,
               "purchase": {
                 "isPurchaseAllowed":true,
                 "price": 800000,
