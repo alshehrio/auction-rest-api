@@ -170,8 +170,8 @@ Add User
 
 ---
 **Error Code:**
-- USER_ALREADY_EXIST
-- GROUP_NOT_FOUND
+- `USER_ALREADY_EXIST`
+- `GROUP_NOT_FOUND`
 
 ---
     
@@ -224,7 +224,7 @@ Update user active status
 
 ---
 **Error Code:**
-- GROUP_NOT_FOUND
+- `GROUP_NOT_FOUND`
 ---
 + Request (application/json)
 
@@ -295,9 +295,9 @@ The customer type must be individual.
 
 ---
 **Error Code:**
-- INVALID_CUSTOMER_TYPE : The customer type must be individual.
-- VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
-- INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+- `INVALID_CUSTOMER_TYPE` : The customer type must be individual.
+- `VALIDATION_ERROR` : Error message from fieldErrors attribute in validation error response body
+- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
 ---
 + Request (application/json)
     
@@ -329,9 +329,9 @@ Used to check if the customer is allowed to bid in auction.
 ---
 **Error Code:**
 
-- CUSTOMER_NOT_FOUND  . 
-- INTERNAL_SERVER_ERROR  .
-- CUSTOMER_IS_BLACKLISTED  .
+- `CUSTOMER_NOT_FOUND`  . 
+- `INTERNAL_SERVER_ERROR`  .
+- `CUSTOMER_IS_BLACKLISTED`  .
  
 ---
 
@@ -359,14 +359,14 @@ Used to the transfer a deposit from a product to another product
 ---
 **Error Code:**
  
-- DEPOSIT_REVERSED : deposit to be transfered has been reversed.
-- VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
-- PRODUCT_IS_EXPIRED : product is expired
-- DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY : transfer must be between products in same category
-- TRANSFER_BACK_NOT_ALLOWED : user cannot transfer back to original product
-- HIGHEST_BIDDER_CANNOT_TRANSFER : highest bidderse cannot transfer their deposit
-- INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-- TRANSFER_NOT_ALLOWED : transfer not allowed
+- `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
+- `VALIDATION_ERROR` : Error message from fieldErrors attribute in validation error response body
+- `PRODUCT_IS_EXPIRED` : product is expired
+- `DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY` : transfer must be between products in same category
+- `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
+- `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
+- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
+- `TRANSFER_NOT_ALLOWED` : transfer not allowed
        
 ---
 + Parameters
@@ -445,7 +445,7 @@ Returns a single Category
 
 ---
 **Error Code:**
-- CATEGORY_NOT_FOUND : category id not found.
+- `CATEGORY_NOT_FOUND` : category id not found.
 ---
 
 + Request (application/json)
@@ -508,7 +508,7 @@ Add list of products
 
 ---
 **Error Code:**
-- AUC008 : Auction Batches overlap is not allowed.
+- `AUC008` : Auction Batches overlap is not allowed.
 ---
 + Request (application/json)
     + Body
@@ -547,7 +547,7 @@ Add list of products
 Return list of all products
 ---
 **Error Code:**
-- TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 ---
 + Parameters
     + page      (number, optional)
@@ -625,8 +625,8 @@ Return a list of all products in a specific category
 
 ---
 **Error Code:**
-- INVALID_CATEGORY_ID : category id is null or invalid.
-- TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+- `INVALID_CATEGORY_ID` : category id is null or invalid.
+- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 ---
 + Parameters
     
@@ -822,8 +822,8 @@ Return a list of all matched msisdn
 Return list of all expired batches
 ---
 **Error Code:**
-- RANGE_ERROR : End date must me greater than start date.
-- TYPE_CONVERSION_ERROR : The value null of the field startDate is of the wrong type or the date format is incorrect.
+- `RANGE_ERROR` : End date must me greater than start date.
+- `TYPE_CONVERSION_ERROR` : The value null of the field startDate is of the wrong type or the date format is incorrect.
     
 ---
 + Parameters
@@ -871,10 +871,10 @@ Return list of all expired batches
 Return a list of all payment reconcile transaction for specific batch and transaction type
 ---
 **Error Code:**
-- MISSING_PARAM : Required PaymentTransactionType parameter "transactionType" is not present.
-- INVALID_BATCH_ID : Batch Id is null or invalid.
-- TYPE_MISMATCH : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
-- INVALID_TRANSACTION_TYPE : TransactionType value is invalid.
+- `MISSING_PARAM` : Required PaymentTransactionType parameter "transactionType" is not present.
+- `INVALID_BATCH_ID` : Batch Id is null or invalid.
+- `TYPE_MISMATCH` : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
+- `INVALID_TRANSACTION_TYPE` : TransactionType value is invalid.
 ---
 + Parameters
     + batchId            (String, required)
@@ -924,11 +924,11 @@ object containing a customer id and a amount of bid.
 
 ---
 **Error Code:**
-- DEPOSIT_NOT_PAID : customer didn't pay deposit payment.
-- CUSTOMER_IS_BLACKLISTED : customer is blacklisted in auction.
-- AUCTION_IS_NOT_ACTIVE : Auction time is finished or not started yet.
-- BID_IS_LESS_THAN_MINIMUM_INCREMENT : Bid is less than minimum bid.
-- WRONG_BID_TYPE : bid type in request does not match auction bid type. (auto bid / regular bid) 
+- `DEPOSIT_NOT_PAID` : customer didn't pay deposit payment.
+- `CUSTOMER_IS_BLACKLISTED` : customer is blacklisted in auction.
+- `AUCTION_IS_NOT_ACTIVE` : Auction time is finished or not started yet.
+- `BID_IS_LESS_THAN_MINIMUM_INCREMENT` : Bid is less than minimum bid.
+- `WRONG_BID_TYPE` : bid type in request does not match auction bid type. (auto bid / regular bid) 
 ---  
 + Request (application/json)
 
@@ -983,10 +983,10 @@ Used to remove an item from watchlist
 
 ---
 **Error Code:**
-- INVALID_PRODUCT_ID : product id is not valid 
-- INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-- INVALID_CUSTOMER_ID : customer id is not valid.
-- TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+- `INVALID_PRODUCT_ID` : product id is not valid 
+- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
+- `INVALID_CUSTOMER_ID` : customer id is not valid.
+- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 ---
 + Parameters
 
@@ -1012,11 +1012,11 @@ Used to Add an item from watchlist
 ---
 **Error Code:**
 
-- INVALID_PRODUCT_ID : product id is not valid 
-- INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-- INVALID_CUSTOMER_ID : customer id is not valid 
-- MAX_NUMBER_OF_PRODUCTS_EXCEEDED: max number of items in watchlist has been exceeded.
-- PRODUCT_IS_EXPIRED : product is expired.
+- `INVALID_PRODUCT_ID` : product id is not valid 
+- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
+- `INVALID_CUSTOMER_ID` : customer id is not valid 
+- `MAX_NUMBER_OF_PRODUCTS_EXCEEDED`: max number of items in watchlist has been exceeded.
+- `PRODUCT_IS_EXPIRED` : product is expired.
 ---
 + Request (application/json)
     
