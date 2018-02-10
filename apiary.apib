@@ -500,7 +500,7 @@ Returns a single Category
 
 + Response 500 (application/json)
 
-## Products Collection [/catalog/products{?page,size,sort,order}]
+## Products  [/catalog/products{?page,size,sort,order}]
 
 ### Add Products [POST]
 Add list of products
@@ -536,7 +536,7 @@ Add list of products
 
 + Response 500 (application/json)
 
-## Products widget [/catalog/widgets/product{?page,size,order,widgetType}]   
+## Products Widget [/catalog/widgets/product{?page,size,order,widgetType}]   
 
 ### Products Widgets [GET]
 
@@ -609,7 +609,7 @@ Used to return a list of all product widgets
 + Response 500 (application/json)
 
      
-## Category Products [/catalog/categories/{id}/products{?page,size,sort,order}]
+## Products Collection [/catalog/categories/{id}/products{?page,size,sort,order}]
 
 ### List All Products by category [GET]
 
@@ -745,7 +745,7 @@ Return a single product detail resource.
 + Response 500 (application/json)
 
   
-## Search  [/catalog/search/products{?page,size,msisdn}]
+## Search Products [/catalog/search/products{?page,size,msisdn}]
 
 ### Search [GET]
 
@@ -903,7 +903,7 @@ Return a list of all payment reconcile transaction for specific batch and transa
 
 # Group Bid 
            
-## Bids Collection [/bids]
+## Bids [/bids]
 
 ### Place Bid [POST]
 
@@ -965,7 +965,7 @@ object containing a customer id and a amount of bid.
 
 ## Remove Watchlist [/watchlist/product{?productId,nationalId}]
 
-### Remove watchlist item [DELETE]
+### Remove Watchlist item [DELETE]
 
 Used to remove an item from watchlist
 
@@ -985,9 +985,6 @@ Used to remove an item from watchlist
 + Response 400 (application/json)
 
 
-        
- 
-            
 + Response 500 (application/json)
                
 ## Add Watchlist [/watchlist/product]
