@@ -53,9 +53,13 @@ For all errors except validation errors, auction returns an error response body 
     "message"  : "ERROR_MESSAGE"
 }
 ```
+
+In addition, all Auction APIs can return `INTERNAL_SERVICE_ERROR` in case of an internal server error has occurred. Resend the request at another time.
+If this error persists, contact Auction Team Support.
+
 ##  Validation errors
 
-For validation errors, Auction returns the HTTP `400 Bad Request` status code.
+For validation errors `VALIDATION_ERROR`, Auction returns the HTTP `400 Bad Request` status code.
 
 The server could not understand the request. Indicates one of these conditions:
 
@@ -79,6 +83,7 @@ The response body for validation errors includes additional error details in fol
 }
 
 ```
+
 
 ## API Catalog
 
@@ -296,8 +301,6 @@ The customer type must be individual.
 ---
 **Error Code:**
 - `INVALID_CUSTOMER_TYPE` : The customer type must be individual.
-- `VALIDATION_ERROR` : Error message from fieldErrors attribute in validation error response body
-- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
 ---
 + Request (application/json)
     
@@ -360,12 +363,10 @@ Used to the transfer a deposit from a product to another product
 **Error Code:**
  
 - `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
-- `VALIDATION_ERROR` : Error message from fieldErrors attribute in validation error response body
 - `PRODUCT_IS_EXPIRED` : product is expired
 - `DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY` : transfer must be between products in same category
 - `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
 - `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
-- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
 - `TRANSFER_NOT_ALLOWED` : transfer not allowed
        
 ---
@@ -385,11 +386,7 @@ Used to the transfer a deposit from a product to another product
 + Response 201 (application/json)
 
 + Response 400 (application/json)
-
  
-    
-     
-            
 + Response 500 (application/json)
 
 # Group Catalog
@@ -469,10 +466,7 @@ Returns a single Category
             }
 
 + Response 400 (application/json)
-
-
  
-             
 + Response 500 (application/json)
 
 ### Update Category [PUT]
@@ -537,7 +531,7 @@ Add list of products
 
 + Response 500 (application/json)
 
-## Products widget [/catalog/widgets/product{?page,size,order,widgetsType}]   
+## Products widget [/catalog/widgets/product{?page,size,order,widgetType}]   
 
 ### Products Widgets [GET]
 
@@ -551,7 +545,7 @@ Return a list of all product widgets
       + Default: 0
     + size      (number, optional)
       + Default: 100
-    + widgetsType     (optional)
+    + widgetType     (String ,optional)
       + Default: `views`
       + Members
             + `price`
@@ -609,6 +603,7 @@ Return a list of all product widgets
             }
 
 + Response 400 (application/json)
++ Response 500 (application/json)
 
      
 ## Category Products [/catalog/categories/{id}/products{?page,size,sort,order}]
@@ -978,7 +973,6 @@ Used to remove an item from watchlist
 ---
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid 
-- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
 - `INVALID_CUSTOMER_ID` : customer id is not valid.
 - `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 ---
@@ -1007,8 +1001,7 @@ Used to Add an item from watchlist
 **Error Code:**
 
 - `INVALID_PRODUCT_ID` : product id is not valid 
-- `INTERNAL_SERVICE_ERROR` : An internal service error has occurred. Resend the request at another time.
-- `INVALID_CUSTOMER_ID` : customer id is not valid 
+ - `INVALID_CUSTOMER_ID` : customer id is not valid 
 - `MAX_NUMBER_OF_PRODUCTS_EXCEEDED`: max number of items in watchlist has been exceeded.
 - `PRODUCT_IS_EXPIRED` : product is expired.
 ---
