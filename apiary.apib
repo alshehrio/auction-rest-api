@@ -44,6 +44,12 @@ The following is a mandatory header tags, that must be sent with each request.
 
 In the responses for failed requests, Auction returns HTTP `4XX` or `5XX` status codes.
 
+In addition, the Auction API can return the following errors.
+
+- `INTERNAL_SERVICE_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
+- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+- `TYPE_CONVERSION_ERROR` : The value null of the parameter 'parameter name' is of the wrong type or the 'parameter name' format is incorrect.
+
 For all errors except validation errors, auction returns an error response body in following format:
 
      
@@ -82,12 +88,7 @@ The response body for validation errors includes additional error details in fol
 
 ```
 
-##  Internal Server Errors
 
-For internal server errors `INTERNAL_SERVICE_ERROR`, Auction returns the HTTP `500 internal server errors` status code. 
-
-All Auction APIs can return  in case of an internal server error has occurred. Resend the request at another time.
-If this error persists, contact Auction Team Support.
 
 ## API Catalog
 
@@ -337,7 +338,6 @@ Used to check if the customer is allowed to bid in auction.
 **Error Code:**
 
 - `CUSTOMER_NOT_FOUND`  . 
-- `INTERNAL_SERVER_ERROR`  .
 - `CUSTOMER_IS_BLACKLISTED`  .
  
 ---
@@ -539,12 +539,9 @@ Add list of products
 
 ### Products Widgets [GET]
 
-Return a list of all product widgets
+Used to return a list of all product widgets
 
----
-**Error Code:**
-- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
----
+ 
 + Parameters
     + page      (number, optional)
       + Default: 0
@@ -620,7 +617,6 @@ Return a list of all products in a specific category
 ---
 **Error Code:**
 - `INVALID_CATEGORY_ID` : category id is null or invalid.
-- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 ---
 + Parameters
     
@@ -817,8 +813,7 @@ Return list of all expired batches
 ---
 **Error Code:**
 - `RANGE_ERROR` : End date must me greater than start date.
-- `TYPE_CONVERSION_ERROR` : The value null of the field startDate is of the wrong type or the date format is incorrect.
-    
+     
 ---
 + Parameters
     + startDate  (date) - timestamp format yyyy-MM-dd'T'HH:mm:ss
@@ -867,7 +862,6 @@ Return a list of all payment reconcile transaction for specific batch and transa
 **Error Code:**
 - `MISSING_PARAM` : Required PaymentTransactionType parameter "transactionType" is not present.
 - `INVALID_BATCH_ID` : Batch Id is null or invalid.
-- `TYPE_MISMATCH` : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
 - `INVALID_TRANSACTION_TYPE` : TransactionType value is invalid.
 ---
 + Parameters
@@ -979,7 +973,6 @@ Used to remove an item from watchlist
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid 
 - `INVALID_CUSTOMER_ID` : customer id is not valid.
-- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 ---
 + Parameters
 
