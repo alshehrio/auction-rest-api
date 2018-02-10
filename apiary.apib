@@ -734,7 +734,7 @@ Return a single product detail resource.
         + expiryDate  (string) - auction expiry date.
         + numberOfBids (number) - totale number of bids.
         + isAutoBidAllowed  (string) - return if auto bid featuer enabled or disable
-        + isProductInWatchlist - used to know the product in watchlist or no.
+        + isProductInWatchlist - used to know the product in watchlist or not.
         + productStatus (enum[string]) - return list of product status
             + Members
                 + `sold` 
@@ -761,6 +761,12 @@ Return a single product detail resource.
               "productStatus": "sold",
               "customerBidStatus": "noBid",
               "isProductInWatchlist" : true,
+              "depositAmount": 300
+              "purchase": {
+                "isPurchaseAllowed":true,
+                "price": 800000,
+                "depositAmount": 20000
+              }
               "category": {
                 "id":2,
                 "name": "Bronze Numbers",
