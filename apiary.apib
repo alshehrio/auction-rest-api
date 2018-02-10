@@ -118,7 +118,8 @@ list of all APIs and their respective owners
     </tr>
 </table>
 
- 
+# Group User
+
 ## User Collection [/users]
 
 ### Get User [GET]
@@ -210,8 +211,6 @@ Add User
  
     + Body
      
-            
-
 ## Users Detail [/users/{username}]
 + Parameters
     + username: `test` (string, required) - username.
@@ -258,8 +257,7 @@ Update user active status
     - GROUP_NOT_FOUND
  
     + Body
-    
-          
+
 ## Groups Collection [/groups]
 
 ### List all Groups [GET]  
@@ -281,9 +279,84 @@ Get All groups
                         ]
                     }
                 ]
-            }
+            }    
+# Group Customer
 
+## Customer Collection [/customers]
+
+### Add customer [POST]
+Used to the add or update customer in the auction.
+The customer type must be individual. 
+
++ Request (application/json)
+    
+    + Body
+
+            {
+                "nationalId": "1254897561",
+                "emailAddress": "test@stc.com",
+                "firstName": "test",
+                "lastName": "test",
+                "username": "test",
+                "contactNumber": "0578595468",
+                "type": "individual"
+            }
             
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
+  **Error Code:**
+ 
+    - INVALID_CUSTOMER_TYPE : The customer type must be individual.
+    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+        
+    + Body
+     
+            
++ Response 500 (application/json)
+
+## Transfer Deposit [/customers/{nationalId}/deposit/transfer]
+
+### Transfer Deposit [POST]
+Used to the transfer a deposit from a product to another product
+
++ Parameters
+
+    + nationalId: `2125487985` (number, required) - national Id of a customer.
+    
++ Request (application/json)
+    
+    + Body
+
+            {
+                "fromProduct": 15,
+                "toProduct": 45
+            }
+            
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
+  **Error Code:**
+ 
+    - DEPOSIT_REVERSED : deposit to be transfered has been reversed.
+    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
+    - PRODUCT_IS_EXPIRED : product is expired
+    - DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY : transfer must be between products in same category
+    - TRANSFER_BACK_NOT_ALLOWED : user cannot transfer back to original product
+    - HIGHEST_BIDDER_CANNOT_TRANSFER : highest bidderse cannot transfer their deposit
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+    - TRANSFER_NOT_ALLOWED : transfer not allowed
+        
+    + Body
+     
+            
++ Response 500 (application/json)
+
+# Group Catalog
+
 ## Categories Collection [/catalog/categories]     
 
 ### List all Categories [GET]  
@@ -324,10 +397,10 @@ Used to return a list of all available categories in the auction system.
             ]
         }
         
-## Categories Detail [/catalog/categories/{categoriesId}]     
+## Categories Detail [/catalog/categories/{id}]     
 
 + Parameters
-    + categoriesId: `1` (number, required) - Id of a Category.
+    + id: `1` (number, required) - Id of a Category.
     
 ### Get Category [GET]  
 
@@ -503,7 +576,7 @@ Return list of all products
     + Body
  
                 
-## Category Products [/catalog/categories/{categoryId}/products{?page,size,sort,order}]
+## Category Products [/catalog/categories/{id}/products{?page,size,sort,order}]
 
 ### List All Products by category [GET]
 
@@ -511,7 +584,7 @@ Return a list of all products in a specific category
 
 + Parameters
     
-    + categoryId (number)
+    + id (number)
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
@@ -581,7 +654,7 @@ Return a list of all products in a specific category
    
     + Body
  
-## Products Detail [/catalog/products/{productId}{?nationalId}]     
+## Products Detail [/catalog/products/{id}{?nationalId}]     
 
 ### Get Product Detail [GET]
 
@@ -589,7 +662,7 @@ Return a single product detail resource.
 
 + Parameters
 
-    + productId: `1001` (number, required) - Id of a product.
+    + id: `1001` (number, required) - Id of a product.
     + nationalId:`1` (optional) - send nationalId if you looking for customer status. 
                                         
 + Response 200 (application/json)
@@ -696,64 +769,9 @@ Return a list of all matched msisdn
                 "number": 1
               }
             }
-            
-## Bids Collection [/bids]
 
-### Place Bid [POST]
+# Group Batch
 
-You may create your own bid using this action. It takes a JSON
-object containing a customer id and a amount of bid.
-
-
-+ Request (application/json)
-
-
-    + Headers
-
-            Accept-Language: en
-            
-    + Body
-            
-            {
-                "nationalId": 10999999,
-                "regularBidAmount": 5000,
-                "autoBidAmount" : null,
-                "productId": 1
-            }
-
-+ Response 201 (application/json)
-
-    + Attributes 
-    
-        + numberOfBids (number) - totale number of bids.
-        + isAutoBidAllowed  (string) - return weather of auto bid featuer enabled or disable
-        + currentPrice (string) - return latest bid amount.
-        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
-            + Members
-                + `highestBidder`
-                + `outbid` 
-
-    + Body
-    
-            {
-               "numberOfBids": 37,
-               "currentPrice": 5000,
-               "customerBidStatus": "highestBidder",
-               "isAutoBidAllowed":true
-            }
-
-+ Response 400 (application/json)
-        
-  **Error Code:**
-    - DEPOSIT_NOT_PAID : customer didn't pay deposit payment.
-    - CUSTOMER_IS_BLACKLISTED : customer is blacklisted in auction.
-    - AUCTION_IS_NOT_ACTIVE : Auction time is finished or not started yet.
-    - BID_IS_LESS_THAN_MINIMUM_INCREMENT : Bid is less than minimum bid.
-    - WRONG_BID_TYPE : bid type in request does not match auction bid type. (auto bid / regular bid) 
-  
-    + Body
- 
-                
 ## Batches Collection [/batches{?startDate,endDate}]
 
 ### List all Expired Batches  [GET]
@@ -798,6 +816,8 @@ Return list of all expired batches
  
 + Response 500 (application/json)
 
+
+# Group Payment 
 
 ## Payments Reconcile Collection [/payments/reconcile{?batchId,transactionType}]
 
@@ -847,82 +867,67 @@ Return a list of all payment reconcile transaction for specific batch and transa
 
 + Response 500 (application/json)
 
-## Customer Collection [/customers]
+# Group Bid 
+           
+## Bids Collection [/bids]
 
-### Add customer [POST]
-Used to the add or update customer in the auction.
-The customer type must be individual. 
+### Place Bid [POST]
 
-+ Request (application/json)
-    
-    + Body
+You may create your own bid using this action. It takes a JSON
+object containing a customer id and a amount of bid.
 
-            {
-                "nationalId": "1254897561",
-                "emailAddress": "test@stc.com",
-                "firstName": "test",
-                "lastName": "test",
-                "username": "test",
-                "contactNumber": "0578595468",
-                "type": "individual"
-            }
+
+ (application/json)
+
+
+    + Headers
+
+            Accept-Language: en
             
+    + Body
+            
+            {
+                "nationalId": 10999999,
+                "regularBidAmount": 5000,
+                "autoBidAmount" : null,
+                "productId": 1
+            }
+
 + Response 201 (application/json)
 
-+ Response 400 (application/json)
-
-  **Error Code:**
- 
-    - INVALID_CUSTOMER_TYPE : The customer type must be individual.
-    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
-    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-        
-    + Body
-     
-            
-+ Response 500 (application/json)
-
-
-
-## Transfer Deposit [/customers/{nationalId}/deposit/transfer]
-
-### Transfer Deposit [POST]
-Used to the transfer a deposit from a product to another product
-
-+ Parameters
-
-    + nationalId: `2125487985` (number, required) - national Id of a customer.
+    + Attributes 
     
-+ Request (application/json)
-    
-    + Body
+        + numberOfBids (number) - totale number of bids.
+        + isAutoBidAllowed  (string) - return weather of auto bid featuer enabled or disable
+        + currentPrice (string) - return latest bid amount.
+        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
+            + Members
+                + `highestBidder`
+                + `outbid` 
 
+    + Body
+    
             {
-                "fromProduct": 15,
-                "toProduct": 45
+               "numberOfBids": 37,
+               "currentPrice": 5000,
+               "customerBidStatus": "highestBidder",
+               "isAutoBidAllowed":true
             }
-            
-+ Response 201 (application/json)
 
 + Response 400 (application/json)
-
-  **Error Code:**
- 
-    - DEPOSIT_REVERSED : deposit to be transfered has been reversed.
-    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
-    - PRODUCT_IS_EXPIRED : product is expired
-    - DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY : transfer must be between products in same category
-    - TRANSFER_BACK_NOT_ALLOWED : user cannot transfer back to original product
-    - HIGHEST_BIDDER_CANNOT_TRANSFER : highest bidderse cannot transfer their deposit
-    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-    - TRANSFER_NOT_ALLOWED : transfer not allowed
         
+  **Error Code:**
+    - DEPOSIT_NOT_PAID : customer didn't pay deposit payment.
+    - CUSTOMER_IS_BLACKLISTED : customer is blacklisted in auction.
+    - AUCTION_IS_NOT_ACTIVE : Auction time is finished or not started yet.
+    - BID_IS_LESS_THAN_MINIMUM_INCREMENT : Bid is less than minimum bid.
+    - WRONG_BID_TYPE : bid type in request does not match auction bid type. (auto bid / regular bid) 
+  
     + Body
-     
-            
-+ Response 500 (application/json)
-
+ 
+ 
 # Group Watchlist
+
 ## Remove Watchlist [/watchlist/product{?productId,nationalId}]
 
 ### Remove watchlist item [DELETE]
@@ -947,17 +952,15 @@ Used to remove an item from watchlist
 
         
     + Body
-     
             
 + Response 500 (application/json)
-
+               
 ## Add Watchlist [/watchlist/product]
 
 ### Add watchlist item [POST]
 
 Used to Add an item from watchlist
  
-
 + Request (application/json)
     
     + Body
