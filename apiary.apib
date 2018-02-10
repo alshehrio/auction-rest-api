@@ -168,6 +168,13 @@ Get All Users
 ### Add User [POST]
 Add User
 
+---
+    **Error Code:**
+    - USER_ALREADY_EXIST
+    - GROUP_NOT_FOUND
+ 
+---
+    
 + Request (application/json)
     
     + Body
@@ -205,11 +212,7 @@ Add User
 
 + Response 400 (application/json)
 
-    **Error Code:**
-    - USER_ALREADY_EXIST
-    - GROUP_NOT_FOUND
- 
-    + Body
+
      
 ## Users Detail [/users/{username}]
 + Parameters
@@ -219,7 +222,10 @@ Add User
 
 Update user active status
 
-
+---
+    **Error Code:**
+    - GROUP_NOT_FOUND
+---
 + Request (application/json)
 
         {
@@ -253,10 +259,9 @@ Update user active status
 
 + Response 400 (application/json)
 
-    **Error Code:**
-    - GROUP_NOT_FOUND
+
  
-    + Body
+     
 
 ## Groups Collection [/groups]
 
@@ -287,7 +292,13 @@ Get All groups
 ### Add customer [POST]
 Used to the add or update customer in the auction.
 The customer type must be individual. 
-
+---
+  **Error Code:**
+ 
+    - INVALID_CUSTOMER_TYPE : The customer type must be individual.
+    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+---
 + Request (application/json)
     
     + Body
@@ -306,13 +317,8 @@ The customer type must be individual.
 
 + Response 400 (application/json)
 
-  **Error Code:**
- 
-    - INVALID_CUSTOMER_TYPE : The customer type must be individual.
-    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
-    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-        
-    + Body
+  
+    
      
             
 + Response 500 (application/json)
@@ -353,6 +359,19 @@ Used to check if the customer is allowed to bid in auction.
 ### Transfer Deposit [POST]
 Used to the transfer a deposit from a product to another product
 
+---
+  **Error Code:**
+ 
+    - DEPOSIT_REVERSED : deposit to be transfered has been reversed.
+    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
+    - PRODUCT_IS_EXPIRED : product is expired
+    - DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY : transfer must be between products in same category
+    - TRANSFER_BACK_NOT_ALLOWED : user cannot transfer back to original product
+    - HIGHEST_BIDDER_CANNOT_TRANSFER : highest bidderse cannot transfer their deposit
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+    - TRANSFER_NOT_ALLOWED : transfer not allowed
+       
+---
 + Parameters
 
     + nationalId: `2125487985` (number, required) - national Id of a customer.
@@ -370,18 +389,8 @@ Used to the transfer a deposit from a product to another product
 
 + Response 400 (application/json)
 
-  **Error Code:**
  
-    - DEPOSIT_REVERSED : deposit to be transfered has been reversed.
-    - VALIDATION_ERROR : Error message from fieldErrors attribute in validation error response body
-    - PRODUCT_IS_EXPIRED : product is expired
-    - DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY : transfer must be between products in same category
-    - TRANSFER_BACK_NOT_ALLOWED : user cannot transfer back to original product
-    - HIGHEST_BIDDER_CANNOT_TRANSFER : highest bidderse cannot transfer their deposit
-    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-    - TRANSFER_NOT_ALLOWED : transfer not allowed
-        
-    + Body
+    
      
             
 + Response 500 (application/json)
@@ -437,6 +446,11 @@ Used to return a list of all available categories in the auction system.
 
 Returns a single Category
 
+---
+  **Error Code:**
+    - CATEGORY_NOT_FOUND : category id not found.
+---
+
 + Request (application/json)
 
     + Headers
@@ -459,11 +473,8 @@ Returns a single Category
 
 + Response 400 (application/json)
 
-  **Error Code:**
-    - CATEGORY_NOT_FOUND : category id not found.
-   
-    + Body
 
+ 
              
 + Response 500 (application/json)
 
@@ -498,6 +509,10 @@ Returns a single Category
 ### Add Products [POST]
 Add list of products
 
+---
+    **Error Code:**
+    - AUC008 : Auction Batches overlap is not allowed.
+---
 + Request (application/json)
     + Body
             
@@ -525,17 +540,18 @@ Add list of products
 
 + Response 500 (application/json)
 
-    **Error Code:**
-    - AUC008 : Auction Batches overlap is not allowed.
- 
-    + Body
+
+    
     
             
                     
 ### List All Products [GET]
 
 Return list of all products
-
+---
+  **Error Code:**
+    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+---
 + Parameters
     + page      (number, optional)
       + Default: 0
@@ -601,10 +617,7 @@ Return list of all products
 
 + Response 400 (application/json)
 
-  **Error Code:**
-    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
-   
-    + Body
+
  
                 
 ## Category Products [/catalog/categories/{id}/products{?page,size,sort,order}]
@@ -613,6 +626,11 @@ Return list of all products
 
 Return a list of all products in a specific category
 
+---
+  **Error Code:**
+    - INVALID_CATEGORY_ID : category id is null or invalid.
+    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+---
 + Parameters
     
     + id (number)
@@ -679,11 +697,8 @@ Return a list of all products in a specific category
  
 + Response 400 (application/json)
 
-  **Error Code:**
-    - INVALID_CATEGORY_ID : category id is null or invalid.
-    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
-   
-    + Body
+
+  
  
 ## Products Detail [/catalog/products/{id}{?nationalId}]     
 
@@ -808,7 +823,12 @@ Return a list of all matched msisdn
 ### List all Expired Batches  [GET]
 
 Return list of all expired batches
-
+---
+  **Error Code:**
+    - RANGE_ERROR : End date must me greater than start date.
+    - TYPE_CONVERSION_ERROR : The value null of the field startDate is of the wrong type or the date format is incorrect.
+    
+---
 + Parameters
     + startDate  (date) - timestamp format yyyy-MM-dd'T'HH:mm:ss
     + endDate    (date) - timestamp format yyyy-MM-dd'T'HH:mm:ss
@@ -839,11 +859,8 @@ Return list of all expired batches
 
 + Response 400 (application/json)
 
-  **Error Code:**
-    - RANGE_ERROR : End date must me greater than start date.
-    - TYPE_CONVERSION_ERROR : The value null of the field startDate is of the wrong type or the date format is incorrect.
+
   
-    + Body
  
 + Response 500 (application/json)
 
@@ -855,7 +872,13 @@ Return list of all expired batches
 ### List all Payments Reconcile Transaction [GET]
 
 Return a list of all payment reconcile transaction for specific batch and transaction type
-
+---
+  **Error Code:**
+    - MISSING_PARAM : Required PaymentTransactionType parameter "transactionType" is not present.
+    - INVALID_BATCH_ID : Batch Id is null or invalid.
+    - TYPE_MISMATCH : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
+    - INVALID_TRANSACTION_TYPE : TransactionType value is invalid.
+---
 + Parameters
     + batchId            (String, required)
     + transactionType    (enum[string]) 
@@ -886,14 +909,9 @@ Return a list of all payment reconcile transaction for specific batch and transa
 
 + Response 400 (application/json)
 
-  **Error Code:**
-    - MISSING_PARAM : Required PaymentTransactionType parameter "transactionType" is not present.
-    - INVALID_BATCH_ID : Batch Id is null or invalid.
-    - TYPE_MISMATCH : Type does not match on parameter transactionType expected value of type PaymentTransactionType, possible values: [capture, reversal]
-    - INVALID_TRANSACTION_TYPE : TransactionType value is invalid.
 
      
-    + Body
+     
  
 
 + Response 500 (application/json)
@@ -907,8 +925,14 @@ Return a list of all payment reconcile transaction for specific batch and transa
 You may create your own bid using this action. It takes a JSON
 object containing a customer id and a amount of bid.
 
-
- (application/json)
+  **Error Code:**
+    - DEPOSIT_NOT_PAID : customer didn't pay deposit payment.
+    - CUSTOMER_IS_BLACKLISTED : customer is blacklisted in auction.
+    - AUCTION_IS_NOT_ACTIVE : Auction time is finished or not started yet.
+    - BID_IS_LESS_THAN_MINIMUM_INCREMENT : Bid is less than minimum bid.
+    - WRONG_BID_TYPE : bid type in request does not match auction bid type. (auto bid / regular bid) 
+  
++ Request (application/json)
 
 
     + Headers
@@ -947,14 +971,8 @@ object containing a customer id and a amount of bid.
 
 + Response 400 (application/json)
         
-  **Error Code:**
-    - DEPOSIT_NOT_PAID : customer didn't pay deposit payment.
-    - CUSTOMER_IS_BLACKLISTED : customer is blacklisted in auction.
-    - AUCTION_IS_NOT_ACTIVE : Auction time is finished or not started yet.
-    - BID_IS_LESS_THAN_MINIMUM_INCREMENT : Bid is less than minimum bid.
-    - WRONG_BID_TYPE : bid type in request does not match auction bid type. (auto bid / regular bid) 
-  
-    + Body
+
+    
  
  
 # Group Watchlist
@@ -965,6 +983,13 @@ object containing a customer id and a amount of bid.
 
 Used to remove an item from watchlist
 
+---
+  **Error Code:**
+    - INVALID_PRODUCT_ID : product id is not valid 
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+    - INVALID_CUSTOMER_ID : customer id is not valid.
+    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+---
 + Parameters
 
     + nationalId: `21254879985` (number, required) - national Id of a customer.
@@ -975,14 +1000,9 @@ Used to remove an item from watchlist
 
 + Response 400 (application/json)
 
-  **Error Code:**
-    - INVALID_PRODUCT_ID : product id is not valid 
-    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-    - INVALID_CUSTOMER_ID : customer id is not valid.
-    - TYPE_MISMATCH : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 
         
-    + Body
+ 
             
 + Response 500 (application/json)
                
@@ -991,7 +1011,15 @@ Used to remove an item from watchlist
 ### Add watchlist item [POST]
 
 Used to Add an item from watchlist
- 
+---
+ **Error Code:**
+    
+    - INVALID_PRODUCT_ID : product id is not valid 
+    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
+    - INVALID_CUSTOMER_ID : customer id is not valid 
+    - MAX_NUMBER_OF_PRODUCTS_EXCEEDED: max number of items in watchlist has been exceeded.
+    - PRODUCT_IS_EXPIRED : product is expired.
+---
 + Request (application/json)
     
     + Body
@@ -1004,14 +1032,7 @@ Used to Add an item from watchlist
 
 + Response 400 (application/json)
 
- **Error Code:**
-    
-    - INVALID_PRODUCT_ID : product id is not valid 
-    - INTERNAL_SERVICE_ERROR : An internal service error has occurred. Resend the request at another time.
-    - INVALID_CUSTOMER_ID : customer id is not valid 
-    - MAX_NUMBER_OF_PRODUCTS_EXCEEDED: max number of items in watchlist has been exceeded.
-    - PRODUCT_IS_EXPIRED : product is expired 
-        
-    + Body
+  
+  
      
 + Response 500 (application/json)
