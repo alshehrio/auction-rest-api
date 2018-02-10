@@ -49,6 +49,7 @@ In addition, the Auction API can return the following errors.
 - `INTERNAL_SERVICE_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
 - `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 - `TYPE_CONVERSION_ERROR` : The value null of the parameter 'parameter name' is of the wrong type or the 'parameter name' format is incorrect.
+- `MISSING_PARAMETER` : Required PaymentTransactionType parameter "transactionType" is not present.
 
 For all errors except validation errors, auction returns an error response body in following format:
 
@@ -860,7 +861,6 @@ Return list of all expired batches
 Return a list of all payment reconcile transaction for specific batch and transaction type
 ---
 **Error Code:**
-- `MISSING_PARAM` : Required PaymentTransactionType parameter "transactionType" is not present.
 - `INVALID_BATCH_ID` : Batch Id is null or invalid.
 - `INVALID_TRANSACTION_TYPE` : TransactionType value is invalid.
 ---
