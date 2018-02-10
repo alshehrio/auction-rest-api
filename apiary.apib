@@ -296,9 +296,10 @@ Get All groups
                     }
                 ]
             }    
+            
 # Group Customer
 
-## Customer Collection [/customers]
+## Customer [/customers]
 
 ### Add customer [POST]
 Used to the add or update customer in the auction.
@@ -306,10 +307,10 @@ The customer type must be individual.
 
 ---
 **Error Code:**
-- `INVALID_CUSTOMER_TYPE` : The customer type must be individual.
+- `INVALID_CUSTOMER_TYPE`.
 ---
 + Request (application/json)
-    
+    https://auctionrestapi.docs.apiary.io/reference/customer/customer/add-customer
     + Body
 
             {
@@ -319,7 +320,7 @@ The customer type must be individual.
                 "lastName": "test",
                 "username": "test",
                 "contactNumber": "0578595468",
-                "type": "individual"
+                "type": "s"
             }
             
 + Response 201 (application/json)
@@ -333,13 +334,13 @@ The customer type must be individual.
 
 ### Customer eligibility [POST]
 
-Used to check if the customer is allowed to bid in auction.
- 
+Used to check if the customer is blacklisted in auction.
+OCP will check if the customer is blacklisted in STC, and maintain customer error messages in case the customer is blacklisted in auction and STC, otherwise send the Whether is he blacklisted in STC then auction will return Appropriate message 
+
 ---
 **Error Code:**
 
-- `CUSTOMER_NOT_FOUND`  . 
-- `CUSTOMER_IS_BLACKLISTED`  .
+- `CUSTOMER_NOT_FOUND`.
  
 ---
 
@@ -583,7 +584,7 @@ Used to return a list of all product widgets
                   "msisdn": "533996655",
                   "currentPrice": 8000,
                   "productStatus": "sold",
-                  "category": [ { "Id": 27 , "name" : "Bronze Numbers" }]
+                  "category": { "Id": 27 , "name" : "Bronze Numbers" }
                                     
                 },
                 {
@@ -591,7 +592,7 @@ Used to return a list of all product widgets
                   "msisdn": "5399999999",
                   "currentPrice": 8000,
                   "productStatus": "new",
-                  "category": [ { "Id": 27 , "name" : "Bronze Numbers" }]
+                  "category": { "Id": 27 , "name" : "Bronze Numbers" }
                 }
               ],
               "links": {
@@ -676,14 +677,14 @@ Return a list of all products in a specific category
                   "msisdn": "533996655",
                   "currentPrice": 8000,
                   "productStatus": "sold",
-                  "category": [ { "Id": 27 , "name" : "Bronze Numbers" }]
+                  "category": { "Id": 27 , "name" : "Bronze Numbers" }
                 },
                 {
                   "id": 1002,
                   "msisdn": "5399999999",
                   "currentPrice": 8000,
                   "productStatus": "new",
-                  "category": [ { "Id": 27 , "name" : "Bronze Numbers" }]
+                  "category": { "Id": 27 , "name" : "Bronze Numbers" }
                 }
               ],
               "links": {
