@@ -718,15 +718,16 @@ Return a list of all products in a specific category
 
   
  
-## Products Detail [/categories/{id}/products/{id}{?nationalId}]     
+## Products Detail [/categories/{categoryId}/products/{productId}{?nationalId}]     
 
 ### Get Product Detail [GET]
 
 Return a single product detail resource.
-
+Note : You don't need to include the levels above (category id), because product id is primary key ,  you've already got your specific object
 + Parameters
 
-    + id: `1001` (number, required) - Id of a product.
+    + productId: `1001` (number, required) - Id of a product.
+    + categoryId: `1001` (number, required) - Id of a category.
     + nationalId:`2154879542` (string, optional) - send nationalId if you looking for customer bid status. 
                                         
 + Response 200 (application/json)
@@ -759,7 +760,7 @@ Return a single product detail resource.
     + Body
     
             {
-              "id": 1001,
+              "ProductId": 1001,
               "msisdn": "533996655",
               "currentPrice": 8000,
               "expiryDate": "12/13/2015 11:51:59.000000 AM",
