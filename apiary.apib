@@ -392,7 +392,7 @@ Used to the transfer a deposit from a product to another product
  
 + Response 500 (application/json)
 
-# Group Catalog
+# Group Category
 
 ## Categories Collection [/categories]     
 
@@ -498,43 +498,11 @@ Returns a single Category
 
 + Response 500 (application/json)
 
-## Products  [/products{?page,size,sort,order}]
-
-### Add Products [POST]
-Add list of products
-
----
-**Error Code:**
-- `AUC008` : Auction Batches overlap is not allowed.
----
-+ Request (application/json)
-    + Body
-            
-            {
-              "startDate": "2017-11-19T12:4:00",
-              "auctionNumbers": [
-                {
-                  "categoryId": 31,
-                  "msisdn": "500008802"
-                },
-                {
-                  "categoryId": 29,
-                  "msisdn": "500009020"
-                },
-                {
-                  "categoryId": 26,
-                  "msisdn": "505555007"
-                }
-              ],
-              "endDate": "2017-11-29T12:2:59",
-              "batchId": "AUC1000057"
-            }
-+ Response 204
 
 
-+ Response 500 (application/json)
+# Group Product
 
-## Widget [/widgets{?page,size,order,widgetName}]   
+## Product Widget [/widgets{?page,size,order,widgetName}]   
 
 ### Get Widgets [GET]
 
@@ -728,7 +696,43 @@ Used to return a list of all or spacific auction widgets
 + Response 400 (application/json)
 + Response 500 (application/json)
 
-     
+
+## Products  [/products{?page,size,sort,order}]
+
+### Add Products [POST]
+Add list of products
+
+---
+**Error Code:**
+- `AUC008` : Auction Batches overlap is not allowed.
+---
++ Request (application/json)
+    + Body
+            
+            {
+              "startDate": "2017-11-19T12:4:00",
+              "auctionNumbers": [
+                {
+                  "categoryId": 31,
+                  "msisdn": "500008802"
+                },
+                {
+                  "categoryId": 29,
+                  "msisdn": "500009020"
+                },
+                {
+                  "categoryId": 26,
+                  "msisdn": "505555007"
+                }
+              ],
+              "endDate": "2017-11-29T12:2:59",
+              "batchId": "AUC1000057"
+            }
++ Response 204
+
+
++ Response 500 (application/json)
+
 ## Products Collection [/categories/{id}/product{?page,size,sort,order}]
 
 ### List All Products by category [GET]
@@ -886,7 +890,6 @@ Note : You don't need to include the levels above (category id), because product
 + Response 400 (application/json)
 + Response 500 (application/json)
 
-  
 ## Search Products [/search/products{?page,size,msisdn}]
 
 ### Search [GET]
