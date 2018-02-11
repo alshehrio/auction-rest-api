@@ -304,6 +304,9 @@ Get All groups
 ### Add customer [POST]
 Used to the add or update customer in the auction.
 The customer type must be individual. 
+Note : CHECK WHEN WE CAN ADD CUSTOMER IN AUCTION. 
+
+
 
 ---
 **Error Code:**
@@ -394,7 +397,7 @@ Used to the transfer a deposit from a product to another product
 
 # Group Catalog
 
-## Categories Collection [/catalog/categories]     
+## Categories Collection [/categories]     
 
 ### List all Categories [GET]  
 
@@ -434,7 +437,7 @@ Used to return a list of all available categories in the auction system.
             ]
         }
         
-## Categories Detail [/catalog/categories/{id}]     
+## Categories Detail [/categories/{id}]     
 
 + Parameters
     + id: `1` (number, required) - Id of a Category.
@@ -498,7 +501,7 @@ Returns a single Category
 
 + Response 500 (application/json)
 
-## Products  [/catalog/products{?page,size,sort,order}]
+## Products  [/products{?page,size,sort,order}]
 
 ### Add Products [POST]
 Add list of products
@@ -534,7 +537,7 @@ Add list of products
 
 + Response 500 (application/json)
 
-## Products Widget [/catalog/widgets/product{?page,size,order,widgetType}]   
+## Products Widget [/widgets/product{?page,size,order,widgetName}]   
 
 ### Products Widgets [GET]
 
@@ -545,13 +548,14 @@ Used to return a list of all product widgets
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
-      + Default: 100
-    + widgetType     (optional)
-      + Default: `views`
+      + Default: 10
+    + widgetName     (optional)
+      + Default: `all`
       + Members
             + `price`
             + `numberOfBids`
             + `views` 
+            + `all` 
     + order     (optional)
       + Default: `ASC`
       + Members
@@ -621,7 +625,7 @@ Used to return a list of all product widgets
 + Response 500 (application/json)
 
      
-## Products Collection [/catalog/categories/{id}/products{?page,size,sort,order}]
+## Products Collection [/categories/{id}/product{?page,size,sort,order}]
 
 ### List All Products by category [GET]
 
@@ -714,7 +718,7 @@ Return a list of all products in a specific category
 
   
  
-## Products Detail [/catalog/products/{id}{?nationalId}]     
+## Products Detail [/categories/{id}/products/{id}{?nationalId}]     
 
 ### Get Product Detail [GET]
 
@@ -746,9 +750,6 @@ Return a single product detail resource.
                 + `noBid`
                 + `highestBidder`
                 + `outbid` 
-        + category  - 
-            + id  (number) - Id of a product.
-            + name (string) - name of a category
         + purchase  - 
             + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
             + price (number)- fixed product price. 
@@ -774,10 +775,6 @@ Return a single product detail resource.
                 "price": 800000,
                 "depositAmount": 20000
               }
-              "category": {
-                "id":2,
-                "name": "Bronze Numbers"
-              }
             }
 
 + Response 404 (application/json)
@@ -785,7 +782,7 @@ Return a single product detail resource.
 + Response 500 (application/json)
 
   
-## Search Products [/catalog/search/products{?page,size,msisdn}]
+## Search Products [/search/products{?page,size,msisdn}]
 
 ### Search [GET]
 
