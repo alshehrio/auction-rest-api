@@ -1068,11 +1068,6 @@ Return a list of all payment reconcile transaction for specific batch and transa
 
 + Response 400 (application/json)
 
-
-     
-     
- 
-
 + Response 500 (application/json)
 
 # Group Bid 
@@ -1170,23 +1165,60 @@ Used to Add an item from watchlist
 **Error Code:**
 
 - `INVALID_PRODUCT_ID` : product id is not valid 
- - `INVALID_CUSTOMER_ID` : customer id is not valid 
+- `INVALID_CUSTOMER_ID` : customer id is not valid 
 - `MAX_NUMBER_OF_PRODUCTS_EXCEEDED`: max number of items in watchlist has been exceeded.
 - `PRODUCT_IS_EXPIRED` : product is expired.
 ---
-+ Request (application/json)
-    
-    + Body
 
-            {
-                "productId": 15
-            }    
++ Request (application/json)
+ 
+        {
+            "productId": 15
+        }    
             
 + Response 204 (application/json)
 
 + Response 400 (application/json)
 
-  
-  
-     
++ Response 500 (application/json)
+
+# Group Content
+## Get Content [/content/{contentType}]
+
+### Get Content Details [GET]
+Used to get a spacific content in auction system
+
+---
+**Error Code:**
+- `INVALID_CONTENT_TYPE` : content type not exist 
+---
++ Parameters
+ 
+    + contentType    (enum[string]) 
+        + Members
+            + `FAQ` 
+            + `TERMS_AND_CONDITION`
+            + `BANK_LIST`
+            + `PRIVACY_STATEMENT`
+            + `BANK_TRANSFER_INFO`
+            
++ Request (application/json)
+
+        {
+            "content": [
+                {
+                  "key": "How do I complete the payment after winning the number?",
+                  "value": "Through clicking on Check your auctions icon, then choose the number and follow the payment instructions."
+                },
+                {
+                  "key": "Are there maximum numbers that the customer can get?",
+                  "value": "The maximum numbers for Saudis are 40 postpaid lines for all operators and 10 lines for non-Saudi customer."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
++ Response 400 (application/json)
+
 + Response 500 (application/json)
