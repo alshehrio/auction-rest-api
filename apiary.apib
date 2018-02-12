@@ -358,40 +358,6 @@ Also, who must check the customer type ? we accept only type (I/S) in auction.
 
 
     
-## Transfer Deposit [/customers/{nationalId}/deposit/transfer]
-
-### Transfer Deposit [POST]
-Used to the transfer a deposit from a product to another product
-
----
-**Error Code:**
- 
-- `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
-- `PRODUCT_IS_EXPIRED` : product is expired
-- `DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY` : transfer must be between products in same category
-- `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
-- `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
-- `TRANSFER_NOT_ALLOWED` : transfer not allowed
-       
----
-+ Parameters
-
-    + nationalId: `2125487985` (number, required) - national Id of a customer.
-    
-+ Request (application/json)
-    
-    + Body
-
-            {
-                "fromProductId": 15,
-                "toProductId": 45
-            }
-            
-+ Response 201 (application/json)
-
-+ Response 400 (application/json)
- 
-+ Response 500 (application/json)
 
 # Group Category
 
@@ -1034,7 +1000,7 @@ Return list of all expired batches
 Used to add payment to auction. 
 
 ---
-**Error Code For CC:**
+**Error Code:**
 - `INVALID_NATIONAL_ID` - customer national id is invalid.
 - `INVALID_PRODUCT_ID` - product id is invalid.
 - `INVALID_CUSTOMER_TYPE` - customer type is invalid.
@@ -1045,7 +1011,7 @@ Used to add payment to auction.
 - `FEATURE_UNSUPPORTED_FOR_PRODCUT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
 - `PENDING_PAYMENT_EXIST` - the product reserved from another buyer.
-- `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts.
+- `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts, this error code is designed for bank transfer only
 
 ---
 
@@ -1073,11 +1039,11 @@ Used to add payment to auction.
             + Members
                 + `sale`  - Makes an immediate payment
                 + `authorize`- Authorizes a payment for capture later.
-        + bankTranfer - required for bank Transfer payment method
-            + bankId (number, required) -  bank id.
-            + bankName (number, required) - customer bank name 
-            + firstName (number, required) - transformer first name
-            + lastName (number, required) -  transformer last name
+    + bankTranfer - required for bank Transfer payment method
+        + bankId (number, required) -  bank id.
+        + bankName (number, required) - customer bank name 
+        + firstName (number, required) - transformer first name
+        + lastName (number, required) -  transformer last name
         
 
 + Request (application/json)
@@ -1107,6 +1073,42 @@ Used to add payment to auction.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
+## Transfer Deposit [/payments/deposit-transfer]
+
+### Transfer Deposit [POST]
+Used to the transfer a deposit from a product to another product
+
+---
+**Error Code:**
+ 
+- `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
+- `PRODUCT_IS_EXPIRED` : product is expired
+- `DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY` : transfer must be between products in same category
+- `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
+- `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
+- `TRANSFER_NOT_ALLOWED` : transfer not allowed.
+       
+---
++ Attributes 
+    + nationalId        (string, required) 
+    + fromProductId     (number, required)  
+    + toProductId       (number, required)  
+    
++ Request (application/json)
+    
+    + Body
+
+            {
+                "nationalId" : "2125487985"
+                "fromProductId": 15,
+                "toProductId": 45
+            }
+            
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+ 
++ Response 500 (application/json)
 
 ## Payments Reconcile Collection [/payments/reconcile{?batchId,transactionType}]
 
