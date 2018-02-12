@@ -502,25 +502,17 @@ Returns a single Category
 
 # Group Product
 
-## Product Widget [/widgets{?page,size,order,widgetName}]   
+## Widget Collection [/widgets{?page,size,order}]   
 
-### Get Widgets [GET]
+### List All Widgets [GET]
 
-Used to return a list of all or spacific auction widgets
+Used to return a list of all auction widgets
 
- 
 + Parameters
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
       + Default: 10
-    + widgetName     (optional)
-      + Default: `all`
-      + Members
-            + `highestBids`
-            + `mostBids`
-            + `mostViewed` 
-            + `all` 
     + order     (optional)
       + Default: `ASC`
       + Members
@@ -530,7 +522,7 @@ Used to return a list of all or spacific auction widgets
 + Response 200 (application/json)
     
      + Attributes  
-        + id (string) - Id of a product.
+        + productId (string) - Id of a product.
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
         + productStatus (enum[string]) - return list of product status
@@ -549,7 +541,7 @@ Used to return a list of all or spacific auction widgets
                 {
                   "highestBids": [
                     {
-                      "id": 1001,
+                      "productId": 1001,
                       "msisdn": "533996655",
                       "currentPrice": 8000,
                       "productStatus": "sold",
@@ -559,7 +551,7 @@ Used to return a list of all or spacific auction widgets
                       }
                     },
                     {
-                      "id": 1002,
+                      "productId": 1002,
                       "msisdn": "5399999999",
                       "currentPrice": 8000,
                       "productStatus": "new",
@@ -571,7 +563,7 @@ Used to return a list of all or spacific auction widgets
                   ],
                   "mostBids": [
                     {
-                      "id": 1001,
+                      "productId": 1001,
                       "msisdn": "533996655",
                       "currentPrice": 8000,
                       "productStatus": "sold",
@@ -581,7 +573,7 @@ Used to return a list of all or spacific auction widgets
                       }
                     },
                     {
-                      "id": 1002,
+                      "productId": 1002,
                       "msisdn": "5399999999",
                       "currentPrice": 8000,
                       "productStatus": "new",
@@ -593,7 +585,7 @@ Used to return a list of all or spacific auction widgets
                   ],
                   "mostViewed": [
                     {
-                      "id": 1001,
+                      "productId": 1001,
                       "msisdn": "533996655",
                       "currentPrice": 8000,
                       "productStatus": "sold",
@@ -603,7 +595,7 @@ Used to return a list of all or spacific auction widgets
                       }
                     },
                     {
-                      "id": 1002,
+                      "productId": 1002,
                       "msisdn": "5399999999",
                       "currentPrice": 8000,
                       "productStatus": "new",
@@ -640,15 +632,51 @@ Used to return a list of all or spacific auction widgets
               }
             }
             
++ Response 400 (application/json)
++ Response 500 (application/json)
+
+## Widget Details [/widgets/{widgetName}{?page,size,order}]   
+
+### Get Widgets Details [GET]
+
+Used to return a specific auction widgets
+
++ Parameters
+    + page      (number, optional)
+      + Default: 0
+    + size      (number, optional)
+      + Default: 10
+    + widgetName     (required) - Possible Value for product widget
+      + Members
+            + `highestBids`
+            + `mostBids`
+            + `mostViewed` 
+    + order     (optional)
+      + Default: `ASC`
+      + Members
+            + `ASC`
+            + `DESC`
+    
 + Response 200 (application/json)
- 
+    
+     + Attributes  
+        + productId (string) - Id of a product.
+        + msisdn (string) - auction number
+        + currentPrice (string) - auction last price.
+        + productStatus (enum[string]) - return list of product status
+            + Members
+                + `sold` 
+                + `new`
+        + category  - 
+            + id  (number) - Id of a product.
+            + name (string) - name of a category
  
      + Body
     
             {
               "highestBids": [
                 {
-                  "id": 1001,
+                  "productId": 1001,
                   "msisdn": "533996655",
                   "currentPrice": 8000,
                   "productStatus": "sold",
@@ -658,7 +686,7 @@ Used to return a list of all or spacific auction widgets
                   }
                 },
                 {
-                  "id": 1002,
+                  "productId": 1002,
                   "msisdn": "5399999999",
                   "currentPrice": 8000,
                   "productStatus": "new",
@@ -695,7 +723,6 @@ Used to return a list of all or spacific auction widgets
             
 + Response 400 (application/json)
 + Response 500 (application/json)
-
 
 ## Products  [/products{?page,size,sort,order}]
 
