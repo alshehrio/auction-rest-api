@@ -1045,26 +1045,25 @@ Used to add payment to auction.
 - `FEATURE_UNSUPPORTED_FOR_PRODCUT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
 - `PENDING_PAYMENT_EXIST` - the product reserved from another buyer.
-- `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts
+- `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts.
 
 ---
-
 
 + Parameters
     + paymentMethod       (enum[string], required) 
         + Members
-            + `CreditCard`  
-            + `BankTransfer` 
+            + `creditCard`  
+            + `bankTransfer` 
             
 + Attributes 
     + productId         (number, required)
     + nationalId        (number, required)
     + agreedTerms       (boolean, required)
     + transaction
-        + id  - payment transaction id
-        + amount (number) - payment transaction amount 
-        + confirmationNumber - STC confirmation number.
-        + date - payment transaction date
+        + id  (string, required) - payment transaction id
+        + amount (number, required) - payment transaction amount 
+        + confirmationNumber (string, required) - STC confirmation number,  optinal for bank Transfer payment method
+        + date (string, required) - payment transaction date
         + type (enum[string], required) - transaction type
             + Members
                 + `deposit`
@@ -1074,6 +1073,11 @@ Used to add payment to auction.
             + Members
                 + `sale`  - Makes an immediate payment
                 + `authorize`- Authorizes a payment for capture later.
+        + bankTranfer - required for bank Transfer payment method
+            + bankId (number, required) -  bank id.
+            + bankName (number, required) - customer bank name 
+            + firstName (number, required) - transformer first name
+            + lastName (number, required) -  transformer last name
         
 
 + Request (application/json)
@@ -1083,12 +1087,18 @@ Used to add payment to auction.
           "nationalId": "2154879562",
           "agreedTerms": true,
           "transaction": {
-            "id": "09b8acf0-9f08-43f3-9e54-ba6b6088b2cf",
+            "id": "09b8acf0",
             "amount": 1300,
             "date": "2017-04-25T15:05:33",
             "confirmationNumber": "STC-304399382",
             "type": "deposit",
             "intent": "sale"
+          } , 
+          "bankTranfer" {
+           "bankId" : 12,
+           "bankName" : "alinm" ,
+           "firstName" : "first-name", 
+           "lastName" : "last-name",
           }
         }
 
