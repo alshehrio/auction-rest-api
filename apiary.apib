@@ -770,7 +770,7 @@ Return a list of all products in a specific category
                 + `sold` 
                 + `new`
         + category  - 
-            + id  (number) - Id of a product.
+            + id  (number) - Id of a category.
             + name (string) - name of a category
             
     + Body            
@@ -818,10 +818,9 @@ Return a list of all products in a specific category
             }
  
 + Response 400 (application/json)
++ Response 404 (application/json)
++ Response 500 (application/json)
 
-
-  
- 
 ## Products Detail [/categories/{categoryId}/products/{productId}{?nationalId}]     
 
 ### Get Product Detail [GET]
@@ -832,7 +831,7 @@ Note : You don't need to include the levels above (category id), because product
 
     + productId: `1001` (number, required) - Id of a product.
     + categoryId: `1001` (number, required) - Id of a category.
-    + nationalId:`2154879542` (string, optional) - send nationalId if you looking for customer bid status. 
+    + nationalId: `2154879542` (string, optional) - send nationalId if you looking for customer bid status. 
                                         
 + Response 200 (application/json)
 
