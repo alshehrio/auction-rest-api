@@ -303,8 +303,6 @@ Used to the add or update customer in the auction.
 The customer type must be individual. 
 Note : CHECK WHEN WE CAN ADD CUSTOMER IN AUCTION. 
 
-
-
 ---
 **Error Code:**
 - `INVALID_NATIONAL_ID`.
@@ -356,8 +354,87 @@ Also, who must check the customer type ? we accept only type (I/S) in auction.
   
 + Response 500 (application/json)
 
-
+## Customer Deposit Transfer [/customers/{nationalId}/deposit-transfer]
     
+### Transfer Deposit [POST]
+Used to the transfer a deposit from a product to another product
+
+---
+**Error Code:**
+ 
+- `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
+- `PRODUCT_IS_EXPIRED` : product is expired
+- `DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY` : transfer must be between products in same category
+- `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
+- `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
+- `TRANSFER_NOT_ALLOWED` : transfer not allowed.
+       
+---
++ Parameters
+    + nationalId: `2154895231` (number, required) - customer national Id.
+    
++ Attributes 
+    + fromProductId     (number, required)  
+    + toProductId       (number, required)  
+    
++ Request (application/json)
+    
+    + Body
+
+            {
+                "fromProductId": 15,
+                "toProductId": 45
+            }
+            
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+ 
++ Response 500 (application/json)
+
+## Customer Deposit [/customers/{nationalId}/deposit?{categoryId}]
+
+### Get Customer Deposit [GET]
+
+Used to get all customer deposit.
+
+---
+**Error Code:**
+ 
+- `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
+       
+---
+
++ Parameters
+    + nationalId: `2154895231` (number, required) - customer national Id.
+    + categoryId: `27` (number, required) - category Id .
+    
++ Request (application/json)
+ 
++ Response 200 (application/json)
+
+    + Attributes 
+    
+        + productId (number, required)  
+        + msisdn        (number, required) 
+
+    + Body
+    
+            {
+               {
+                "productId": 31,
+                "msisdn": 5010
+               },
+               {
+                "productId": 37,
+                "msisdn": 5000
+               }
+            } 
+ 
+     
++ Response 400 (application/json)
+ 
++ Response 500 (application/json)
 
 # Group Category
 
@@ -1072,42 +1149,7 @@ Used to add payment to auction.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Transfer Deposit [/payments/deposit-transfer]
 
-### Transfer Deposit [POST]
-Used to the transfer a deposit from a product to another product
-
----
-**Error Code:**
- 
-- `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
-- `PRODUCT_IS_EXPIRED` : product is expired
-- `DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY` : transfer must be between products in same category
-- `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
-- `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
-- `TRANSFER_NOT_ALLOWED` : transfer not allowed.
-       
----
-+ Attributes 
-    + nationalId        (string, required) 
-    + fromProductId     (number, required)  
-    + toProductId       (number, required)  
-    
-+ Request (application/json)
-    
-    + Body
-
-            {
-                "nationalId" : "2125487985"
-                "fromProductId": 15,
-                "toProductId": 45
-            }
-            
-+ Response 201 (application/json)
-
-+ Response 400 (application/json)
- 
-+ Response 500 (application/json)
 
 ## Payments Reconcile Collection [/payments/reconcile{?batchId,transactionType}]
 
