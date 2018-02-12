@@ -335,6 +335,7 @@ Note : CHECK WHEN WE CAN ADD CUSTOMER IN AUCTION.
 Used to check if the customer is blacklisted in auction.
 OCP will check if the customer is blacklisted in STC, and maintain customer error messages in case of the customer is blacklisted in auction and STC.
 otherwise OCP should send to auction the whether of customer eligibility in STC to return appropriate error message.
+Also, who must check the customer type ? we accept only type (I/S) in auction. 
 
 ---
 **Error Code:**
@@ -1186,7 +1187,7 @@ Used to Add an item from watchlist
 ## Get Content [/content/{contentType}]
 
 ### Get Content Details [GET]
-Used to get a spacific content in auction system
+Used to get a spacific content in auction system,
 Note That : OCP already has content APIs, I think it's OCP responsibility. 
 
 ---
