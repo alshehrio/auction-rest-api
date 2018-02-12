@@ -368,7 +368,7 @@ Used to the transfer a deposit from a product to another product
 - `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
 - `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
 - `TRANSFER_NOT_ALLOWED` : transfer not allowed.
-       
+- `INVALID_NATIONAL_ID` : customer id is not valid 
 ---
 + Parameters
     + nationalId: `2154895231` (number, required) - customer national Id.
@@ -401,7 +401,8 @@ Used to get all customer deposit.
 ---
 **Error Code:**
  
-- `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
+- `INVALID_NATIONAL_ID` : customer id is not valid. 
+- `INVALID_CATEGORY_ID` : category id is not valid. 
        
 ---
 
@@ -416,24 +417,24 @@ Used to get all customer deposit.
     + Attributes 
     
         + productId (number, required)  
-        + msisdn        (number, required) 
+        + msisdn   (number, required) 
 
     + Body
     
             {
                {
                 "productId": 31,
-                "msisdn": 5010
+                "msisdn": 0566666666
                },
                {
                 "productId": 37,
-                "msisdn": 5000
+                "msisdn": 0577778888
                }
             } 
  
      
 + Response 400 (application/json)
- 
++ Response 404 (application/json)
 + Response 500 (application/json)
 
 # Group Category
