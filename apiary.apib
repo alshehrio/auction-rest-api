@@ -307,7 +307,7 @@ Note : CHECK WHEN WE CAN ADD CUSTOMER IN AUCTION.
 
 ---
 **Error Code:**
-- `INVALID_CUSTOMER_TYPE`.
+- `INVALID_NATIONAL_ID`.
 ---
 + Request (application/json)
 
@@ -383,8 +383,8 @@ Used to the transfer a deposit from a product to another product
     + Body
 
             {
-                "fromProduct": 15,
-                "toProduct": 45
+                "fromProductId": 15,
+                "toProductId": 45
             }
             
 + Response 201 (application/json)
@@ -986,6 +986,7 @@ Return a list of all matched msisdn
 ### List all Expired Batches  [GET]
 
 Return list of all expired batches
+
 ---
 **Error Code:**
 - `RANGE_ERROR` : End date must me greater than start date.
@@ -1021,19 +1022,88 @@ Return list of all expired batches
 
 + Response 400 (application/json)
 
-
-  
- 
 + Response 500 (application/json)
 
 
 # Group Payment 
+
+## Payments [/payments/{paymentMethod}]
+
+### Add Payment [POST]
+
+Used to add payment to auction. 
+
+---
+**Error Code For CC:**
+- `INVALID_NATIONAL_ID` - customer national id is invalid.
+- `INVALID_PRODUCT_ID` - product id is invalid.
+- `INVALID_CUSTOMER_TYPE` - customer type is invalid.
+- `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
+- `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
+- `BALANCE_ALREADY_PAID` - the customer already paid blance payment for this product.
+- `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
+- `FEATURE_UNSUPPORTED_FOR_PRODCUT` - The feature is disabled or unsupported.
+- `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
+- `PENDING_PAYMENT_EXIST` - the product reserved from another buyer.
+- `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts
+
+---
+
+
++ Parameters
+    + paymentMethod       (enum[string], required) 
+        + Members
+            + `CreditCard`  
+            + `BankTransfer` 
+            
++ Attributes 
+    + productId         (number, required)
+    + nationalId        (number, required)
+    + agreedTerms       (boolean, required)
+    + transaction
+        + id  - payment transaction id
+        + amount (number) - payment transaction amount 
+        + confirmationNumber - STC confirmation number.
+        + date - payment transaction date
+        + type (enum[string], required) - transaction type
+            + Members
+                + `deposit`
+                + `balance`
+                + `purchase`
+        + intent           (enum[string], required) 
+            + Members
+                + `sale`  - Makes an immediate payment
+                + `authorize`- Authorizes a payment for capture later.
+        
+
++ Request (application/json)
+
+        {
+          "productId": 1001,
+          "nationalId": "2154879562",
+          "agreedTerms": true,
+          "transaction": {
+            "id": "09b8acf0-9f08-43f3-9e54-ba6b6088b2cf",
+            "amount": 1300,
+            "date": "2017-04-25T15:05:33",
+            "confirmationNumber": "STC-304399382",
+            "type": "deposit",
+            "intent": "sale"
+          }
+        }
+
++ Response 201 (application/json)
++ Response 400 (application/json)
++ Response 404 (application/json)
++ Response 500 (application/json)
+
 
 ## Payments Reconcile Collection [/payments/reconcile{?batchId,transactionType}]
 
 ### List all Payments Reconcile Transaction [GET]
 
 Return a list of all payment reconcile transaction for specific batch and transaction type
+
 ---
 **Error Code:**
 - `INVALID_BATCH_ID` : Batch Id is null or invalid.
@@ -1070,6 +1140,7 @@ Return a list of all payment reconcile transaction for specific batch and transa
 + Response 400 (application/json)
 
 + Response 500 (application/json)
+
 
 # Group Bid 
            
@@ -1142,7 +1213,7 @@ Used to remove an item from watchlist
 ---
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid 
-- `INVALID_CUSTOMER_ID` : customer id is not valid.
+- `INVALID_NATIONAL_ID` : customer id is not valid.
 ---
 + Parameters
 
@@ -1166,7 +1237,7 @@ Used to Add an item from watchlist
 **Error Code:**
 
 - `INVALID_PRODUCT_ID` : product id is not valid 
-- `INVALID_CUSTOMER_ID` : customer id is not valid 
+- `INVALID_NATIONAL_ID` : customer id is not valid 
 - `MAX_NUMBER_OF_PRODUCTS_EXCEEDED`: max number of items in watchlist has been exceeded.
 - `PRODUCT_IS_EXPIRED` : product is expired.
 ---
