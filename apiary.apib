@@ -727,11 +727,12 @@ Used to return a specific auction widgets
 ## Products  [/products{?page,size,sort,order}]
 
 ### Add Products [POST]
-Add list of products
+
+Add a list of auctions
 
 ---
 **Error Code:**
-- `AUC008` : Auction Batches overlap is not allowed.
+- `OVERLAP_NOT_ALLOWED` : Auction Batches overlap is not allowed.
 ---
 + Request (application/json)
     + Body
@@ -755,6 +756,7 @@ Add list of products
               "endDate": "2017-11-29T12:2:59",
               "batchId": "AUC1000057"
             }
+            
 + Response 204
 
 
