@@ -717,7 +717,7 @@ Used to return a list of all auction widgets
 + Response 200 (application/json)
     
      + Attributes  
-        + productId (string) - Id of a product.
+        + productId (number) - Id of a product.
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
         + productStatus (enum[string]) - return list of product status
@@ -855,7 +855,7 @@ Used to return a specific auction widgets
 + Response 200 (application/json)
     
      + Attributes  
-        + productId (string) - Id of a product.
+        + productId (number) - Id of a product.
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
         + productStatus (enum[string]) - return list of product status
@@ -990,7 +990,7 @@ Return a list of all products in a specific category
 + Response 200 (application/json)
 
      + Attributes  
-        + id (string) - Id of a product.
+        + id (number) - Id of a product.
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
         + productStatus (enum[string]) - return list of product status
@@ -1067,7 +1067,7 @@ Note : You don't need to include the levels above (category id), because product
         + id (string) - Id of a product.
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
-        + expiryDate  (string) - auction expiry date.
+        + expiryDate  (string) - auction expiry date, timestamp format yyyy-MM-dd'T'HH:mm:ss
         + numberOfBids (number) - totale number of bids.
         + isAutoBidAllowed  (string) - return if auto bid featuer allowed  
         + isProductInWatchlist - used to know the product in watchlist or not.
@@ -1094,7 +1094,7 @@ Note : You don't need to include the levels above (category id), because product
               "ProductId": 1001,
               "msisdn": "533996655",
               "currentPrice": 8000,
-              "expiryDate": "12/13/2015 11:51:59.000000 AM",
+              "expiryDate": "2017-05-24T14:25:10",
               "numberOfBids": 15,
               "isAutoBidAllowed": false,
               "productStatus": "sold",
