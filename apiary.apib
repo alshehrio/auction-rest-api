@@ -1347,6 +1347,40 @@ Return a list of all payment reconcile transaction for specific batch and transa
 
 + Response 500 (application/json)
 
+##  Reversal Deposit [/payments/deposit-reversal]
+    
+### Reversal Deposit  [POST]
+Used to released a deposit amount for a specific 
+
+---
+**Error Code:**
+ 
+- `DEPOSIT_TRANSFERED` : deposit to be reversed has been transfered.
+- `PRODUCT_IS_EXPIRED` : product is expired
+- `NOT_ALLOWED_FOR_HIGHEST_BIDDER` : highest bidders cannot reversed their deposit
+- `REVERSED_NOT_ALLOWED` : reversed not allowed.
+- `INVALID_NATIONAL_ID` : customer id is not valid 
+- `INVALID_PRODUCT_ID` : product id is not valid 
+---
+ 
++ Attributes 
+    + productId        (number, required)  
+    + nationalId       (number, required)  
+    
++ Request (application/json)
+    
+    + Body
+
+            {
+                "productId": 15,
+                "nationalId": 2125487952
+            }
+            
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+ 
++ Response 500 (application/json)
 
 # Group Bid 
            
