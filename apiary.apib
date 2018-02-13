@@ -328,7 +328,7 @@ Note : CHECK WHEN WE CAN ADD CUSTOMER IN AUCTION.
 
 ## Customer Eligibility [/customers/{nationalId}/eligibility]
 
-### Customer eligibility [POST]
+### Customer eligibility [GET]
 
 Used to check if the customer is blacklisted in auction.
 OCP will check if the customer is blacklisted in STC, and maintain customer error messages in case of the customer is blacklisted in auction and STC.
@@ -368,7 +368,7 @@ Used to the transfer a deposit from a product to another product
 - `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
 - `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
 - `TRANSFER_NOT_ALLOWED` : transfer not allowed.
-- `INVALID_NATIONAL_ID` : customer id is not valid 
+- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid 
 ---
 + Parameters
     + nationalId: `2154895231` (number, required) - customer national Id.
@@ -401,7 +401,7 @@ Used to get all customer deposit.
 ---
 **Error Code:**
  
-- `INVALID_NATIONAL_ID` : customer id is not valid. 
+- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid. 
 - `INVALID_CATEGORY_ID` : category id is not valid. 
        
 ---
@@ -445,7 +445,7 @@ Used to get all products in watchlist
 
 ---
 **Error Code:**
-- `INVALID_NATIONAL_ID` : customer id is not valid.
+- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid.
 ---
 
 + Parameters
@@ -539,7 +539,7 @@ Used to remove an product from customer watchlist
 ---
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid 
-- `INVALID_NATIONAL_ID` : customer id is not valid.
+- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid.
 ---
 
 + Parameters
@@ -561,8 +561,8 @@ Used to Add an item from watchlist
 ---
 **Error Code:**
 
-- `INVALID_PRODUCT_ID` : product id is not valid 
-- `INVALID_NATIONAL_ID` : customer id is not valid 
+- `INVALID_PRODUCT_ID` : product id is invalid 
+- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid
 - `MAX_NUMBER_OF_PRODUCTS_EXCEEDED`: max number of items in watchlist has been exceeded.
 - `PRODUCT_IS_EXPIRED` : product is expired.
 ---
@@ -1232,7 +1232,7 @@ Used to add payment to auction.
 
 ---
 **Error Code:**
-- `INVALID_NATIONAL_ID` - customer national id is invalid.
+- `INVALID_NATIONAL_ID` - customer id is null or invalid.
 - `INVALID_PRODUCT_ID` - product id is invalid.
 - `INVALID_CUSTOMER_TYPE` - customer type is invalid.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
@@ -1361,7 +1361,7 @@ Used to released a deposit amount for a specific product
 - `PRODUCT_IS_EXPIRED` : product is expired
 - `NOT_ALLOWED_FOR_HIGHEST_BIDDER` : highest bidders cannot reversed their deposit
 - `REVERSED_NOT_ALLOWED` : reversal not allowed for purchase deposit.
-- `INVALID_NATIONAL_ID` : customer id is not valid 
+- `INVALID_NATIONAL` : customer id is null or invalid
 - `INVALID_PRODUCT_ID` : product id is not valid 
 ---
  
@@ -1399,6 +1399,7 @@ object containing a customer id and a amount of bid.
 - `CUSTOMER_IS_BLACKLISTED` : customer is blacklisted in auction.
 - `AUCTION_IS_NOT_ACTIVE` : Auction time is finished or not started yet.
 - `BID_IS_LESS_THAN_MINIMUM_INCREMENT` : Bid is less than minimum bid.
+- `INVALID_NATIONAL_ID` : customer id is invalid.
 - `WRONG_BID_TYPE` : bid type in request does not match auction bid type. (auto bid / regular bid) 
 ---  
 + Request (application/json)
