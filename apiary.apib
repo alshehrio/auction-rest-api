@@ -326,7 +326,7 @@ Note : CHECK WHEN WE CAN ADD CUSTOMER IN AUCTION.
    
 + Response 500 (application/json)
 
-## Customer Eligibility [/customers/{nationalId}/eligibility]
+## Customer Eligibility [/customers/{nationalId}/eligibility?{customerType}]
 
 ### Customer eligibility [GET]
 
@@ -335,13 +335,19 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 otherwise OCP should send to auction the whether of customer eligibility in STC to return appropriate error message.
 Also, who must check the customer type ? we accept only type (I/S) in auction. 
 
+
 ---
 **Error Code:**
 
-- `CUSTOMER_NOT_FOUND`.
+- `CUSTOMER_NOT_FOUND`: customer does not exist. 
+- `INVALID_CUSTOMER_TYPE` : customer type  is invalid.
  
 ---
 
++ Parameters
+    + nationalId: `2154895231` (number, required) - customer national Id.
+    + customerType: `s` (number, required) - customer type.
+    
 + Response 200 (application/json)
 
             {
@@ -1256,6 +1262,7 @@ Used to add payment to auction.
     + productId         (number, required)
     + nationalId        (number, required)
     + agreedTerms       (boolean, required)
+    + customerType      (string, required)
     + transaction
         + id  (string, required) - payment transaction id
         + amount (number, required) - payment transaction amount 
@@ -1283,6 +1290,7 @@ Used to add payment to auction.
           "productId": 1001,
           "nationalId": "2154879562",
           "agreedTerms": true,
+          "customerType" : "s",
           "transaction": {
             "id": "09b8acf0",
             "amount": 1300,
@@ -1409,6 +1417,7 @@ object containing a customer id and a amount of bid.
 - `AUCTION_IS_NOT_ACTIVE` : Auction time is finished or not started yet.
 - `BID_IS_LESS_THAN_MINIMUM_INCREMENT` : Bid is less than minimum bid.
 - `INVALID_NATIONAL_ID` : customer id is invalid.
+- `INVALID_CUSTOMER_TYPE` : customer type  is invalid.
 - `WRONG_BID_TYPE` : bid type in request does not match auction bid type. (auto bid / regular bid) 
 ---  
 + Request (application/json)
@@ -1422,6 +1431,7 @@ object containing a customer id and a amount of bid.
             
             {
                 "nationalId": 10999999,
+                "customerType" : "s",
                 "regularBidAmount": 5000,
                 "autoBidAmount" : null,
                 "productId": 1
