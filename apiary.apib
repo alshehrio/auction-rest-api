@@ -1380,6 +1380,15 @@ Used to released a deposit amount for a specific product
             
 + Response 201 (application/json)
 
++ Attributes 
+    + hasDeposit  (boolean) - return if the customer has deposit or not
+    
+    + Body
+
+            {
+                "hasDeposit": false
+            }
+
 + Response 400 (application/json)
  
 + Response 500 (application/json)
@@ -1423,7 +1432,8 @@ object containing a customer id and a amount of bid.
     + Attributes 
     
         + numberOfBids (number) - totale number of bids.
-        + isAutoBidAllowed  (string) - return weather of auto bid featuer enabled or disable
+        + isPurchaseAllowed (boolean) - return weather of purchase featuer enabled or disable
+        + isAutoBidAllowed  (boolean) - return weather of auto bid featuer enabled or disable
         + currentPrice (string) - return latest bid amount.
         + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
             + Members
@@ -1436,7 +1446,8 @@ object containing a customer id and a amount of bid.
                "numberOfBids": 37,
                "currentPrice": 5000,
                "customerBidStatus": "highestBidder",
-               "isAutoBidAllowed":true
+               "isAutoBidAllowed": true,
+               "isPurchaseAllowed" : true
             }
 
 + Response 400 (application/json)
