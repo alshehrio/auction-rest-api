@@ -437,7 +437,100 @@ Used to get all customer deposit.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Cstomer Watchlist [/customers/{nationalId}/watchlist{?productId}]
+## Watchlist Collection [/customers/{nationalId}/watchlist{?page,size,sort,order}]
+
+### List all products from watchlist [GET]
+
+Used to get all products in watchlist
+
+---
+**Error Code:**
+- `INVALID_NATIONAL_ID` : customer id is not valid.
+---
+
++ Parameters
+    
+    + nationalId (number, required) - national Id of a customer.
+    + page       (number, optional)
+      + Default: 0
+    + size       (number, optional)
+      + Default: 10
+    + sort     (optional)
+      + Default: `id`
+      + Members
+            + `price`
+            + `numberOfBids`
+            + `views` 
+            + `id`
+    + order     (optional)
+      + Default: `ASC`
+      + Members
+            + `ASC`
+            + `DESC`
+
++ Response 200 (application/json)
+
+    + Attributes  
+        + id (string) - Id of a product.
+        + msisdn (string) - auction number
+        + currentPrice (string) - auction last price.
+        + expiryDate  (string) - auction expiry date, timestamp format yyyy-MM-dd'T'HH:mm:ss
+        + numberOfBids (number) - totale number of bids.
+        + category  - 
+            + id  (number) - Id of a category.
+            + name (string) - name of a category
+            
+    + Body            
+        
+            {
+              "watchlist": [
+                {
+                  "id": 1001,
+                  "msisdn": "533996655",
+                  "currentPrice": 8000,
+                  "expiryDate": "2017-05-24T14:25:10",
+                  "numberOfBids": 15,
+                  "category": { "Id": 27 , "name" : "Bronze Numbers" }
+                },
+                {
+                  "id": 1002,
+                  "msisdn": "533996655",
+                  "currentPrice": 8000,
+                  "expiryDate": "2017-05-24T14:25:10",
+                  "numberOfBids": 15,
+                  "category": { "Id": 27 , "name" : "Bronze Numbers" }
+                }
+              ],
+              "links": {
+                "self": {
+                  "href": "http://auction.stc.com.sa/products?page=1&size=2"
+                },
+                "first": {
+                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                },
+                "prev": {
+                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                },
+                "next": {
+                  "href": "http://auction.stc.com.sa/products?page=2&size=2"
+                },
+                "last": {
+                  "href": "http://auction.stc.com.sa/products?page=49&size=2"
+                }
+              },
+              "page": {
+                "size": 2,
+                "totalElements": 100,
+                "totalPages": 50,
+                "number": 1
+              }
+            }
+            
++ Response 400 (application/json)
++ Response 404 (application/json)
++ Response 500 (application/json)
+
+## Customer Watchlist [/customers/{nationalId}/watchlist{?productId}]
 
 + Parameters
 
