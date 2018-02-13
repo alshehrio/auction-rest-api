@@ -593,6 +593,149 @@ Used to Add an item from watchlist
 + Response 400 (application/json)
 + Response 500 (application/json)
 
+## Customer History [/customers/{nationalId}/auction-history]
+
+### Get Customer Auction History[GET]
+
+Used to get all customer auctions history.
+
+---
+**Error Code:**
+ 
+- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid. 
+        
+---
+
++ Parameters
+    + nationalId: `2154895231` (number, required) - customer national Id.
+     
++ Request (application/json)
+ 
++ Response 200 (application/json)
+
+    + Attributes 
+    
+        + vatPercentage (number, required)   - 
+        + msisdn (string , required)
+        + customerBid (number, required) -
+        + balanceDueBefore (string, required) -
+        + paymentMethodList (enum[string])  -
+            + Members
+                + `CC` 
+                + `BT`
+        + currentPrice (number, required) -
+        + category  - 
+            + id  (number) - Id of a category.
+            + name (string) - name of a category
+        + balancePaymentStatus (enum[string])  -
+            + Members
+                + `PAID` 
+                + `PENDING`
+                + `UNPAID`
+        + isBlacklisted (string, required) -
+        + payments -
+            + type (number) - Id of a category
+            + method (number) - Id of a category
+            + amount (number) - Id of a category
+        + numberOfBids (number, required) -
+        + expiryDate (string, required) -
+        
+        
+    + Body
+    
+            {
+              "auctionHistory": [
+                {
+                  "won": [
+                    {
+                      "vatPercentage": 5,
+                      "msisdn": "0566587458",
+                      "customerBid": 6,
+                      "balanceDueBefore": "2017-12-09T13:11:39",
+                      "paymentMethodList": {
+                        "value": "BT"
+                      },
+                      "isBlacklisted": true,
+                      "currentPrice": 8000,
+                      "category": {
+                        "Id": 27,
+                        "name": "Bronze Numbers"
+                      },
+                      "balancePaymentStatus": "PAID",
+                      "payments": [
+                        {
+                          "type": "deposite",
+                          "method": "CC",
+                          "amount": 300
+                        },
+                        {
+                          "type": "balance",
+                          "method": "CC",
+                          "amount": 500
+                        }
+                      ]
+                    }
+                  ],
+                  "ongoing": [
+                    {
+                      "msisdn": "0566587458",
+                      "customerBid": 6,
+                      "numberOfBids": 15,
+                      "expiryDate": "2017-12-09T13:11:39",
+                      "currentPrice": 6930,
+                      "category": {
+                        "Id": 27,
+                        "name": "Bronze Numbers"
+                      }
+                    }
+                  ],
+                  "lost": [
+                    {
+                      "msisdn": "0566587458",
+                      "customerBid": 6,
+                      "numberOfBids": 15,
+                      "expiryDate": "2017-12-09T13:11:39",
+                      "currentPrice": 6930,
+                      "category": {
+                        "Id": 27,
+                        "name": "Bronze Numbers"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "links": {
+                "self": {
+                  "href": "http://auction.stc.com.sa/products?page=1&size=2"
+                },
+                "first": {
+                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                },
+                "prev": {
+                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                },
+                "next": {
+                  "href": "http://auction.stc.com.sa/products?page=2&size=2"
+                },
+                "last": {
+                  "href": "http://auction.stc.com.sa/products?page=49&size=2"
+                }
+              },
+              "page": {
+                "size": 2,
+                "totalElements": 100,
+                "totalPages": 50,
+                "number": 1
+              }
+            }    
+            
+
+ 
+     
++ Response 400 (application/json)
++ Response 404 (application/json)
++ Response 500 (application/json)
+
 # Group Category
 
 ## Categories Collection [/categories]     
