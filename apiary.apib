@@ -629,6 +629,8 @@ Used to return a list of all available categories in the auction system.
             ]
         }
         
++ Response 500 (application/json)     
+
 ## Categories Detail [/categories/{id}]     
 
 + Parameters
@@ -663,7 +665,7 @@ Returns a single Category
                "purchaseDisablePercentege" : 80
             }
 
-+ Response 400 (application/json)
++ Response 404 (application/json)
  
 + Response 500 (application/json)
 
@@ -1084,7 +1086,7 @@ Note : You don't need to include the levels above (category id), because product
                 + `outbid` 
         + purchase  - 
             + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
-            + price (number)- fixed product price. 
+            + purchasePrice (number)- fixed product price. 
             + depositAmount (number) - product deposit amount.
             
       
