@@ -530,13 +530,7 @@ Used to get all products in watchlist
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Customer Watchlist [/customers/{nationalId}/watchlist{?productId}]
-
-+ Parameters
-
-    + nationalId: `21254879985` (number, required) - national Id of a customer.
-    + productId: `1001` (number, required) - Id of a product.
-
+## Remove Watchlist product [/customers/{nationalId}/watchlist{?productId}]
 
 ### Remove product from watchlist [DELETE]
 
@@ -548,12 +542,18 @@ Used to remove an product from customer watchlist
 - `INVALID_NATIONAL_ID` : customer id is not valid.
 ---
 
++ Parameters
+
+    + nationalId: `21254879985` (number, required) - national Id of a customer.
+    + productId: `1001` (number, required) - Id of a product.
             
 + Response 201 (application/json)
 + Response 400 (application/json)
 + Response 404 (application/json)
 + Response 500 (application/json)
-               
+
+## Add Watchlist product [/customers/{nationalId}/watchlist]  
+
 ### Add product from watchlist [POST]
 
 Used to Add an item from watchlist
@@ -567,6 +567,21 @@ Used to Add an item from watchlist
 - `PRODUCT_IS_EXPIRED` : product is expired.
 ---
     
++ Parameters
+
+    + nationalId: `21254879985` (number, required) - national Id of a customer.
+
++ Request   (application/json)
+
+    + Attributes 
+    
+        + productId (number, required) - Id of a product.
+
+    + Body
+    
+            {
+               "productId" : 2544
+            }
             
 + Response 204 (application/json)
 + Response 400 (application/json)
