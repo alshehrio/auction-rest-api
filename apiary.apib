@@ -615,30 +615,36 @@ Used to get all customer auctions history.
 
     + Attributes 
     
-        + vatPercentage (number, required)   - 
-        + msisdn (string , required)
-        + customerBid (number, required) -
-        + balanceDueBefore (string, required) -
-        + paymentMethodList (enum[string])  -
+        + vatPercentage (number, required)   - rate of VAT percentage
+        + msisdn (string , required) -  auction number
+        + customerBid (number, required) - the last customer bid.
+        + balanceDueBefore (string, required) - the due date to pay balance payment
+        + paymentMethodList (enum[string])  - the list of available payment method to be used to pay balance payment
             + Members
-                + `CC` 
-                + `BT`
-        + currentPrice (number, required) -
-        + category  - 
+                + `creditCard`  
+                + `bankTransfer` 
+        + currentPrice (number, required) - the total auction price.
+        + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
-        + balancePaymentStatus (enum[string])  -
+        + balancePaymentStatus (enum[string])  - return weather of balance payment status is paid or not
             + Members
                 + `PAID` 
                 + `PENDING`
                 + `UNPAID`
-        + isBlacklisted (string, required) -
+        + isBlacklisted (string, required) - return weather of customer is blacklist in the auction, used to disable pay button in case of customer won an auction and he not paid during the allowed period.
         + payments -
-            + type (number) - Id of a category
-            + method (number) - Id of a category
-            + amount (number) - Id of a category
-        + numberOfBids (number, required) -
-        + expiryDate (string, required) -
+            + type (enum[string])  - payment type
+                + Members
+                    + `deposit` 
+                    + `balance` 
+            + method (enum[string]) - payment method
+                + Members
+                    + `creditCard`  
+                    + `bankTransfer` 
+            + amount (number) - payment amount
+        + numberOfBids (number, required) - total number of bid
+        + expiryDate (string, required) - tion expiry date
         
         
     + Body
@@ -653,7 +659,7 @@ Used to get all customer auctions history.
                       "customerBid": 6,
                       "balanceDueBefore": "2017-12-09T13:11:39",
                       "paymentMethodList": {
-                        "value": "BT"
+                        "value": "creditCard"
                       },
                       "isBlacklisted": true,
                       "currentPrice": 8000,
@@ -664,7 +670,35 @@ Used to get all customer auctions history.
                       "balancePaymentStatus": "PAID",
                       "payments": [
                         {
-                          "type": "deposite",
+                          "type": "deposit",
+                          "method": "CC",
+                          "amount": 300
+                        },
+                        {
+                          "type": "balance",
+                          "method": "CC",
+                          "amount": 500
+                        }
+                      ]
+                    } ,
+                    {
+                      "vatPercentage": 5,
+                      "msisdn": "056659999",
+                      "customerBid": 61,
+                      "balanceDueBefore": "2017-12-09T13:11:39",
+                      "paymentMethodList": {
+                        "value": "bankTransfer"
+                      },
+                      "isBlacklisted": true,
+                      "currentPrice": 8000,
+                      "category": {
+                        "Id": 27,
+                        "name": "Bronze Numbers"
+                      },
+                      "balancePaymentStatus": "UNPAID",
+                      "payments": [
+                        {
+                          "type": "deposit",
                           "method": "CC",
                           "amount": 300
                         },
@@ -687,7 +721,19 @@ Used to get all customer auctions history.
                         "Id": 27,
                         "name": "Bronze Numbers"
                       }
-                    }
+                    } ,
+                    {
+                      "msisdn": "0566587458",
+                      "customerBid": 6,
+                      "numberOfBids": 78,
+                      "expiryDate": "2017-12-09T13:11:39",
+                      "currentPrice": 6930,
+                      "category": {
+                        "Id": 27,
+                        "name": "Gold Numbers"
+                      }
+                    } 
+                    
                   ],
                   "lost": [
                     {
@@ -699,6 +745,17 @@ Used to get all customer auctions history.
                       "category": {
                         "Id": 27,
                         "name": "Bronze Numbers"
+                      }
+                    } ,
+                    {
+                      "msisdn": "056999987",
+                      "customerBid": 78,
+                      "numberOfBids": 555,
+                      "expiryDate": "2017-12-09T13:11:39",
+                      "currentPrice": 70000,
+                      "category": {
+                        "Id": 31,
+                        "name": "Gold Numbers"
                       }
                     }
                   ]
