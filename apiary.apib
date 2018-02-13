@@ -437,6 +437,48 @@ Used to get all customer deposit.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
+## Cstomer Watchlist [/customers/{nationalId}/watchlist{?productId}]
+
++ Parameters
+
+    + nationalId: `21254879985` (number, required) - national Id of a customer.
+    + productId: `1001` (number, required) - Id of a product.
+
+
+### Remove product from watchlist [DELETE]
+
+Used to remove an product from customer watchlist
+
+---
+**Error Code:**
+- `INVALID_PRODUCT_ID` : product id is not valid 
+- `INVALID_NATIONAL_ID` : customer id is not valid.
+---
+
+            
++ Response 201 (application/json)
++ Response 400 (application/json)
++ Response 404 (application/json)
++ Response 500 (application/json)
+               
+### Add product from watchlist [POST]
+
+Used to Add an item from watchlist
+
+---
+**Error Code:**
+
+- `INVALID_PRODUCT_ID` : product id is not valid 
+- `INVALID_NATIONAL_ID` : customer id is not valid 
+- `MAX_NUMBER_OF_PRODUCTS_EXCEEDED`: max number of items in watchlist has been exceeded.
+- `PRODUCT_IS_EXPIRED` : product is expired.
+---
+    
+            
++ Response 204 (application/json)
++ Response 400 (application/json)
++ Response 500 (application/json)
+
 # Group Category
 
 ## Categories Collection [/categories]     
@@ -1252,62 +1294,7 @@ object containing a customer id and a amount of bid.
 
 + Response 400 (application/json)
         
-
-    
  
- 
-# Group Watchlist
-
-## Remove Watchlist [/watchlist/product{?productId,nationalId}]
-
-### Remove Watchlist item [DELETE]
-
-Used to remove an item from watchlist
-
----
-**Error Code:**
-- `INVALID_PRODUCT_ID` : product id is not valid 
-- `INVALID_NATIONAL_ID` : customer id is not valid.
----
-+ Parameters
-
-    + nationalId: `21254879985` (number, required) - national Id of a customer.
-    + productId: `1001` (number, required) - Id of a product.
-
-            
-+ Response 201 (application/json)
-
-+ Response 400 (application/json)
-
-
-+ Response 500 (application/json)
-               
-## Add Watchlist [/watchlist/product]
-
-### Add watchlist item [POST]
-
-Used to Add an item from watchlist
----
-**Error Code:**
-
-- `INVALID_PRODUCT_ID` : product id is not valid 
-- `INVALID_NATIONAL_ID` : customer id is not valid 
-- `MAX_NUMBER_OF_PRODUCTS_EXCEEDED`: max number of items in watchlist has been exceeded.
-- `PRODUCT_IS_EXPIRED` : product is expired.
----
-
-+ Request (application/json)
- 
-        {
-            "productId": 15
-        }    
-            
-+ Response 204 (application/json)
-
-+ Response 400 (application/json)
-
-+ Response 500 (application/json)
-
 # Group Content
 ## Get Content [/content/{contentType}]
 
