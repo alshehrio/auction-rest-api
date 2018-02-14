@@ -99,14 +99,13 @@ list of all APIs and their respective owners
     <tr>
         <td> OCP APIs</td>
         <td> <ul style="list-style-type:number">
-              <li>List all Categories</li>
               <li>Add Products </li>
-              <li>List All Products </li>
-              <li>Get Product Details</li>
-              <li>Search</li>
-              <li>Please Bid</li>
-              <li>Add Customer</li>
-              <li>List All Products by Category</li>
+              <li>Customer Eligibility</li>
+              <li>List all Categories</li>
+              <li>List all Products By Category</li>
+              <li>Get Products Detail</li>
+              <li> </li>
+              <li> </li>
             </ul> </td>   
     </tr>
     <tr>
@@ -339,7 +338,7 @@ Also, who must check the customer type ? we accept only type (I/S) in auction.
 ---
 **Error Code:**
 
-- `CUSTOMER_NOT_FOUND`: customer does not exist. 
+- `INVALID_CUSTOMER_ID`: customer id is invalid. 
 - `INVALID_CUSTOMER_TYPE` : customer type  is invalid.
  
 ---
@@ -369,7 +368,7 @@ Used to the transfer a deposit from a product to another product
 **Error Code:**
  
 - `DEPOSIT_REVERSED` : deposit to be transfered has been reversed.
-- `PRODUCT_IS_EXPIRED` : product is expired
+- `PRODUCT_IS_EXPIRED` : one or both product are expired.
 - `DEPOSIT_TRANSFER_MUST_IN_SAME_CATEGORY` : transfer must be between products in same category
 - `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
 - `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
@@ -1295,6 +1294,9 @@ Note : You don't need to include the levels above (category id), because product
             + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
             + purchasePrice (number)- fixed product price. 
             + depositAmount (number) - product deposit amount.
+        + category  - auction category
+            + id  (number) - Id of a category.
+            + name (string) - name of a category
             
       
     + Body
@@ -1316,6 +1318,10 @@ Note : You don't need to include the levels above (category id), because product
                 "isPurchaseAllowed":true,
                 "price": 800000,
                 "depositAmount": 20000
+              }
+              "category": {
+                "Id": 27,
+                "name": "Bronze Numbers"
               }
             }
 
