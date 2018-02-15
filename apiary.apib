@@ -40,7 +40,7 @@ The following is a mandatory header tags, that must be sent with each request.
   * `content-language` - describe the language(s) intended for the audience.
   * `date` -the date and time at which the message was originated.
   
-## Error
+## General Error
 
 In the responses for failed requests, Auction returns HTTP `4XX` or `5XX` status codes.
 
@@ -104,8 +104,9 @@ list of all APIs and their respective owners
               <li>List all Categories</li>
               <li>List all Products By Category</li>
               <li>Get Products Detail</li>
-              <li> </li>
-              <li> </li>
+              <li>Add product to Watchlist</li>
+              <li>Remove product from watchlist</li>
+              <li>List all watchlist products</li>
             </ul> </td>   
     </tr>
     <tr>
@@ -444,13 +445,13 @@ Used to get all customer deposit.
 
 ## Watchlist Collection [/customers/{nationalId}/watchlist{?page,size,sort,order}]
 
-### List all products from watchlist [GET]
+### List all watchlist products [GET]
 
 Used to get all products in watchlist
 
 ---
 **Error Code:**
-- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid.
+- `INVALID_NATIONAL_ID` : customer id is null or invalid.
 ---
 
 + Parameters
@@ -459,7 +460,7 @@ Used to get all products in watchlist
     + page       (number, optional)
       + Default: 0
     + size       (number, optional)
-      + Default: 10
+      + Default: 20
     + sort     (optional)
       + Default: `id`
       + Members
@@ -544,7 +545,7 @@ Used to remove an product from customer watchlist
 ---
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid 
-- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid.
+- `INVALID_NATIONAL_ID` : customer id is null or invalid.
 - `NOT_IN_WATCHLIST` : Product is not in watchlist.
 ---
 
@@ -560,15 +561,15 @@ Used to remove an product from customer watchlist
 
 ## Add Watchlist product [/customers/{nationalId}/watchlist]  
 
-### Add product from watchlist [POST]
+### Add product to Watchlist [POST]
 
-Used to Add an item from watchlist
+Used to Add an item to watchlist
 
 ---
 **Error Code:**
 
 - `INVALID_PRODUCT_ID` : product id is invalid 
-- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid
+- `INVALID_NATIONAL_ID` : customer id is null or invalid
 - `WATCHLIST_FULL`: max number of items in watchlist has been reached.
 ---
     
@@ -1260,7 +1261,7 @@ Return a list of all products in a specific category
 
 ### Get Product Detail [GET]
 
-Return a single product detail resource.
+Return a single product detail resource. 
 Note : You don't need to include the levels above (category id), because product id is primary key ,  you've already got your specific object
 + Parameters
 
