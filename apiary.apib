@@ -499,7 +499,7 @@ Used to get all products in watchlist
     + Body            
         
             {
-              "products": [
+              "watchlist": [
                 {
                   "id": 1001,
                   "msisdn": "533996655",
@@ -1627,8 +1627,7 @@ the response back used to refersh value of transfer deposit and cancel deposit
 
 ### Place Bid [POST]
 
-You may create your own bid using this action. It takes a JSON
-object containing a customer id and a amount of bid.
+used to place a new bid for a specific product to a customer.
 
 ---
 **Error Code:**
@@ -1662,22 +1661,29 @@ object containing a customer id and a amount of bid.
     + Attributes 
     
         + numberOfBids (number) - totale number of bids.
-        + isPurchaseAllowed (boolean) - return weather of purchase featuer enabled or disable
         + isAutoBidAllowed  (boolean) - return weather of auto bid featuer enabled or disable
         + currentPrice (string) - return latest bid amount.
         + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
             + Members
                 + `highestBidder`
                 + `outbid` 
+        + purchase  - purchase information
+            + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
+            + purchasePrice (number)- fixed product price. 
+            + depositAmount (number) - product deposit amount.
 
     + Body
     
             {
-               "numberOfBids": 37,
-               "currentPrice": 5000,
-               "customerBidStatus": "highestBidder",
-               "isAutoBidAllowed": true,
-               "isPurchaseAllowed" : true
+              "numberOfBids": 37,
+              "currentPrice": 5000,
+              "customerBidStatus": "highestBidder",
+              "isAutoBidAllowed": true,
+              "purchase": {
+                "isPurchaseAllowed": true,
+                "price": 800000,
+                "depositAmount": 2000
+              }
             }
 
 + Response 400 (application/json)
