@@ -112,7 +112,7 @@ list of all APIs and their respective owners
               <li>Reversal Deposit</li>
               <li>Get Customer Deposit</li>
               <li>Transfer Deposit</li>
-              <li> </li>
+              <li>Get Widgets Details</li>
               <li> </li>
               
             </ul> </td>   
@@ -613,8 +613,7 @@ Used to get all customer auctions history.
 ---
 **Error Code:**
  
-- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid. 
-        
+- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
 ---
 
 + Parameters
@@ -626,7 +625,7 @@ Used to get all customer auctions history.
 
     + Attributes 
     
-        + vatPercentage (number, required)   - rate of VAT percentage
+        + vatRate (number, required)   - rate of VAT percentage
         + msisdn (string , required) -  auction number
         + customerBid (number, required) - the last customer bid.
         + balanceDueBefore (string, required) - the due date to pay balance payment
@@ -665,7 +664,7 @@ Used to get all customer auctions history.
                 {
                   "won": [
                     {
-                      "vatPercentage": 5,
+                      "vatRate": 5,
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "balanceDueBefore": "2017-12-09T13:11:39",
@@ -693,7 +692,7 @@ Used to get all customer auctions history.
                       ]
                     } ,
                     {
-                      "vatPercentage": 5,
+                      "vatRate": 5,
                       "msisdn": "056659999",
                       "customerBid": 61,
                       "balanceDueBefore": "2017-12-09T13:11:39",
@@ -803,6 +802,166 @@ Used to get all customer auctions history.
 + Response 400 (application/json)
 + Response 404 (application/json)
 + Response 500 (application/json)
+
+## Customer History Details [/customers/{nationalId}/auction-history/{historyType}{?page,size,order}]    
+
+### Get Customer Auction History Details [GET]
+
+Used to get specific auction customer history.
+
+---
+**Error Code:**
+ 
+- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
+---
+
+
++ Parameters
+    + nationalId  (number, required) - customer national Id.
+    + historyType  (number, required) - Possible Value for auction history type.
+      + Members
+            + `won`
+            + `lost`
+            + `ongoing`
+    + page      (number, optional)
+      + Default: 0
+    + size      (number, optional)
+      + Default: 10
+    + order     (optional)
+      + Default: `ASC`
+      + Members
+            + `ASC`
+            + `DESC`
+     
++ Request (application/json)
+ 
++ Response 200 (application/json)
+
+    + Attributes 
+        + vatRate (number, required)   - rate of VAT percentage
+        + msisdn (string , required) -  auction number
+        + customerBid (number, required) - the last customer bid.
+        + balanceDueBefore (string, required) - the due date to pay balance payment
+        + paymentMethodList (enum[string])  - the list of available payment method to be used to pay balance payment
+            + Members
+                + `creditCard`  
+                + `bankTransfer` 
+        + currentPrice (number, required) - the total auction price.
+        + category  - auction category
+            + id  (number) - Id of a category.
+            + name (string) - name of a category
+        + balancePaymentStatus (enum[string])  - return weather of balance payment status is paid or not
+            + Members
+                + `PAID` 
+                + `PENDING`
+                + `UNPAID`
+        + isBlacklisted (string, required) - return weather of customer is blacklist in the auction, used to disable pay button in case of customer won an auction and he not paid during the allowed period.
+        + payments -
+            + type (enum[string])  - payment type
+                + Members
+                    + `deposit` 
+                    + `balance` 
+            + method (enum[string]) - payment method
+                + Members
+                    + `creditCard`  
+                    + `bankTransfer` 
+            + amount (number) - payment amount
+        + numberOfBids (number, required) - total number of bid
+        + expiryDate (string, required) - tion expiry date
+        
+        
+    + Body
+    
+            {
+              "auctionHistory": [
+                {
+                  "won": [
+                    {
+                      "vatRate": 5,
+                      "msisdn": "0566587458",
+                      "customerBid": 6,
+                      "balanceDueBefore": "2017-12-09T13:11:39",
+                      "paymentMethodList": {
+                        "value": "creditCard"
+                      },
+                      "isBlacklisted": true,
+                      "currentPrice": 8000,
+                      "category": {
+                        "Id": 27,
+                        "name": "Bronze Numbers"
+                      },
+                      "balancePaymentStatus": "PAID",
+                      "payments": [
+                        {
+                          "type": "deposit",
+                          "method": "CC",
+                          "amount": 300
+                        },
+                        {
+                          "type": "balance",
+                          "method": "CC",
+                          "amount": 500
+                        }
+                      ]
+                    } ,
+                    {
+                      "vatRate": 5,
+                      "msisdn": "056659999",
+                      "customerBid": 61,
+                      "balanceDueBefore": "2017-12-09T13:11:39",
+                      "paymentMethodList": {
+                        "value": "bankTransfer"
+                      },
+                      "isBlacklisted": true,
+                      "currentPrice": 8000,
+                      "category": {
+                        "Id": 27,
+                        "name": "Bronze Numbers"
+                      },
+                      "balancePaymentStatus": "UNPAID",
+                      "payments": [
+                        {
+                          "type": "deposit",
+                          "method": "CC",
+                          "amount": 300
+                        },
+                        {
+                          "type": "balance",
+                          "method": "CC",
+                          "amount": 500
+                        }
+                      ]
+                    }
+                  ]  ,
+              "links": {
+                "self": {                            
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/type=won&page=1&size=2"
+                },
+                "first": {
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/type=won&page=0&size=2"
+                },
+                "prev": {
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/type=won&page=0&size=2"
+                },
+                "next": {
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/type=won&page=2&size=2"
+                },
+                "last": {
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/type=won&page=49&size=2"
+                }
+              },
+              "page": {
+                "size": 2,
+                "totalElements": 100,
+                "totalPages": 50,
+                "number": 1
+              }
+            }
+            
++ Response 400 (application/json)
++ Response 404 (application/json)
++ Response 500 (application/json)
+
 
 # Group Category
 
@@ -1112,19 +1271,19 @@ Used to return a specific auction widgets
               ],
               "links": {
                 "self": {
-                  "href": "http://auction.stc.com.sa/products?page=1&size=2"
+                  "href": "http://auction.stc.com.sa/widgets?widgetName=highestBids&page=1&size=2"
                 },
                 "first": {
-                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                  "href": "http://auction.stc.com.sa/widgets?widgetName=highestBids&page=0&size=2"
                 },
                 "prev": {
-                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                  "href": "http://auction.stc.com.sa/widgets?widgetName=highestBids&page=0&size=2"
                 },
                 "next": {
-                  "href": "http://auction.stc.com.sa/products?page=2&size=2"
+                  "href": "http://auction.stc.com.sa/widgets?widgetName=highestBids&page=2&size=2"
                 },
                 "last": {
-                  "href": "http://auction.stc.com.sa/products?page=49&size=2"
+                  "href": "http://auction.stc.com.sa/widgets?widgetName=highestBids&page=49&size=2"
                 }
               },
               "page": {
