@@ -1460,11 +1460,12 @@ Used to add payment to auction.
 - `INVALID_CUSTOMER_TYPE` - customer type is invalid.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
+- `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
 - `BALANCE_ALREADY_PAID` - the customer already paid blance payment for this product.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
 - `FEATURE_UNSUPPORTED_FOR_PRODCUT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `PENDING_PAYMENT_EXIST` - the product reserved from another buyer.
+- `PENDING_PURCHAS_PAYMENT_EXIST` - the product reserved from another buyer,
 - `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts, this error code is designed for bank transfer only
 
 ---
@@ -1496,7 +1497,6 @@ Used to add payment to auction.
                 + `authorize`- Authorizes a payment for capture later.
     + bankTranfer - required for bank Transfer payment method
         + bankId (number, required) -  bank id.
-        + bankName (number, required) - customer bank name 
         + firstName (number, required) - transformer first name
         + lastName (number, required) -  transformer last name
         
@@ -1518,7 +1518,6 @@ Used to add payment to auction.
           } , 
           "bankTranfer" {
            "bankId" : 12,
-           "bankName" : "alinm" ,
            "firstName" : "first-name", 
            "lastName" : "last-name",
           }
