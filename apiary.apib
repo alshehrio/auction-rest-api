@@ -670,9 +670,10 @@ Used to get all customer auctions history.
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "balanceDueBefore": "2017-12-09T13:11:39",
-                      "paymentMethodList": {
-                        "value": "creditCard"
-                      },
+                      "paymentMethodList": [
+                        "creditCard",
+                        "bankTransfer"
+                      ],
                       "isBlacklisted": true,
                       "currentPrice": 8000,
                       "category": {
@@ -692,15 +693,16 @@ Used to get all customer auctions history.
                           "amount": 500
                         }
                       ]
-                    } ,
+                    },
                     {
                       "vatRate": 5,
                       "msisdn": "056659999",
                       "customerBid": 61,
                       "balanceDueBefore": "2017-12-09T13:11:39",
-                      "paymentMethodList": {
-                        "value": "bankTransfer"
-                      },
+                      "paymentMethodList": [
+                        "creditCard",
+                        "bankTransfer"
+                      ],
                       "isBlacklisted": true,
                       "currentPrice": 8000,
                       "category": {
@@ -733,7 +735,7 @@ Used to get all customer auctions history.
                         "Id": 27,
                         "name": "Bronze Numbers"
                       }
-                    } ,
+                    },
                     {
                       "msisdn": "0566587458",
                       "customerBid": 6,
@@ -744,8 +746,7 @@ Used to get all customer auctions history.
                         "Id": 27,
                         "name": "Gold Numbers"
                       }
-                    } 
-                    
+                    }
                   ],
                   "lost": [
                     {
@@ -758,7 +759,7 @@ Used to get all customer auctions history.
                         "Id": 27,
                         "name": "Bronze Numbers"
                       }
-                    } ,
+                    },
                     {
                       "msisdn": "056999987",
                       "customerBid": 78,
@@ -772,9 +773,8 @@ Used to get all customer auctions history.
                     }
                   ]
                 }
-              ] 
-            }    
-            
+              ]
+            }
 
  
      
