@@ -873,8 +873,6 @@ Used to get specific auction customer history.
     + Body
     
             {
-              "auctionHistory": [
-                {
                   "won": [
                     {
                       "vatRate": 5,
@@ -931,8 +929,7 @@ Used to get specific auction customer history.
                           "amount": 500
                         }
                       ]
-                    }
-                  ]  ,
+                  ,
               "links": {
                 "self": {                            
                   "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=won&page=1&size=2"
@@ -1247,51 +1244,87 @@ Used to return a specific auction widgets
      + Body
     
             {
-              "highestBids": [
+                "won": [
                 {
-                  "productId": 1001,
-                  "msisdn": "533996655",
-                  "currentPrice": 8000,
-                  "productStatus": "sold",
-                  "category": {
-                    "Id": 27,
-                    "name": "Bronze Numbers"
-                  }
+                "vatRate": 5,
+                "msisdn": "0566587458",
+                "customerBid": 6,
+                "balanceDueBefore": "2017-12-09T13:11:39",
+                "paymentMethodList": {
+                "value": "creditCard"
+                },
+                "isBlacklisted": true,
+                "currentPrice": 8000,
+                "category": {
+                "Id": 27,
+                "name": "Bronze Numbers"
+                },
+                "balancePaymentStatus": "PAID",
+                "payments": [
+                {
+                "type": "deposit",
+                "method": "CC",
+                "amount": 300
                 },
                 {
-                  "productId": 1002,
-                  "msisdn": "5399999999",
-                  "currentPrice": 8000,
-                  "productStatus": "new",
-                  "category": {
-                    "Id": 27,
-                    "name": "Bronze Numbers"
-                  }
+                "type": "balance",
+                "method": "CC",
+                "amount": 500
                 }
-              ],
-              "links": {
+                ]
+                },
+                {
+                "vatRate": 5,
+                "msisdn": "0566587458",
+                "customerBid": 6,
+                "balanceDueBefore": "2017-12-09T13:11:39",
+                "paymentMethodList": {
+                "value": "creditCard"
+                },
+                "isBlacklisted": true,
+                "currentPrice": 8000,
+                "category": {
+                "Id": 27,
+                "name": "Bronze Numbers"
+                },
+                "balancePaymentStatus": "PAID",
+                "payments": [
+                {
+                "type": "deposit",
+                "method": "CC",
+                "amount": 300
+                },
+                {
+                "type": "balance",
+                "method": "CC",
+                "amount": 500
+                }
+                ]
+                }
+                ],
+                "links": {
                 "self": {
-                  "href": "http://172.20.162.198:17001/auction/widgets?widgetName=highestBids&page=1&size=2"
+                "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=won&page=1&size=2"
                 },
                 "first": {
-                  "href": "http://172.20.162.198:17001/auction/widgets?widgetName=highestBids&page=0&size=2"
+                "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=won&page=0&size=2"
                 },
                 "prev": {
-                  "href": "http://172.20.162.198:17001/auction/widgets?widgetName=highestBids&page=0&size=2"
+                "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=won&page=0&size=2"
                 },
                 "next": {
-                  "href": "http://172.20.162.198:17001/auction/widgets?widgetName=highestBids&page=2&size=2"
+                "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=won&page=2&size=2"
                 },
                 "last": {
-                  "href": "http://172.20.162.198:17001/auction/widgets?widgetName=highestBids&page=49&size=2"
+                "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=won&page=49&size=2"
                 }
-              },
-              "page": {
+                },
+                "page": {
                 "size": 2,
                 "totalElements": 100,
                 "totalPages": 50,
                 "number": 1
-              }
+                }
             }
             
 + Response 400 (application/json)
