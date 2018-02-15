@@ -1176,7 +1176,7 @@ Used to return a specific auction widgets
 + Response 200 (application/json)
     
      + Attributes  
-        + productId (number) - Id of a product.
+        + id (number) - Id of a product.
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
         + productStatus (enum[string]) - return list of product status
@@ -1190,9 +1190,9 @@ Used to return a specific auction widgets
  + Body
     
             {
-              "highestBids": [
+              "products": [
                 {
-                  "productId": 1001,
+                  "id": 1001,
                   "msisdn": "533996655",
                   "currentPrice": 8000,
                   "productStatus": "sold",
@@ -1202,7 +1202,7 @@ Used to return a specific auction widgets
                   }
                 },
                 {
-                  "productId": 1002,
+                  "id": 1002,
                   "msisdn": "5399999999",
                   "currentPrice": 8000,
                   "productStatus": "new",
