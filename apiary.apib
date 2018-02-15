@@ -40,7 +40,7 @@ The following is a mandatory header tags, that must be sent with each request.
   * `content-language` - describe the language(s) intended for the audience.
   * `date` -the date and time at which the message was originated.
   
-## General Error
+## General Errors
 
 In the responses for failed requests, Auction returns HTTP `4XX` or `5XX` status codes.
 
@@ -62,7 +62,7 @@ For all errors except validation errors, auction returns an error response body 
 ```
 
 
-##  Validation errors
+##  Validation Errors
 
 For validation errors `VALIDATION_ERROR`, Auction returns the HTTP `400 Bad Request` status code.
 
@@ -82,7 +82,7 @@ The response body for validation errors includes additional error details in fol
   "fieldErrors": [
     {
       "field": "email",
-      "message": "may not be null"
+      "message": "must not be null"
     }
   ]
 }
@@ -107,6 +107,14 @@ list of all APIs and their respective owners
               <li>Add product to Watchlist</li>
               <li>Remove product from watchlist</li>
               <li>List all watchlist products</li>
+              <li>Reversal Deposit</li>
+              <li>Get Customer Deposit</li>
+              <li>Transfer Deposit</li>
+              <li> </li>
+              <li> </li>
+              <li> </li>
+              <li> </li>
+              
             </ul> </td>   
     </tr>
     <tr>
@@ -374,7 +382,8 @@ Used to the transfer a deposit from a product to another product
 - `TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product
 - `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
 - `TRANSFER_NOT_ALLOWED` : transfer not allowed.
-- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid 
+- `NATIONAL_ID_NOT_FOUND` : customer id not found.
+- `INVALID_NATIONAL_ID` : customer id is null or invalid 
 ---
 + Parameters
     + nationalId: `2154895231` (number, required) - customer national Id.
@@ -407,8 +416,9 @@ Used to get all customer deposit.
 ---
 **Error Code:**
  
-- `NATIONAL_ID_NOT_FOUND` : customer id is null or invalid. 
-- `INVALID_CATEGORY_ID` : category id is not valid. 
+- `NATIONAL_ID_NOT_FOUND` : customer id is not found. 
+- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
+- `INVALID_CATEGORY_ID` : category id is null or invalid. 
        
 ---
 
@@ -1567,12 +1577,13 @@ Return a list of all payment reconcile transaction for specific batch and transa
 ##  Reversal Deposit [/payments/deposit-reversal]
     
 ### Reversal Deposit  [POST]
-Used to released a deposit amount for a specific product
+Used to released a deposit amount for a specific product.
+the response back used to refersh value of transfer deposit and cancel deposit
 
 ---
 **Error Code:**
  
-- `DEPOSIT_TRANSFERED` : deposit to be reversed has been transfered.
+- `DEPOSIT_NOT_FOUND` : no deposit found for this product.
 - `PRODUCT_IS_EXPIRED` : product is expired
 - `NOT_ALLOWED_FOR_HIGHEST_BIDDER` : highest bidders cannot reversed their deposit
 - `REVERSED_NOT_ALLOWED` : reversal not allowed for purchase deposit.
@@ -1580,12 +1591,14 @@ Used to released a deposit amount for a specific product
 - `INVALID_PRODUCT_ID` : product id is not valid 
 ---
  
-+ Attributes 
-    + productId        (number, required)  
-    + nationalId       (number, required)  
+     
     
 + Request (application/json)
     
+    + Attributes 
+        + productId        (number, required)  
+        + nationalId       (number, required) 
+        
     + Body
 
             {
@@ -1595,8 +1608,8 @@ Used to released a deposit amount for a specific product
             
 + Response 201 (application/json)
 
-+ Attributes 
-    + hasDeposit  (boolean) - return if the customer has deposit or not
+    + Attributes 
+        + hasDeposit  (boolean) - return if the customer has deposit or not
     
     + Body
 
