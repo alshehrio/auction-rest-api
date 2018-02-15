@@ -113,7 +113,8 @@ list of all APIs and their respective owners
               <li>Get Customer Deposit</li>
               <li>Transfer Deposit</li>
               <li>Get Widgets Details</li>
-              <li> </li>
+              <li>Get Customer Auction History Details</li>
+              <li>Search</li>
               
             </ul> </td>   
     </tr>
@@ -1546,12 +1547,13 @@ Return a list of all matched msisdn
       + Default: 0
     + size      (number, optional)
       + Default: 10
-    + msisdn (number)
+    + msisdn    (number) - complate or a part of auction number
     
 + Response 200 (application/json)
 
     + Attributes  
         
+        + id (string) - product id.
         + msisdn (string) - The auction number
 
     + Body  
@@ -1571,19 +1573,19 @@ Return a list of all matched msisdn
               ],
               "links": {
                 "self": {
-                  "href": "http://auction.stc.com.sa/products?page=1&size=2"
+                  "href": "http://auction.stc.com.sa/search?page=1&size=2"
                 },
                 "first": {
-                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                  "href": "http://auction.stc.com.sa/search?page=0&size=2"
                 },
                 "prev": {
-                  "href": "http://auction.stc.com.sa/products?page=0&size=2"
+                  "href": "http://auction.stc.com.sa/search?page=0&size=2"
                 },
                 "next": {
-                  "href": "http://auction.stc.com.sa/products?page=2&size=2"
+                  "href": "http://auction.stc.com.sa/search?page=2&size=2"
                 },
                 "last": {
-                  "href": "http://auction.stc.com.sa/products?page=49&size=2"
+                  "href": "http://auction.stc.com.sa/search?page=49&size=2"
                 }
               },
               "page": {
