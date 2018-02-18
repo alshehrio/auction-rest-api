@@ -1469,6 +1469,7 @@ Used to get all available payment method for specific productId and payment type
 
 Used to add payment to auction. 
 
+
 ---
 **Error Code:**
 - `INVALID_NATIONAL_ID` - customer id is null or invalid.
@@ -1643,6 +1644,7 @@ the response back used to refersh value of transfer deposit and cancel deposit
 ### Place Bid [POST]
 
 used to place a new bid for a specific product to a customer.
+Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBidAmount`, it should one of them.
 
 ---
 **Error Code:**
