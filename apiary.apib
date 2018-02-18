@@ -46,11 +46,11 @@ In the responses for failed requests, Auction returns HTTP `4XX` or `5XX` status
 
 In addition, the Auction API can return the following errors.
 
-- `INTERNAL_SERVICE_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
+- `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
 - `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
-- `TYPE_CONVERSION_ERROR` : The value null of the parameter 'parameter name' is of the wrong type or the 'parameter name' format is incorrect.
 - `QUERY_PARAMETER_NOT_PRESENT` : Required PaymentTransactionType parameter "transactionType" is not present.
-
+- `QUERY_PARAMETER_IS_NULL` : 
+-
 For all errors except validation errors, auction returns an error response body in following format:
 
      
@@ -1520,6 +1520,48 @@ Return list of all expired batches
 
 # Group Payment 
 
+## Payment Method List [/payments/paymentMethod{?paymentType,productId}]
+
+### Get Payment Method List[GET]
+
+Used to get all available payment method for specific productId and payment type.
+
+---
+**Error Code:**
+- `PRODUCT_NOT_FOUND` : product id is not found. 
+- `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
+- `AUCTION_IS_NOT_ACTIVE` : Auction time is finished or not started yet.
+       
+---
+
++ Parameters
+    + paymentType    (enum[string]) 
+        + Members
+            + `balance`
+            + `purchase`
+    + productId: `27` (number, required) - product Id.
+    
++ Request (application/json)
+ 
++ Response 200 (application/json)
+
+    + Attributes 
+        + paymentMethodList (enum[string])  - the list of available payment method to be used to pay balance payment
+            + Members
+                + `creditCard`  
+                + `bankTransfer` 
+                
+    + Body
+    
+            {
+              "paymentMethodList": [
+                "creditCard",
+                "bankTransfer"
+              ]
+            }
+     
++ Response 400 (application/json)
++ Response 500 (application/json)
 ## Payments [/payments/{paymentMethod}]
 
 ### Place Payment [POST]
