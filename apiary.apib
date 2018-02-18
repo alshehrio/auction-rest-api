@@ -1462,12 +1462,12 @@ Used to get all available payment method for specific productId and payment type
      
 + Response 400 (application/json)
 + Response 500 (application/json)
+
 ## Payments [/payments/{paymentMethod}]
 
 ### Place Payment [POST]
 
 Used to add payment to auction. 
-
 
 ---
 **Error Code:**
@@ -1515,30 +1515,50 @@ Used to add payment to auction.
         + bankId (number, required) -  bank id.
         + firstName (number, required) - transformer first name
         + lastName (number, required) -  transformer last name
+    
+
++ Request In case of paymentMethod value equal creditCard (application/json)
+
+    + Body
+    
+            {
+              "productId": 1001,
+              "nationalId": "2154879562",
+              "agreedTerms": true,
+              "customerType" : "s",
+              "transaction": {
+                "id": "09b8acf0",
+                "amount": 1300,
+                "date": "2017-04-25T15:05:33",
+                "confirmationNumber": "STC-304399382",
+                "type": "deposit",
+                "intent": "sale"
+              }
+            }
         
++ Request In case of paymentMethod value equal bankTransfer (application/json)
 
-+ Request (application/json)
-
-        {
-          "productId": 1001,
-          "nationalId": "2154879562",
-          "agreedTerms": true,
-          "customerType" : "s",
-          "transaction": {
-            "id": "09b8acf0",
-            "amount": 1300,
-            "date": "2017-04-25T15:05:33",
-            "confirmationNumber": "STC-304399382",
-            "type": "deposit",
-            "intent": "sale"
-          } , 
-          "bankTranfer" {
-           "bankId" : 12,
-           "firstName" : "first-name", 
-           "lastName" : "last-name",
-          }
-        }
-
+    + Body
+    
+            {
+              "productId": 1001,
+              "nationalId": "2154879562",
+              "agreedTerms": true,
+              "customerType" : "s",
+              "transaction": {
+                "id": "09b8acf0",
+                "amount": 1300,
+                "date": "2017-04-25T15:05:33",
+                "type": "deposit",
+                "intent": "sale"
+              } , 
+              "bankTranfer" {
+               "bankId" : 12,
+               "firstName" : "first-name", 
+               "lastName" : "last-name",
+              }
+            }
+       
 + Response 201 (application/json)
 + Response 400 (application/json)
 + Response 404 (application/json)
