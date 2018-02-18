@@ -48,9 +48,9 @@ In addition, the Auction API can return the following errors.
 
 - `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
 - `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
-- `QUERY_PARAMETER_NOT_PRESENT` : Required PaymentTransactionType parameter "transactionType" is not present.
-- `QUERY_PARAMETER_IS_NULL` : 
--
+- `QUERY_PARAMETER_NOT_PRESENT` : Required parameter of name 'parameter name' with type "parameter type".
+- `QUERY_PARAMETER_IS_NULL` :  Required parameter value cannot be null.
+
 For all errors except validation errors, auction returns an error response body in following format:
 
      
@@ -1019,105 +1019,6 @@ Returns a single Category
 
 
 # Group Product
-
-## Widget Collection [/widgets]   
-
-### List All Widgets [GET]
-
-Used to return a list of all auction widgets
-    
-+ Response 200 (application/json)
-    
-     + Attributes  
-        + productId (number) - Id of a product.
-        + msisdn (string) - auction number
-        + currentPrice (string) - auction last price.
-        + productStatus (enum[string]) - return list of product status
-            + Members
-                + `sold` 
-                + `new`
-        + category  - 
-            + id  (number) - Id of a product.
-            + name (string) - name of a category
-
-    + Body
-
-
-            {
-              "widgets": [
-                {
-                  "highestBids": [
-                    {
-                      "productId": 1001,
-                      "msisdn": "533996655",
-                      "currentPrice": 8000,
-                      "productStatus": "sold",
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    },
-                    {
-                      "productId": 1002,
-                      "msisdn": "5399999999",
-                      "currentPrice": 8000,
-                      "productStatus": "new",
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    }
-                  ],
-                  "mostBids": [
-                    {
-                      "productId": 1001,
-                      "msisdn": "533996655",
-                      "currentPrice": 8000,
-                      "productStatus": "sold",
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    },
-                    {
-                      "productId": 1002,
-                      "msisdn": "5399999999",
-                      "currentPrice": 8000,
-                      "productStatus": "new",
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    }
-                  ],
-                  "mostViewed": [
-                    {
-                      "productId": 1001,
-                      "msisdn": "533996655",
-                      "currentPrice": 8000,
-                      "productStatus": "sold",
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    },
-                    {
-                      "productId": 1002,
-                      "msisdn": "5399999999",
-                      "currentPrice": 8000,
-                      "productStatus": "new",
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-            
-+ Response 400 (application/json)
-+ Response 500 (application/json)
 
 ## Widget Details [/widgets/{widgetName}{?page,size,order}]   
 
