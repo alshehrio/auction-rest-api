@@ -609,6 +609,8 @@ Used to Add an item to watchlist
 
 Used to get specific auction customer history.
 
+### Get Customer Auction History Details [GET]    
+
 ---
 **Error Code:**
  
@@ -633,8 +635,7 @@ Used to get specific auction customer history.
             + `ASC`
             + `DESC`
             
-### Get Customer Auction History Details [GET]    
-+ Request won (application/json)
++ Request In case of historyType value equal won (application/json)
     + Parameters
         + nationalId: 1021458752
         + historyType: won
@@ -645,14 +646,11 @@ Used to get specific auction customer history.
 + Response 200 (application/json)
 
     + Attributes 
+        + id (number, required)   - id of a product
         + vatRate (number, required)   - rate of VAT percentage
         + msisdn (string , required) -  auction number
         + customerBid (number, required) - the last customer bid.
         + balanceDueBefore (string, required) - the due date to pay balance payment
-        + paymentMethodList (enum[string])  - the list of available payment method to be used to pay balance payment
-            + Members
-                + `creditCard`  
-                + `bankTransfer` 
         + currentPrice (number, required) - the total auction price.
         + category  - auction category
             + id  (number) - Id of a category.
@@ -662,7 +660,6 @@ Used to get specific auction customer history.
                 + `PAID` 
                 + `PENDING`
                 + `UNPAID`
-        + isBlacklisted (string, required) - return weather of customer is blacklist in the auction, used to disable pay button in case of customer won an auction and he not paid during the allowed period.
         + payments -
             + type (enum[string])  - payment type
                 + Members
@@ -683,15 +680,11 @@ Used to get specific auction customer history.
             {
               "products": [
                 {
+                  "id":100,
                   "vatRate": 5,
                   "msisdn": "0566587458",
                   "customerBid": 6,
                   "balanceDueBefore": "2017-12-09T13:11:39",
-                  "paymentMethodList": [
-                    "creditCard",
-                    "bankTransfer"
-                  ],
-                  "isBlacklisted": true,
                   "currentPrice": 8000,
                   "category": {
                     "Id": 27,
@@ -712,15 +705,11 @@ Used to get specific auction customer history.
                   ]
                 },
                 {
+                  "id":101,
                   "vatRate": 5,
                   "msisdn": "056659999",
                   "customerBid": 61,
                   "balanceDueBefore": "2017-12-09T13:11:39",
-                  "paymentMethodList": [
-                    "creditCard",
-                    "bankTransfer"
-                  ],
-                  "isBlacklisted": true,
                   "currentPrice": 8000,
                   "category": {
                     "Id": 27,
@@ -766,7 +755,7 @@ Used to get specific auction customer history.
               }
             }
             
-+ Request ongoing (application/json)
++ Request In case of historyType value equal ongoing (application/json)
     + Parameters
         + nationalId: 1021458752
         + historyType: ongoing
@@ -839,10 +828,10 @@ Used to get specific auction customer history.
               }
             }
                         
-+ Request lost (application/json)
++ Request In case of historyType value equal lost (application/json)
     + Parameters
         + nationalId: 1021458752
-        + historyType: ongoing
+        + historyType: lost
         + page: 0
         + size: 10
         + order: ASC
