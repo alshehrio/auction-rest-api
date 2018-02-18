@@ -605,186 +605,7 @@ Used to Add an item to watchlist
 + Response 400 (application/json)
 + Response 500 (application/json)
 
-## Customer History [/customers/{nationalId}/auction-history]
-
-### Get Customer Auction History[GET]
-
-Used to get all customer auctions history.
-
----
-**Error Code:**
- 
-- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
----
-
-+ Parameters
-    + nationalId: `2154895231` (number, required) - customer national Id.
-     
-+ Request (application/json)
- 
-+ Response 200 (application/json)
-
-    + Attributes 
-    
-        + vatRate (number, required)   - rate of VAT percentage
-        + msisdn (string , required) -  auction number
-        + customerBid (number, required) - the last customer bid.
-        + balanceDueBefore (string, required) - the due date to pay balance payment
-        + paymentMethodList (enum[string])  - the list of available payment method to be used to pay balance payment
-            + Members
-                + `creditCard`  
-                + `bankTransfer` 
-        + currentPrice (number, required) - the total auction price.
-        + category  - auction category
-            + id  (number) - Id of a category.
-            + name (string) - name of a category
-        + balancePaymentStatus (enum[string])  - return weather of balance payment status is paid or not
-            + Members
-                + `PAID` 
-                + `PENDING`
-                + `UNPAID`
-        + isBlacklisted (string, required) - return weather of customer is blacklist in the auction, used to disable pay button in case of customer won an auction and he not paid during the allowed period.
-        + payments -
-            + type (enum[string])  - payment type
-                + Members
-                    + `deposit` 
-                    + `balance` 
-                    + `purchase`
-            + method (enum[string]) - payment method
-                + Members
-                    + `creditCard`  
-                    + `bankTransfer` 
-            + amount (number) - payment amount
-        + numberOfBids (number, required) - total number of bid
-        + expiryDate (string, required) - tion expiry date
-        
-        
-    + Body
-    
-            {
-              "auctionHistory": [
-                {
-                  "won": [
-                    {
-                      "vatRate": 5,
-                      "msisdn": "0566587458",
-                      "customerBid": 6,
-                      "balanceDueBefore": "2017-12-09T13:11:39",
-                      "paymentMethodList": [
-                        "creditCard",
-                        "bankTransfer"
-                      ],
-                      "isBlacklisted": true,
-                      "currentPrice": 8000,
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      },
-                      "balancePaymentStatus": "PAID",
-                      "payments": [
-                        {
-                          "type": "deposit",
-                          "method": "CC",
-                          "amount": 300
-                        },
-                        {
-                          "type": "balance",
-                          "method": "CC",
-                          "amount": 500
-                        }
-                      ]
-                    },
-                    {
-                      "vatRate": 5,
-                      "msisdn": "056659999",
-                      "customerBid": 61,
-                      "balanceDueBefore": "2017-12-09T13:11:39",
-                      "paymentMethodList": [
-                        "creditCard",
-                        "bankTransfer"
-                      ],
-                      "isBlacklisted": true,
-                      "currentPrice": 8000,
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      },
-                      "balancePaymentStatus": "UNPAID",
-                      "payments": [
-                        {
-                          "type": "purchase",
-                          "method": "CC",
-                          "amount": 300
-                        },
-                        {
-                          "type": "balance",
-                          "method": "CC",
-                          "amount": 500
-                        }
-                      ]
-                    }
-                  ],
-                  "ongoing": [
-                    {
-                      "msisdn": "0566587458",
-                      "customerBid": 6,
-                      "numberOfBids": 15,
-                      "expiryDate": "2017-12-09T13:11:39",
-                      "currentPrice": 6930,
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    },
-                    {
-                      "msisdn": "0566587458",
-                      "customerBid": 6,
-                      "numberOfBids": 78,
-                      "expiryDate": "2017-12-09T13:11:39",
-                      "currentPrice": 6930,
-                      "category": {
-                        "Id": 27,
-                        "name": "Gold Numbers"
-                      }
-                    }
-                  ],
-                  "lost": [
-                    {
-                      "msisdn": "0566587458",
-                      "customerBid": 6,
-                      "numberOfBids": 15,
-                      "expiryDate": "2017-12-09T13:11:39",
-                      "currentPrice": 6930,
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    },
-                    {
-                      "msisdn": "056999987",
-                      "customerBid": 78,
-                      "numberOfBids": 555,
-                      "expiryDate": "2017-12-09T13:11:39",
-                      "currentPrice": 70000,
-                      "category": {
-                        "Id": 31,
-                        "name": "Gold Numbers"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-
- 
-     
-+ Response 400 (application/json)
-+ Response 404 (application/json)
-+ Response 500 (application/json)
-
 ## Customer Auction History Details [/customers/{nationalId}/auction-history/{historyType}{?page,size,order}]    
-
-### Get Customer Auction History Details [GET]
 
 Used to get specific auction customer history.
 
@@ -811,8 +632,15 @@ Used to get specific auction customer history.
       + Members
             + `ASC`
             + `DESC`
-     
-+ Request (application/json)
+            
+### Get Customer Auction History Details [GET]    
++ Request won (application/json)
+    + Parameters
+        + nationalId: 1021458752
+        + historyType: won
+        + page: 0
+        + size: 10
+        + order: ASC
  
 + Response 200 (application/json)
 
@@ -938,93 +766,15 @@ Used to get specific auction customer history.
               }
             }
             
-            
-            // Response for lost and ongoing
-            
-            {
-              "products": [
-                    {
-                      "msisdn": "0566587458",
-                      "customerBid": 6,
-                      "numberOfBids": 15,
-                      "expiryDate": "2017-12-09T13:11:39",
-                      "currentPrice": 6930,
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    } ,
-                   {
-                      "msisdn": "0566587458",
-                      "customerBid": 6,
-                      "numberOfBids": 15,
-                      "expiryDate": "2017-12-09T13:11:39",
-                      "currentPrice": 6930,
-                      "category": {
-                        "Id": 27,
-                        "name": "Bronze Numbers"
-                      }
-                    }
-                    
-                  ],
-              "links": {
-                "self": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=ongoing&page=1&size=2"
-                },
-                "first": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=ongoing&page=0&size=2"
-                },
-                "prev": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=ongoing&page=0&size=2"
-                },
-                "next": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=ongoing&page=2&size=2"
-                },
-                "last": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=ongoing&page=49&size=2"
-                }
-              },
-              "page": {
-                "size": 2,
-                "totalElements": 100,
-                "totalPages": 50,
-                "number": 1
-              }
-            }
-            
-+ Response 400 (application/json)
-+ Response 404 (application/json)
-+ Response 500 (application/json)
-
-## Customer History Details [/customers/{nationalId}/auction-history/ongoing{?page,size,order}]    
-
-### Get Customer Auction History Details For Ongoing [GET]
-
-Used to get  ongoing auction history for specific customer .
-
----
-**Error Code:**
- 
-- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
----
-
-
-+ Parameters
-    + nationalId  (number, required) - customer national Id.
-    + page      (number, optional)
-      + Default: 0
-    + size      (number, optional)
-      + Default: 10
-    + order     (optional)
-      + Default: `ASC`
-      + Members
-            + `ASC`
-            + `DESC`
-     
-+ Request (application/json)
++ Request ongoing (application/json)
+    + Parameters
+        + nationalId: 1021458752
+        + historyType: ongoing
+        + page: 0
+        + size: 10
+        + order: ASC
  
 + Response 200 (application/json)
-
 
     + Attributes 
         + msisdn (string , required) -  auction number.
@@ -1088,40 +838,16 @@ Used to get  ongoing auction history for specific customer .
                 "number": 1
               }
             }
-            
-+ Response 400 (application/json)
-+ Response 404 (application/json)
-+ Response 500 (application/json)
-
-## Customer History Details [/customers/{nationalId}/auction-history/lost{?page,size,order}]    
-
-### Get Customer Auction History Details For Lost [GET]
-
-Used to get lost auction history for specific customer .
-
----
-**Error Code:**
- 
-- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
----
-
-
-+ Parameters
-    + nationalId  (number, required) - customer national Id.
-    + page      (number, optional)
-      + Default: 0
-    + size      (number, optional)
-      + Default: 10
-    + order     (optional)
-      + Default: `ASC`
-      + Members
-            + `ASC`
-            + `DESC`
-     
-+ Request (application/json)
+                        
++ Request lost (application/json)
+    + Parameters
+        + nationalId: 1021458752
+        + historyType: ongoing
+        + page: 0
+        + size: 10
+        + order: ASC
  
 + Response 200 (application/json)
-
 
     + Attributes 
         + msisdn (string , required) -  auction number.
@@ -1163,19 +889,19 @@ Used to get lost auction history for specific customer .
                   ],
               "links": {
                 "self": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=products&page=1&size=2"
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=lost&page=1&size=2"
                 },
                 "first": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=products&page=0&size=2"
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=lost&page=0&size=2"
                 },
                 "prev": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=products&page=0&size=2"
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=lost&page=0&size=2"
                 },
                 "next": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=products&page=2&size=2"
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=lost&page=2&size=2"
                 },
                 "last": {
-                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=products&page=49&size=2"
+                  "href": "http://172.20.162.198:17001/auction/customers/2154895231/auction-history/historyType=lost&page=49&size=2"
                 }
               },
               "page": {
@@ -1186,11 +912,11 @@ Used to get lost auction history for specific customer .
               }
             }
             
+                      
+            
 + Response 400 (application/json)
 + Response 404 (application/json)
 + Response 500 (application/json)
-
-
 
 # Group Category
 
