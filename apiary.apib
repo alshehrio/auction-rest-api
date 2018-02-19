@@ -766,6 +766,7 @@ Used to get specific auction customer history.
 + Response 200 (application/json)
 
     + Attributes 
+        + id (number, required)   - id of a product
         + msisdn (string , required) -  auction number.
         + numberOfBids (number, required) - total number of bid.
         + currentPrice (number, required) - the total auction price.
@@ -780,6 +781,7 @@ Used to get specific auction customer history.
             {
               "products": [
                     {
+                      "id":100,
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "numberOfBids": 15,
@@ -791,6 +793,7 @@ Used to get specific auction customer history.
                       }
                     } ,
                    {
+                      "id":100,
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "numberOfBids": 15,
@@ -839,6 +842,7 @@ Used to get specific auction customer history.
 + Response 200 (application/json)
 
     + Attributes 
+        + id (number, required)   - id of a product
         + msisdn (string , required) -  auction number.
         + numberOfBids (number, required) - total number of bid.
         + currentPrice (number, required) - the total auction price.
@@ -853,6 +857,7 @@ Used to get specific auction customer history.
             {
               "products": [
                     {
+                      "id":100,
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "numberOfBids": 15,
@@ -864,6 +869,7 @@ Used to get specific auction customer history.
                       }
                     } ,
                    {
+                      "id":101,
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "numberOfBids": 15,
