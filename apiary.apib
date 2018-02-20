@@ -1161,7 +1161,7 @@ Return a list of all products in a specific category
 
 ---
 **Error Code:**
-- `CATEGORY_NOT_FOUND` : CATEGORY_NOT_FOUND.
+- `CATEGORY_NOT_FOUND` : category not found
 - `TYPE_MISMATCH` : Type does not match on parameter parameter_name expected value of type parameter_type.
 ---
 + Parameters
@@ -1480,16 +1480,17 @@ Used to add payment to auction.
 - `INVALID_NATIONAL_ID` - customer id is null or invalid.
 - `INVALID_PRODUCT_ID` - product id is invalid.
 - `INVALID_CUSTOMER_TYPE` - customer type is invalid.
-- `AGRRED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
+- `AGREED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
 - `BALANCE_ALREADY_PAID` - the customer already paid blance payment for this product.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
-- `FEATURE_UNSUPPORTED_FOR_PRODCUT` - The feature is disabled or unsupported.
+- `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `PENDING_PURCHAS_PAYMENT_EXIST` - the product reserved from another buyer,
+- `PENDING_PURCHASE_PAYMENT_EXIST` - the product reserved from another buyer,
 - `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts, this error code is designed for bank transfer only
+- `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist
 
 ---
 
