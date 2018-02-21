@@ -501,7 +501,7 @@ Used to get all products in watchlist
     + Body            
         
             {
-              "watchlist": [
+              "products": [
                 {
                   "id": 1001,
                   "msisdn": "533996655",
@@ -1510,7 +1510,7 @@ Used to get all available payment method for specific productId and payment type
 + Response 200 (application/json)
 
     + Attributes 
-        + paymentMethodList (enum[string])  - the list of available payment method to be used to pay balance payment
+        + paymentMethods (enum[string])  - the list of available payment method to be used to pay balance payment
             + Members
                 + `creditCard`  
                 + `bankTransfer` 
@@ -1518,7 +1518,7 @@ Used to get all available payment method for specific productId and payment type
     + Body
     
             {
-              "paymentMethodList": [
+              "paymentMethods": [
                 "creditCard",
                 "bankTransfer"
               ]
@@ -1851,46 +1851,3 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
             }
 
 + Response 400 (application/json)
-        
- 
-# Group Content
-## Get Content [/content/{contentType}]
-
-### Get Content Details [GET]
-Used to get a spacific content in auction system,
-Note That : OCP already has content APIs, I think it's OCP responsibility. 
-
----
-**Error Code:**
-- `INVALID_CONTENT_TYPE` : content type not exist 
----
-+ Parameters
- 
-    + contentType    (enum[string]) 
-        + Members
-            + `FAQ` 
-            + `TERMS_AND_CONDITION`
-            + `BANK_LIST`
-            + `PRIVACY_STATEMENT`
-            + `BANK_TRANSFER_INFO`
-            
-+ Request (application/json)
-
-        {
-            "content": [
-                {
-                  "key": "How do I complete the payment after winning the number?",
-                  "value": "Through clicking on Check your auctions icon, then choose the number and follow the payment instructions."
-                },
-                {
-                  "key": "Are there maximum numbers that the customer can get?",
-                  "value": "The maximum numbers for Saudis are 40 postpaid lines for all operators and 10 lines for non-Saudi customer."
-                }
-            ]
-        }
-
-+ Response 404 (application/json)
-
-+ Response 400 (application/json)
-
-+ Response 500 (application/json)
