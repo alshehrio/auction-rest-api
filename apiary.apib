@@ -1246,7 +1246,7 @@ Return a list of all products in a specific category
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Products Detail [/products/{productId}{?nationalId}]     
+## Products Detail [/products/{id}{?nationalId}]     
 
 ### Get Product Detail [GET]
 
@@ -1254,7 +1254,7 @@ Return a single product detail resource.
 
 + Parameters
 
-    + productId: `1001` (number, required) - Id of a product.
+    + id: `1001` (number, required) - Id of a product.
     + nationalId: `2154879542` (string, optional) - send nationalId if you looking for customer bid status. 
 
 + Request In case of request sent with nationalId (application/json)
