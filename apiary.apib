@@ -306,36 +306,6 @@ Get All groups
             
 # Group Customer
 
-## Customer [/customers]
-
-### Add customer [POST]
-Used to the add or update customer in the auction.
-The customer type must be individual. 
-Note : CHECK WHEN WE CAN ADD CUSTOMER IN AUCTION. 
-
----
-**Error Code:**
-- `INVALID_NATIONAL_ID`.
----
-+ Request (application/json)
-
-             {
-                "nationalId": "1254897561",
-                "emailAddress": "test@stc.com",
-                "firstName": "test",
-                "lastName": "test",
-                "username": "test",
-                "contactNumber": "0578595468",
-                "type": "s"
-            }
-            
-+ Response 201 (application/json)
-
-+ Response 400 (application/json)
-
-   
-+ Response 500 (application/json)
-
 ## Customer Eligibility [/customers/{nationalId}/eligibility?{customerType}]
 
 ### Customer eligibility [GET]
@@ -1369,7 +1339,7 @@ Return a single product detail resource.
 + Response 400 (application/json)
 + Response 500 (application/json)
 
-## Search Products [/search{?page,size,msisdn}]
+## Search Products [/products/search{?page,size,msisdn}]
 
 ### Search [GET]
 
