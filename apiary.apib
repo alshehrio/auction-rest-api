@@ -1541,10 +1541,10 @@ Used to add payment to auction.
     <tr>
         <td>Technical Error </td>              
         <td> <ul style="list-style-type:number">
-              <li>INTERNAL_SERVICE_ERROR</li>
+              <li>UNKNOWN_ERROR</li>
             </ul> </td> 
          <td> <ul style="list-style-type:number">
-              <li>INTERNAL_SERVICE_ERROR</li>
+              <li>UNKNOWN_ERROR</li>
             </ul> </td>  
     </tr>
     <tr>
@@ -1562,6 +1562,8 @@ Used to add payment to auction.
               <li>TYPE_MISMATCH</li>
               <li>MAX_NUMBER_OF_ATTEMPTS_EXCEEDED</li>
               <li>PENDING_BANK_TRANSFER_PAYMENT_EXIST</li>
+              <li>QUERY_PARAMETER_NOT_PRESENT</li>
+              <li>QUERY_PARAMETER_IS_NULL</li>
             </ul> </td> 
          <td> <ul style="list-style-type:number">
               <li>INVALID_NATIONAL_ID</li>
@@ -1578,6 +1580,8 @@ Used to add payment to auction.
               <li>FEATURE_UNSUPPORTED_FOR_PRODUCT</li>
               <li>PENDING_PURCHASE_PAYMENT_EXIST</li>
               <li>BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE</li>
+              <li>QUERY_PARAMETER_NOT_PRESENT</li>
+              <li>QUERY_PARAMETER_IS_NULL</li>
             </ul> </td>  
     </tr>
 </table>
@@ -1597,6 +1601,10 @@ Used to add payment to auction.
 - `PENDING_PURCHASE_PAYMENT_EXIST` - the product reserved from another buyer,
 - `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts, this error code is designed for bank transfer only
 - `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist
+- `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
+- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+- `QUERY_PARAMETER_NOT_PRESENT` : Required parameter of name 'parameter name' with type "parameter type".
+- `QUERY_PARAMETER_IS_NULL` :  Required parameter value cannot be null.
 
 ---
 
