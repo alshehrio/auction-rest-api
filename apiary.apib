@@ -1529,6 +1529,58 @@ Used to get all available payment method for specific productId and payment type
 
 Used to add payment to auction. 
 
+
+<table>
+    <tr>
+          <td></td>
+          <td>Bank Transfer</td>   
+          <td>Credit Card</td>  
+    </tr>
+    <tr>
+        <td>Technical Error </td>              
+        <td> <ul style="list-style-type:number">
+              <li>INTERNAL_SERVICE_ERROR</li>
+            </ul> </td> 
+         <td> <ul style="list-style-type:number">
+              <li>INTERNAL_SERVICE_ERROR</li>
+            </ul> </td>  
+    </tr>
+    <tr>
+        <td>Functional Error</td>              
+              <td> <ul style="list-style-type:number">
+              <li>INVALID_NATIONAL_ID</li>
+              <li>INVALID_CUSTOMER_TYPE</li>
+              <li>INVALID_PRODUCT_ID</li>
+              <li>AGREED_TERMS_MUST_ACCEPTED</li>
+              <li>AMOUNT_MISMATCH</li>
+              <li>VALIDATION_ERROR</li>
+              <li>DEPOSIT_NOT_PAID</li>
+              <li>BALANCE_ALREADY_PAID</li>
+              <li>PAYMENT_NOT_ALLOWED</li>
+              <li>TYPE_MISMATCH</li>
+              <li>MAX_NUMBER_OF_ATTEMPTS_EXCEEDED</li>
+              <li>PENDING_BANK_TRANSFER_PAYMENT_EXIST</li>
+            </ul> </td> 
+         <td> <ul style="list-style-type:number">
+              <li>INVALID_NATIONAL_ID</li>
+              <li>INVALID_CUSTOMER_TYPE</li>
+              <li>INVALID_PRODUCT_ID</li>
+              <li>AGREED_TERMS_MUST_ACCEPTED</li>
+              <li>AMOUNT_MISMATCH</li>
+              <li>VALIDATION_ERROR</li>
+              <li>DEPOSIT_NOT_PAID</li>
+              <li>BALANCE_ALREADY_PAID</li>
+              <li>PAYMENT_NOT_ALLOWED</li>
+              <li>TYPE_MISMATCH</li>
+              <li>PRODUCT_IS_EXPIRED</li>  
+              <li>FEATURE_UNSUPPORTED_FOR_PRODUCT</li>
+              <li>PENDING_PURCHASE_PAYMENT_EXIST</li>
+              <li>BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE</li>
+            </ul> </td>  
+    </tr>
+</table>
+
+
 ---
 **Error Code:**
 - `INVALID_NATIONAL_ID` - customer id is null or invalid.
