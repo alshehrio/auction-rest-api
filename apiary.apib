@@ -1387,7 +1387,8 @@ Return a list of all matched msisdn
     + Attributes  
         
         + id (string) - product id.
-        + msisdn (string) - The auction number
+        + msisdn (string) - The auction number.
+        + categoryId (string) - category id.
 
     + Body  
         
@@ -1395,12 +1396,14 @@ Return a list of all matched msisdn
               "products": [
                 {
                   "msisdn": "50000655",
-                  "id" : 5
+                  "id" : 5,
+                  "categoryId": 27
                   
                 },
                {
                   "msisdn": "50000685",
-                  "id" : 7
+                  "id" : 7,
+                  "categoryId": 30
                   
                 }
               ],
