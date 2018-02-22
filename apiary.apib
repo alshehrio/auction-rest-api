@@ -316,7 +316,6 @@ Used to get available customer notification.
 
 ---
 **Error Code:**
- - `INVALID_NATIONAL_ID` - customer id is null or invalid.
  - `NATIONAL_ID_NOT_FOUND` : customer id not found.
 ---
 
@@ -396,7 +395,6 @@ Used to the transfer a deposit from a product to another product
 - `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidderse cannot transfer their deposit
 - `TRANSFER_NOT_ALLOWED` : transfer not allowed.
 - `NATIONAL_ID_NOT_FOUND` : customer id not found.
-- `INVALID_NATIONAL_ID` : customer id is null or invalid 
 ---
 + Parameters
     + nationalId: `2154895231` (number, required) - customer national Id.
@@ -430,7 +428,6 @@ Used to get all customer deposit.
 **Error Code:**
  
 - `NATIONAL_ID_NOT_FOUND` : customer id is not found. 
-- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
 - `INVALID_CATEGORY_ID` : category id is null or invalid. 
        
 ---
@@ -471,11 +468,6 @@ Used to get all customer deposit.
 ### List all watchlist products [GET]
 
 Used to get all products in watchlist
-
----
-**Error Code:**
-- `INVALID_NATIONAL_ID` : customer id is null or invalid.
----
 
 + Parameters
     
@@ -568,7 +560,6 @@ Used to remove an product from customer watchlist
 ---
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid 
-- `INVALID_NATIONAL_ID` : customer id is null or invalid.
 - `NOT_IN_WATCHLIST` : Product is not in watchlist.
 ---
 
@@ -592,7 +583,6 @@ Used to Add an item to watchlist
 **Error Code:**
 
 - `INVALID_PRODUCT_ID` : product id is invalid 
-- `INVALID_NATIONAL_ID` : customer id is null or invalid
 - `WATCHLIST_FULL`: max number of items in watchlist has been reached.
 ---
     
@@ -621,13 +611,6 @@ Used to Add an item to watchlist
 Used to get specific auction customer history.
 
 ### Get Customer Auction History Details [GET]    
-
----
-**Error Code:**
- 
-- `INVALID_NATIONAL_ID` : customer id is null or invalid. 
----
-
 
 + Parameters
     + nationalId  (number, required) - customer national Id.
@@ -1813,6 +1796,36 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
                 "productId": 1005
             }
 
++ Response 201 (application/json) 
+
+    + Attributes 
+    
+        + numberOfBids (number) - totale number of bids.
+        + isAutoBidAllowed  (boolean) - return weather of auto bid featuer enabled or disable
+        + currentPrice (string) - return latest bid amount.
+        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
+            + Members
+                + `highestBidder`
+                + `outbid` 
+        + purchase  - purchase information
+            + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
+            + purchasePrice (number)- fixed product price. 
+            + depositAmount (number) - product deposit amount.
+
+    + Body
+    
+            {
+              "numberOfBids": 37,
+              "currentPrice": 5000,
+              "customerBidStatus": "highestBidder",
+              "isAutoBidAllowed": true,
+              "purchase": {
+                "isPurchaseAllowed": true,
+                "price": 800000,
+                "depositAmount": 2000
+              }
+            }
+
 + Request in case of biding type is auto bid (application/json) 
 
 
@@ -1853,9 +1866,7 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
               "customerBidStatus": "highestBidder",
               "isAutoBidAllowed": true,
               "purchase": {
-                "isPurchaseAllowed": true,
-                "price": 800000,
-                "depositAmount": 2000
+                "isPurchaseAllowed": false
               }
             }
             
