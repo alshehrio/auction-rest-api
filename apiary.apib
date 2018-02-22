@@ -1243,7 +1243,7 @@ Return a single product detail resource.
 + Response 200 (application/json)
 
     + Attributes  
-        + id (string) - Id of a product.
+        + id (string) - Id of a product. 
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
         + expiryDate  (string) - auction expiry date, timestamp format yyyy-MM-dd'T'HH:mm:ss
@@ -1780,7 +1780,7 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
 - `BID_NOT_ALLOWED` : not allowed to bid in both type.
 
 ---  
-+ Request in case of biding type is regular bid (application/json) 
++ Request in case of biding type is auto bid (application/json) 
 
 
     + Headers
@@ -1826,7 +1826,7 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
               }
             }
 
-+ Request in case of biding type is auto bid (application/json) 
++ Request in case of biding type is regular bid (application/json) 
 
 
     + Headers
