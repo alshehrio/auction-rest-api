@@ -306,6 +306,47 @@ Get All groups
             
 # Group Customer
 
+
+
+## Customer Notification [/customers/{nationalId}/notification]
+
+### Get Customer Notification[GET]
+
+Used to get available customer notification.
+
+---
+**Error Code:**
+ -`INVALID_NATIONAL_ID` - customer id is null or invalid.
+ - `NATIONAL_ID_NOT_FOUND` : customer id not found.
+---
+
++ Parameters
+    + nationalId: `2154895231` (number, required) - customer national Id.
+    
++ Request (application/json)
+ 
++ Response 200 (application/json)
+
+    + Attributes 
+        + messageKey (string) - notification message key.
+        + message (string) - notification message.
+        + parameters (array[string]) - notification message parameters.
+             
+                    
+    + Body
+    
+            {
+              "messageKey": "STC_BLACKLISTED",
+              "message": "You have won a bid for auction number {0} but you have been blacklisted, please resolve the issue and then pay the remaining amount {1} SR",
+              "parameters": [ 
+                 "0566666666", 
+                 "500" 
+                 ]
+            }
+     
++ Response 404 (application/json)
++ Response 500 (application/json)
+
 ## Customer Eligibility [/customers/{nationalId}/eligibility?{customerType}]
 
 ### Customer eligibility [GET]
@@ -1470,7 +1511,7 @@ Used to get all available payment method for specific productId and payment type
 + Response 200 (application/json)
 
     + Attributes 
-        + paymentMethods (enum[string])  - the list of available payment method to be used to pay balance payment
+        + paymentMethods (array[string])  - the list of available payment method to be used to pay balance payment
             + Members
                 + `creditCard`  
                 + `bankTransfer` 
