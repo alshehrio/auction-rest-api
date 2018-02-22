@@ -647,12 +647,6 @@ Used to get specific auction customer history.
             + `DESC`
             
 + Request In case of historyType value equal won (application/json)
-    + Parameters
-        + nationalId: 1021458752
-        + historyType: won
-        + page: 0
-        + size: 10
-        + order: ASC
  
 + Response 200 (application/json)
 
@@ -662,7 +656,10 @@ Used to get specific auction customer history.
         + msisdn (string , required) -  auction number
         + customerBid (number, required) - the last customer bid.
         + balanceDueBefore (string, required) - the due date to pay balance payment.
-        + isPurchase (boolean, optional) - return if the winner is purchase the product or not.
+        + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
+            + Members
+                + `purchase`
+                + `bid`
         + currentPrice (number, required) - the total auction price.
         + category  - auction category
             + id  (number) - Id of a category.
@@ -702,7 +699,7 @@ Used to get specific auction customer history.
                     "name": "Bronze Numbers"
                   },
                   "balancePaymentStatus": "PAID",
-                  "isPurchase":true,
+                  "intent":"purchase",
                   "payments": [
                     {
                       "type": "deposit",
@@ -722,7 +719,7 @@ Used to get specific auction customer history.
                   "msisdn": "056659999",
                   "customerBid": 61,
                   "balanceDueBefore": "2017-12-09T13:11:39",
-                  "isPurchase":false,
+                  "intent":"bid",
                   "currentPrice": 8000,
                   "category": {
                     "Id": 27,
@@ -731,7 +728,7 @@ Used to get specific auction customer history.
                   "balancePaymentStatus": "UNPAID",
                   "payments": [
                     {
-                      "type": "purchase",
+                      "type": "deposit",
                       "method": "CC",
                       "amount": 300
                     },
