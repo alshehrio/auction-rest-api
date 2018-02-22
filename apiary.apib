@@ -337,8 +337,8 @@ Used to get all available customer notifications.
             {
               "notifications": [
                 {
-                  "messageKey": "STC_BLACKLISTED",
-                  "message": "You have won a bid for auction number {0} but you have been blacklisted, please resolve the issue and then pay the remaining amount {1} SR",
+                  "messageKey": "BALANCE_PAYMENT",
+                  "message": "You have won a bid for auction number {0} , please pay the remaining amount {1} SR",
                   "parameters": [
                     "0566666666",
                     "500"
@@ -363,9 +363,6 @@ Used to get all available customer notifications.
 
 Used to check if the customer is blacklisted in auction.
 OCP will check if the customer is blacklisted in STC, and maintain customer error messages in case of the customer is blacklisted in auction and STC.
-otherwise OCP should send to auction the whether of customer eligibility in STC to return appropriate error message.
-Also, who must check the customer type ? we accept only type (I/S) in auction. 
-
 
 ---
 **Error Code:**
@@ -378,12 +375,37 @@ Also, who must check the customer type ? we accept only type (I/S) in auction.
 + Parameters
     + nationalId: `2154895231` (number, required) - customer national Id.
     + customerType: `s` (number, required) - customer type.
-    
+
++ Request in case of the customer is eligible (application/json) 
+
 + Response 200 (application/json)
 
             {
                "isEligible": true
             }
+
++ Request in case of the customer is not eligible (application/json) 
+
++ Response 200 (application/json)
+
+            {
+               "isEligible": false,
+               "notifications": [
+                {
+                  "messageKey": "AUCTION_BLACKLISTED",
+                  "message": "You have won a bid for auction number {0} but you have been blacklisted, please resolve the issue and then pay the remaining amount {1} SR",
+                  "parameters": [
+                    "0566666666",
+                    "500"
+                  ]
+                },
+                {
+                  "messageKey": "EXAMPLE_2",
+                  "message": "example 2 message {0}",
+                  "parameters": [
+                    "059999999"
+                  ]
+            }      
             
 + Response 404 (application/json)
     
@@ -770,6 +792,7 @@ Used to get specific auction customer history.
         + numberOfBids (number, required) - total number of bid.
         + currentPrice (number, required) - the total auction price.
         + customerBid (number, required) - the last customer bid.
+        + customerBidPrice (number, required) - the last customer bid price.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -784,6 +807,7 @@ Used to get specific auction customer history.
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "numberOfBids": 15,
+                      "customerBidPrice": 4000,
                       "expiryDate": "2017-12-09T13:11:39",
                       "currentPrice": 6930,
                       "category": {
@@ -796,6 +820,7 @@ Used to get specific auction customer history.
                       "msisdn": "0566587458",
                       "customerBid": 6,
                       "numberOfBids": 15,
+                      "customerBidPrice": 4000,
                       "expiryDate": "2017-12-09T13:11:39",
                       "currentPrice": 6930,
                       "category": {
@@ -840,6 +865,7 @@ Used to get specific auction customer history.
         + numberOfBids (number, required) - total number of bid.
         + currentPrice (number, required) - the total auction price.
         + customerBid (number, required) - the last customer bid.
+        + customerBidPrice (number, required) - the last customer bid price.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -853,6 +879,7 @@ Used to get specific auction customer history.
                       "id":100,
                       "msisdn": "0566587458",
                       "customerBid": 6,
+                      "customerBidPrice": 4000,
                       "numberOfBids": 15,
                       "expiryDate": "2017-12-09T13:11:39",
                       "currentPrice": 6930,
@@ -865,6 +892,7 @@ Used to get specific auction customer history.
                       "id":101,
                       "msisdn": "0566587458",
                       "customerBid": 6,
+                      "customerBidPrice": 4000,
                       "numberOfBids": 15,
                       "expiryDate": "2017-12-09T13:11:39",
                       "currentPrice": 6930,
