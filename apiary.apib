@@ -682,12 +682,18 @@ Used to get specific auction customer history.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
-        + balancePaymentStatus (enum[string])  - return weather of balance payment status is paid or not
-            + Members
-                + `paid` 
-                + `pending`
-                + `unpaid`
-                + `expired`
+        + balancePayment (object)
+            + status (enum[string]) 
+                + Members
+                    + `paid` 
+                    + `pending`
+                    + `unpaid`
+                    + `expired`
+                    + `rejected`
+            + reasonMessage (object) 
+                + messageKey (string) - notification message key.
+                + message (string) - notification message.
+                + parameters (array[string]) - notification message parameters.
         + payments -
             + type (enum[string])  - payment type
                 + Members
@@ -703,11 +709,11 @@ Used to get specific auction customer history.
         
         
     + Body
-    
+        
             {
               "products": [
                 {
-                  "id":100,
+                  "id": 100,
                   "vatRate": 5,
                   "msisdn": "0566587458",
                   "customerBid": 6,
@@ -717,8 +723,18 @@ Used to get specific auction customer history.
                     "Id": 27,
                     "name": "Bronze Numbers"
                   },
-                  "balancePaymentStatus": "paid",
-                  "intent":"purchase",
+                  "balancePayment": {
+                    "status": "rejected",
+                    "reasonMessage": {
+                      "messageKey": "INVALID_PAYMENT_AMOUNT",
+                      "message": "You have won a bid for auction number {0} , please pay the remaining amount {1} SR",
+                      "parameters": [
+                        "0566666666",
+                         500
+                      ]
+                    }
+                  },
+                  "intent": "purchase",
                   "payments": [
                     {
                       "type": "deposit",
@@ -733,18 +749,28 @@ Used to get specific auction customer history.
                   ]
                 },
                 {
-                  "id":101,
+                  "id": 101,
                   "vatRate": 5,
                   "msisdn": "056659999",
                   "customerBid": 61,
                   "balanceDueBefore": "2017-12-09T13:11:39",
-                  "intent":"bid",
+                  "intent": "bid",
                   "currentPrice": 8000,
                   "category": {
                     "Id": 27,
                     "name": "Bronze Numbers"
                   },
-                  "balancePaymentStatus": "unpaid",
+                  "balancePayment": {
+                    "status": "rejected",
+                    "reasonMessage": {
+                      "messageKey": "INVALID_PAYMENT_AMOUNT",
+                      "message": "You have won a bid for auction number {0} , please pay the remaining amount {1} SR",
+                      "parameters": [
+                        "0566666666",
+                         500
+                      ]
+                    }
+                  },
                   "payments": [
                     {
                       "type": "deposit",
