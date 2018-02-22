@@ -388,9 +388,9 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 
 + Response 200 (application/json)
 
-            {
-               "isEligible": false,
-               "notifications": [
+          {
+              "isEligible": false,
+              "notifications": [
                 {
                   "messageKey": "AUCTION_BLACKLISTED",
                   "message": "You have won a bid for auction number {0} but you have been blacklisted, please resolve the issue and then pay the remaining amount {1} SR",
@@ -405,7 +405,9 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
                   "parameters": [
                     "059999999"
                   ]
-            }      
+                }
+              ]
+            }
             
 + Response 404 (application/json)
     
