@@ -1797,7 +1797,7 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
 - `BID_NOT_ALLOWED` : not allowed to bid in both type.
 
 ---  
-+ Request (application/json)
++ Request in case of biding type is regular (application/json) 
 
 
     + Headers
@@ -1810,10 +1810,25 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
                 "nationalId": 10999999,
                 "customerType" : "s",
                 "regularBidAmount": 5000,
-                "autoBidAmount" : null,
-                "productId": 1
+                "productId": 1005
             }
 
++ Request in case of biding type is auto (application/json) 
+
+
+    + Headers
+
+            Accept-Language: en
+            
+    + Body
+            
+            {
+                "nationalId": 10999999,
+                "customerType" : "s",
+                "autoBidAmount" : 50000,
+                "productId": 1001
+            }
+            
 + Response 201 (application/json)
 
     + Attributes 
