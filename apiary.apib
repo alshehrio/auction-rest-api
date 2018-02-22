@@ -308,11 +308,11 @@ Get All groups
 
 
 
-## Customer Notification [/customers/{nationalId}/notification]
+## Customer Notification [/customers/{nationalId}/notifications]
 
 ### Get Customer Notification[GET]
 
-Used to get available customer notification.
+Used to get all available customer notifications.
 
 ---
 **Error Code:**
@@ -335,12 +335,23 @@ Used to get available customer notification.
     + Body
     
             {
-              "messageKey": "STC_BLACKLISTED",
-              "message": "You have won a bid for auction number {0} but you have been blacklisted, please resolve the issue and then pay the remaining amount {1} SR",
-              "parameters": [ 
-                 "0566666666", 
-                  500 
-                 ]
+              "notifications": [
+                {
+                  "messageKey": "STC_BLACKLISTED",
+                  "message": "You have won a bid for auction number {0} but you have been blacklisted, please resolve the issue and then pay the remaining amount {1} SR",
+                  "parameters": [
+                    "0566666666",
+                    "500"
+                  ]
+                },
+                {
+                  "messageKey": "HIGHEST_BIDDER",
+                  "message": "You are the highest bidder {0}",
+                  "parameters": [
+                    "059999999"
+                  ]
+                }
+              ]
             }
      
 + Response 404 (application/json)
@@ -1852,8 +1863,8 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
                 + `highestBidder`
                 + `outbid` 
         + purchase  - purchase information
-            + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
-            + purchasePrice (number)- fixed product price. 
+            + isPurchaseAllowed  (boolean) - return if true product purchase featuer is allowed, if false `purchasePrice` and `depositAmount` will not be return.
+            + purchasePrice (number)- fixed product price.
             + depositAmount (number) - product deposit amount.
 
     + Body
