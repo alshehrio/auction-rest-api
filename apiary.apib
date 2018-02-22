@@ -328,7 +328,6 @@ Used to get all available customer notifications.
 
     + Attributes 
         + messageKey (string) - notification message key.
-        + message (string) - notification message.
         + parameters (array[string]) - notification message parameters.
              
                     
@@ -388,16 +387,13 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
               "notifications": [
                 {
                   "messageKey": "AUCTION_BLACKLISTED",
-                  "message": "You have won a bid for auction number {0} but you have been blacklisted, please resolve the issue and then pay the remaining amount {1} SR",
                   "parameters": [
                     "0566666666",
                     "500"
                   ]
                 },
                 {
-                  "messageKey": "EXAMPLE_2",
-                  "message": "example 2 message"
-                }
+                  "messageKey": "EXAMPLE_2"                }
               ]
             }
             
@@ -684,7 +680,6 @@ Used to get specific auction customer history.
                     + `rejected`
             + reasonMessage (object) 
                 + messageKey (string) - notification message key.
-                + message (string) - notification message.
                 + parameters (array[string]) - notification message parameters.
         + payments -
             + type (enum[string])  - payment type
@@ -719,7 +714,6 @@ Used to get specific auction customer history.
                     "status": "rejected",
                     "reasonMessage": {
                       "messageKey": "INVALID_PAYMENT_AMOUNT",
-                      "message": "You have won a bid for auction number {0} , please pay the remaining amount {1} SR",
                       "parameters": [
                         "0566666666",
                          500
