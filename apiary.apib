@@ -660,10 +660,10 @@ Used to get specific auction customer history.
             + name (string) - name of a category
         + balancePaymentStatus (enum[string])  - return weather of balance payment status is paid or not
             + Members
-                + `PAID` 
-                + `PENDING`
-                + `UNPAID`
-                + `EXPIRED`
+                + `paid` 
+                + `pending`
+                + `unpaid`
+                + `expired`
         + payments -
             + type (enum[string])  - payment type
                 + Members
@@ -693,7 +693,7 @@ Used to get specific auction customer history.
                     "Id": 27,
                     "name": "Bronze Numbers"
                   },
-                  "balancePaymentStatus": "PAID",
+                  "balancePaymentStatus": "paid",
                   "intent":"purchase",
                   "payments": [
                     {
@@ -720,7 +720,7 @@ Used to get specific auction customer history.
                     "Id": 27,
                     "name": "Bronze Numbers"
                   },
-                  "balancePaymentStatus": "UNPAID",
+                  "balancePaymentStatus": "unpaid",
                   "payments": [
                     {
                       "type": "deposit",
