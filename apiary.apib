@@ -1780,7 +1780,7 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
 - `BID_NOT_ALLOWED` : not allowed to bid in both type.
 
 ---  
-+ Request in case of biding type is auto bid (application/json) 
++ Request in case of biding type is regular bid (application/json) 
 
 
     + Headers
@@ -1820,13 +1820,11 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
               "customerBidStatus": "highestBidder",
               "isAutoBidAllowed": true,
               "purchase": {
-                "isPurchaseAllowed": true,
-                "price": 800000,
-                "depositAmount": 2000
+                "isPurchaseAllowed":false
               }
             }
 
-+ Request in case of biding type is regular bid (application/json) 
++ Request in case of biding type is auto bid (application/json) 
 
 
     + Headers
@@ -1866,7 +1864,10 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
               "customerBidStatus": "highestBidder",
               "isAutoBidAllowed": true,
               "purchase": {
-                "isPurchaseAllowed": false
+                "isPurchaseAllowed": true,
+                "price": 800000,
+                "depositAmount": 2000
+                
               }
             }
             
