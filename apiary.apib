@@ -5,23 +5,131 @@ HOST: http://172.20.162.198:17001/auction
 # Auction 2 REST API v1.1
 
 The Auction API provides a list of API for developers to interact with Auction system.
- 
-## HTTP request headers
 
-The following is a mandatory header tags, that must be sent with each request.
-  * `content-type` - The format of the request body - only application/json is supported at this time
-  * `accept-language` - The language that you want the descriptions returned in - eg. en/ar.
-  * `channel-name` - The channel name - example web,mobile.
-  * `client-ip`  - The ip address of client.
-  * `user-agent` - The app version of the mobile application that tries to consume the API.
-  * `api-version` - The API version of auction application - eg. v1.
+## Changelog  
+* Feb 22th, 2018
+
+## Definitions
+### Payment 
+* <b>Deposit :</b> The amount is authorized using e-Payments system , and not captured unless the user wins the auction
+* <b>Balance :</b> The deposit payment for the winning bidder is captured during the end-of-auction process.  There is no required intervention by the user.
+* <b>Reverse authorization :</b> The end-of-auction process reverses all deposits held on behalf of non-winning bidders or Non-winning user decides to withdraw from the auction
+* <b>Transfer deposit payment :</b> the customer can transfer their deposit from the first auction to the new auction
+* <b>Reversal deposit :</b> If a user no longer wishes to participate in an auction they may request reversal of their authorization. (withdraw from auction)
+
+### Auction Feature 
+* <b>Blacklisted :</b> when the customer wim an Auction number and he did not buy the reming amount within the payment window he will be blacklisted in Auction system . 
+* <b>Purchase auction :</b> it is feature to let the user to buy the Auction number immediately .  
+* <b>Auto bidding :</b> When you place your bid on an auction item, you will be prompted to enter Automatic (or Auto) bid, which is the maximum you are prepared to pay for the item
+* <b>Regular bidding :</b> which is the noraml bid for auction .  
+* <b>Rolling expiry (extend) :</b> The Auction should start a 10 days countdown for each number in the Auction with the first bid on it . 
+
+## HLD
+### Frist Section 
+###### To determine the various channels and their interactions with the auction system , there are three main elements:
+* <b>Front-end Channels:</b> that is responsible for the presentation of data, receiving user elements and controlling the user interface. 
+* <b>OCP layer:</b> that is responsible for securing the auction system, expose auction web services to front-end channels, audit service request/response and provide some services to the front-end channels.
+* <b>Auction system:</b> that is responsible for providing all auction business services of the system, and to store data in a database.
+* <b>igate system:</b> 
+* <b>ePayment system:</b> 
+* <b>NC system:</b> 
+
+![name](http://i66.tinypic.com/orj7gw.png)
+
+### Second Section
+###### Moving scheduled tasks from OCP layer to be under the auction system, as shown in the diagram below. 
+* <b>Add Auction products:</b>
+* <b>SIM registreation reconselation:</b>
+* <b>End of Auction:</b>
+* <b>Update Auction number status:</b>
+* <b>Custoumer Blacklist:</b>
+![name](http://i63.tinypic.com/2djoxn4.jpg)
+
+## Requirements
+here is the [Auction requirements](https://drive.google.com/file/d/1bv_DFwefh3-W_H-_qiAFEF22SRJjcxBD/view?usp=sharing)
+
+## Sequence Diagrams 
+### Digram 1 :  Adding prodcuts to Auction system 
+<b>Auction API :</b> 
+* (Add Products)
+![name](http://i68.tinypic.com/16hix34.png)
+
+### Digram 2 : Customer viewing Auction numbers 
+<b>Auction API :</b>
+* (Customer Eligibility)
+* (List all Categories) 
+* (List all Products By Category) 
+* (Get Products Detail) 
+![name](http://i65.tinypic.com/104l1sk.png)
+
+### Digram 3 :  watchlist 
+<b>Auction API :</b>
+* (Add product to Watchlist)
+* (Remove product from watchlist) 
+* (List all watchlist products) 
+![name](http://i64.tinypic.com/2rx8qbt.png)
+
+### Digram 4 :  bidding 
+<b>Auction API :</b>
+* (Place Bid) 
+* (Place Payment) 
+![name](http://i64.tinypic.com/2a98a5v.png)
+
+### Digram 5 :  Reversal/Transfer Deposit 
+<b>Auction API :</b>
+* (Reversal Deposit)
+* (Get Customer Deposit) 
+* (Transfer Deposit) 
+![name](http://i67.tinypic.com/9j0g3q.png)
+
+### Digram 6 :  Widgets 
+<b>Auction API :</b>
+* (Get Widgets Details ) 
+![name](http://i63.tinypic.com/1079vur.png)
+
+### Digram 7 :  Auction History Details 
+<b>Auction API :</b>
+* (Get Customer Auction History Details) 
+![name](http://i68.tinypic.com/10x546e.png)
+
+### Digram 8 : find an Auction number 
+<b>Auction API :</b> 
+(Search) 
+![name](http://i67.tinypic.com/2u6hisy.png)
+
+### Digram 9 :  Winner  Customer pay with creditCard
+<b>Auction API :</b>
+* (Get Payment Method List)
+* (Place Payment) 
+![name](http://i67.tinypic.com/2sb1sax.png)
+
+### Digram 10 :  Winner  Customer pay with bankTransfer
+<b>Auction API :</b>
+* (Get Payment Method List)
+* (Place Payment) 
+![name](http://i66.tinypic.com/9i9ptt.png)
+
+## Consideration
+* Any new channel should be confugried in auction system. otherwise all requests from this channel will be rejected. 
+* the base URL for all request is : 
+* Test environment: https://xxx.xx.xxx.xxx:xxxxx/auction
+* Prod environment: https://xxx.xx.xxx.xxx:xxxxx/auction
+
+## HTTP Request Headers
+###### The following is a mandatory header tags, that must be sent with each request: 
+  * `content-type` - The format of the request body - only `application/json` is supported at this time. 
+  * `accept-language` - The language that you want the descriptions returned in - example `en`,`ar`. 
+  * `date` - the date and time at which the message was originated. example `dd-mm-yyyy hh:mm:ss`
+  * `channel-name` - The channel name - example `MYSTC-PORTAL`,`MYSTC-IPHONE`,`MYSTC-ANDROID`.
+  * `client-ip`  - The ip4 address of client - example `xxx.xxx.xxx.xxx`
+  * `user-agent` - The app version of the mobile application that tries to consume the API -  example `v3.8.1`.
+  * `api-version` - The API version of auction application - eg. `v1`.
   * `authorization` - HTTP basic authentication. We use a HTTP header where we add 
                      'username:password' encoded in base64, you have to add '<B>Basic</B>' as a static prefix with each encoded credential.
                       <P><B> Example : </B></P> - `authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=` 
                       
   
-## HTTP response codes
-
+## HTTP Response Codes
   * `200` - The request completed OK
   * `201` - The specified object was created sucessfully
   * `204` - The request completed OK (No Content)
@@ -31,17 +139,15 @@ The following is a mandatory header tags, that must be sent with each request.
   * `404` - The object that was requested doesn't exist
   * `405` - The resource exists, but the wrong method was used. 
   * `500` - There was an internal API error
-  * `501` - You have used a method (GET/PUT/POST/PATCH) not supported by this endpoint
+  * `501` - You have used a method (`GET`/`PUT`/`POST`/`PATCH`/`DELETE`) not supported by this endpoint
   
-## HTTP response headers
-
-  * `content-type` - The format of the response body - only application/json is supported at this time
-  * `cache-control` - used to specify directives for caching mechanisms in both requests and responses
-  * `content-language` - describe the language(s) intended for the audience.
-  * `date` -the date and time at which the message was originated.
+## HTTP Response Header
+  * `content-type` - The format of the response body - only `application/json` is supported at this time.
+  * `cache-control` - used to specify directives for caching mechanisms in both requests and responses. example :( )
+  * `content-language` - describe the language(s) intended for the audience. example `en`,`ar`. 
+  * `date` - the date and time at which the message was originated. example `dd-mm-yyyy hh:mm:ss`.
   
 ## General Errors
-
 In the responses for failed requests, Auction returns HTTP `4XX` or `5XX` status codes.
 
 In addition, the Auction API can return the following errors.
@@ -63,7 +169,6 @@ For all errors except validation errors, auction returns an error response body 
 
 
 ##  Validation Errors
-
 For validation errors `VALIDATION_ERROR`, Auction returns the HTTP `400 Bad Request` status code.
 
 The server could not understand the request. Indicates one of these conditions:
@@ -89,17 +194,20 @@ The response body for validation errors includes additional error details in fol
 
 ```
 
-
-
 ## API Catalog
-
 list of all APIs and their respective owners
 
 <table>
     <tr>
+        <td><b> Consumer Name</b></td>
+        <td><b> API Name </b></td>
+        <td><b> Version Number </b></td>
+        <td><b> Change Date </b></td>
+    </tr>
+    <tr>
         <td> OCP APIs</td>
         <td> <ul style="list-style-type:number">
-              <li>Add Products </li>
+              <li>Add Products</li>
               <li>Customer Eligibility</li>
               <li>List all Categories</li>
               <li>List all Products By Category</li>
@@ -116,7 +224,9 @@ list of all APIs and their respective owners
               <li>Get Widgets Details</li>
               <li>Get Customer Auction History Details</li>
               <li>Search</li>
-            </ul> </td>   
+            </ul> </td> 
+        <td>1.0 </td>
+        <td>22/Feb/2018 </td> 
     </tr>
     <tr>
         <td> Auction Admin API's</td>              
@@ -127,7 +237,9 @@ list of all APIs and their respective owners
               <li>List All Group</li>
               <li>Get Category</li>
               <li>Update Category</li>
-            </ul> </td> 
+            </ul> </td>
+        <td>1.0 </td>
+        <td>22/Feb/2018 </td> 
     </tr>
     <tr>
         <td>Payment API's</td>              
@@ -135,9 +247,12 @@ list of all APIs and their respective owners
               <li>Place Payment</li>
               <li>Batches Batches Collection </li>
               <li>Payments Reconcile Collection</li>
-            </ul> </td> 
+            </ul> </td>
+        <td>1.0 </td>
+        <td>22/Feb/2018 </td> 
     </tr>
 </table>
+
 
 # Group User
 
@@ -664,20 +779,20 @@ Used to get specific auction customer history.
         + balanceDueBefore (string, required) - the due date to pay balance payment.
         + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
             + Members
-                + `purchase`
+                + `purchase` -  
                 + `bid`
         + currentPrice (number, required) - the total auction price.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
         + balancePayment (object)
-            + status (enum[string]) 
+            + status (enum[string]) - one of the below status will be returned 
                 + Members
-                    + `paid` 
-                    + `pending`
-                    + `unpaid`
-                    + `expired`
-                    + `rejected`
+                    + `paid` - it means that the auction number has been alredy paid and there is no farther action .  
+                    + `pending` - it means the customer has alredy submit the baank Transfer information and need approval from Finance business there is no farther action .  
+                    + `unpaid` - it means the user did not paid the balance payment and it need Action to show to customer to buy the balance amount .  
+                    + `expired` - it means the Auction has been experid and the customer did not pay the balance payment and there is no farther action . 
+                    + `rejected` - it means the customer has submit the baank Transfer information but he got rejected with reason and it need Action to show to customer to buy the balance amount . 
             + reasonMessage (object) 
                 + messageKey (string) - notification message key.
                 + parameters (array[string]) - notification message parameters.
@@ -1556,6 +1671,9 @@ Used to get all available payment method for specific productId and payment type
 ### Place Payment [POST]
 
 Used to add payment to auction. 
+in case of paymentMethod = `creditCard` the consumer is payment system. 
+in case of paymentMethod = `bankTransfer` the consumer is OCP System. 
+
 
 ---
 **Error Code:**
@@ -1594,6 +1712,7 @@ Used to add payment to auction.
               <li>QUERY_PARAMETER_IS_NULL</li>
             </ul> </td> 
          <td> <ul style="list-style-type:number">
+              <li>CUSTOMER_IS_BLACKLISTED</li>
               <li>INVALID_NATIONAL_ID</li>
               <li>INVALID_CUSTOMER_TYPE</li>
               <li>INVALID_PRODUCT_ID</li>
