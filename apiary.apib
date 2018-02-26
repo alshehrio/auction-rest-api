@@ -132,6 +132,7 @@ here is the [Auction requirements](https://drive.google.com/file/d/1bv_DFwefh3-W
 ## HTTP Response Codes
   * `200` - The request completed OK
   * `201` - The specified object was created sucessfully
+  * `202` - The request has been accepted for processing, but the processing has not been completed. 
   * `204` - The request completed OK (No Content)
   * `400` - The request was not understood
   * `401` - authentication failed or user doesn't have permissions for requested operation.
@@ -1261,7 +1262,7 @@ Used to return a specific auction widgets
 
 ### Add Products [POST]
 
-Add a list of auctions
+Used to Add a list of prodcuts to Auction system.
 
 ---
 **Error Code:**
@@ -1291,7 +1292,7 @@ Add a list of auctions
               "batchId": "AUC1000057"
             }
             
-+ Response 204 
++ Response 202 
 + Response 400 (application/json)
 + Response 500 (application/json)
 
