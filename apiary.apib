@@ -1271,26 +1271,51 @@ Used to Add a list of prodcuts to Auction system.
 ---
 + Request (application/json)
     + Body
-            
+                        
             {
-              "startDate": "2017-11-19T12:4:00",
+              "id": "AUC1000001",
+              "startDate": "2020-04-28T12:4:00",
+              "endDate": "2020-05-24T12:2:59",
               "auctionNumbers": [
                 {
-                  "categoryId": 31,
-                  "msisdn": "500008802"
+                  "class": "SILVER",
+                  "msisdn": "500000001"
                 },
                 {
-                  "categoryId": 29,
-                  "msisdn": "500009020"
+                  "class": "GOLD",
+                  "msisdn": "500000002"
                 },
                 {
-                  "categoryId": 26,
-                  "msisdn": "505555007"
+                  "class": "DIAMOND",
+                  "msisdn": "500000003"
+                },
+                {
+                  "class": "BRONZE",
+                  "msisdn": "500000004"
+                },
+                {
+                  "class": "MOMAIZ",
+                  "msisdn": "500000005"
+                },
+                {
+                  "class": "AUCTION",
+                  "msisdn": "500000006"
+                },
+                {
+                  "class": "SPECIAL",
+                  "msisdn": "500000007"
+                },
+                {
+                  "class": "ECONOMY",
+                  "msisdn": "500000008"
+                },
+                {
+                  "class": "REGULAR",
+                  "msisdn": "500000009"
                 }
-              ],
-              "endDate": "2017-11-29T12:2:59",
-              "batchId": "AUC1000057"
+              ]
             }
+
             
 + Response 202 
 + Response 400 (application/json)
