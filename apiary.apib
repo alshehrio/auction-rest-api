@@ -1069,35 +1069,35 @@ Used to return a list of all available categories in the auction system.
     + Headers
 
             Accept-Language: en
-            Authorization: Basic [Encoded channel user credential]
-            
+
 + Response 200 (application/json)
 
         {
             "categories": [
                 {
                     "name": "Bronze Numbers",
-                    "id": 32
+                    "id": 1
                 },
                 {
                     "name": "Diamond Numbers",
-                    "id": 30
+                    "id": 2
                 },
                 {
                     "name": "Gold Numbers",
-                    "id": 27
+                    "id": 3
                 },
                 {
                     "name": "Momaiz Numbers",
-                    "id": 31
+                    "id": 4
                 },
                 {
                     "name": "Silver Numbers",
-                    "id": 28
+                    "id": 5
                 }
             ]
         }
         
+
 + Response 500 (application/json)     
 
 ## Categories Detail [/categories/{id}]     
@@ -1131,11 +1131,12 @@ Returns a single Category
                "isPurchaseAllowed" : "true",
                "purchasePrice":100000,
                "numberOfBidToStartAutoBid" : 25,
-               "purchaseDisablePercentege" : 80
+               "purchaseDisablePercentege" : 80,
+               "purchaseDepositAmount": 1000 
             }
 
++ Response 400 (application/json)
 + Response 404 (application/json)
- 
 + Response 500 (application/json)
 
 ### Update Category [PUT]
