@@ -459,7 +459,8 @@ Used to get all available customer notifications.
                   ]
                 },
                 {
-                  "messageKey": "HIGHEST_BIDDER"
+                  "messageKey": "HIGHEST_BIDDER",
+                  "parameters": []
                 }
               ]
             }
@@ -498,7 +499,7 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 
 + Response 200 (application/json)
 
-          {
+            {
               "isEligible": false,
               "notifications": [
                 {
@@ -509,7 +510,9 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
                   ]
                 },
                 {
-                  "messageKey": "EXAMPLE_2"                }
+                  "messageKey": "EXAMPLE_2",
+                  "parameters": []
+                }
               ]
             }
             
