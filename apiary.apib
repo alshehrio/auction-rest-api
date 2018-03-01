@@ -1139,45 +1139,52 @@ Used to return a specific auction widgets
         + id (number) - Id of a product.
         + msisdn (string) - auction number
         + currentPrice (string) - auction last price.
+        + expiryDate (string) - auction expiry date.
+        + numberOfBids(string) - number of bid on product
         + productStatus (enum[string]) - return list of product status
             + Members
                 + `sold` 
                 + `new`
+                + `expired`
         + category  - 
-            + id  (number) - Id of a product.
+            + id  (number) - Id of a category.
             + name (string) - name of a category
  
  + Body
     
             {
-              "products": [
-                {
-                  "id": 1001,
-                  "msisdn": "533996655",
-                  "currentPrice": 8000,
-                  "productStatus": "sold",
-                  "category": {
-                    "Id": 27,
-                    "name": "Bronze Numbers"
-                  }
+                "page": {
+                    "size": 2,
+                    "number": 0,
+                    "totalElements": 2,
+                    "totalPages": 156
                 },
-                {
-                  "id": 1002,
-                  "msisdn": "5399999999",
-                  "currentPrice": 8000,
-                  "productStatus": "new",
-                  "category": {
-                    "Id": 27,
-                    "name": "Bronze Numbers"
-                  }
-                }
-              ],
-              "page": {
-                "size": 2,
-                "totalElements": 100,
-                "totalPages": 50,
-                "number": 1
-              }
+                "products": [
+                    {
+                        "id": 10529,
+                        "msisdn": "500000008",
+                        "currentPrice": 20000,
+                        "expiryDate": "2018-03-30T12:02:59",
+                        "numberOfBids": 0,
+                        "productStatus": "new",
+                        "category": {
+                            "name": "Diamond Numbers",
+                            "id": 1
+                        }
+                    },
+                    {
+                        "id": 10530,
+                        "msisdn": "500000009",
+                        "currentPrice": 20000,
+                        "expiryDate": "2018-03-30T12:02:59",
+                        "numberOfBids": 0,
+                        "productStatus": "new",
+                        "category": {
+                            "name": "Diamond Numbers",
+                            "id": 1
+                        }
+                    }
+                ]
             }
             
             
