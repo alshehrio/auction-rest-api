@@ -1567,7 +1567,7 @@ Return list of all expired batches
 
 # Group Payment 
 
-## Payment Method List [/payments/paymentMethod{?paymentType,productId}]
+## Payment Method List [/payments/paymentMethods{?productId}]
 
 ### Get Payment Method List[GET]
 
@@ -1582,10 +1582,6 @@ Used to get all available payment method for specific productId and payment type
 ---
 
 + Parameters
-    + paymentType    (enum[string]) 
-        + Members
-            + `balance`
-            + `purchase`
     + productId: `27` (number, required) - product Id.
     
 + Request (application/json)
