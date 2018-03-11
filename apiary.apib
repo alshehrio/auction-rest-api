@@ -525,7 +525,10 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 
 + Parameters
     + nationalId: `2154895231` (number, required) - customer national Id.
-    + customerType: `s` (number, required) - customer type.
+    + customerType : `S` (enum[string] , required) - the following is allowed customer type in auction
+            + Members
+                + `S` - iqama type.
+                + `I` - saudi type.
 
 + Request in case of the customer is eligible (application/json) 
 
@@ -1742,10 +1745,10 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
         + productId         (number, required)
         + nationalId        (number, required)
         + agreedTerms       (boolean, required)
-        + customerType (enum[string]) - allowed customer type
+        + customerType (enum[string], required) - the following is allowed customer type in auction
             + Members
-                + `S` 
-                + `I`
+                + `S` - iqama type.
+                + `I` - saudi type.
         + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
             + Members
                 + `purchase`
@@ -1766,7 +1769,7 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
               "productId": 1001,
               "nationalId": "2154879562",
               "agreedTerms": true,
-              "customerType" : "s",
+              "customerType" : "S",
               "intent": "purchase",
               "transaction": {
                 "id": "09b8acf0",
@@ -1783,7 +1786,10 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
         + productId         (number, required)
         + nationalId        (number, required)
         + agreedTerms       (boolean, required)
-        + customerType      (string, required)
+        + customerType (enum[string], required) - the following is allowed customer type in auction
+            + Members
+                + `S` - iqama type.
+                + `I` - saudi type.
         + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
             + Members
                 + `purchase`
@@ -1807,7 +1813,7 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
               "productId": 1001,
               "nationalId": "2154879562",
               "agreedTerms": true,
-              "customerType" : "s",
+              "customerType" : "S",
               "intent": "bid",
               "transaction": {
                 "id": "09b8acf0",
@@ -1949,7 +1955,7 @@ Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBi
             
             {
                 "nationalId": 10999999,
-                "customerType" : "s",
+                "customerType" : "S",
                 "regularBidAmount": 5000,
                 "productId": 1005
             }
