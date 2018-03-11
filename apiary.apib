@@ -1755,8 +1755,8 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
                 + `bid`
         + transaction
             + id  (string, required) - payment transaction id
-            + amount (number, required) - payment transaction amount 
-            + confirmationNumber (string, required) - STC confirmation number,  not required for bank Transfer payment method
+            + amount (number, required) - payment transaction amount (inculded VAT)
+            + confirmationNumber (string, required) - STC confirmation number.
             + date (string, required) - payment transaction date, timestamp format yyyy-MM-dd'T'HH:mm:ss 
             + type (enum[string], required) - transaction type
                 + Members
