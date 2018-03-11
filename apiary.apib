@@ -1735,31 +1735,27 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
             + `creditCard`  
             + `bankTransfer` 
             
-+ Attributes 
-    + productId         (number, required)
-    + nationalId        (number, required)
-    + agreedTerms       (boolean, required)
-    + customerType      (string, required)
-    + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
-        + Members
-            + `purchase`
-            + `bid`
-    + transaction
-        + id  (string, required) - payment transaction id
-        + amount (number, required) - payment transaction amount 
-        + confirmationNumber (string, required) - STC confirmation number,  not required for bank Transfer payment method
-        + date (string, required) - payment transaction date, timestamp format yyyy-MM-dd'T'HH:mm:ss 
-        + type (enum[string], required) - transaction type
-            + Members
-                + `deposit`
-                + `balance`
-    + bankTranfer - required for bank Transfer payment method
-        + bankId (number, required) -  bank id.
-        + firstName (number, required) - transformer first name
-        + lastName (number, required) -  transformer last name
-    
 
 + Request In case of paymentMethod value equal creditCard (application/json)
+
+    + Attributes 
+        + productId         (number, required)
+        + nationalId        (number, required)
+        + agreedTerms       (boolean, required)
+        + customerType      (string, required)
+        + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
+            + Members
+                + `purchase`
+                + `bid`
+        + transaction
+            + id  (string, required) - payment transaction id
+            + amount (number, required) - payment transaction amount 
+            + confirmationNumber (string, required) - STC confirmation number,  not required for bank Transfer payment method
+            + date (string, required) - payment transaction date, timestamp format yyyy-MM-dd'T'HH:mm:ss 
+            + type (enum[string], required) - transaction type
+                + Members
+                    + `deposit`
+                    + `balance`
 
     + Body
     
@@ -1779,6 +1775,28 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
             }
         
 + Request In case of paymentMethod value equal bankTransfer (application/json)
+
+    + Attributes 
+        + productId         (number, required)
+        + nationalId        (number, required)
+        + agreedTerms       (boolean, required)
+        + customerType      (string, required)
+        + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
+            + Members
+                + `purchase`
+                + `bid`
+        + transaction
+            + id  (string, required) - payment transaction id
+            + amount (number, required) - payment transaction amount 
+            + date (string, required) - payment transaction date, timestamp format yyyy-MM-dd'T'HH:mm:ss 
+            + type (enum[string], required) - transaction type
+                + Members
+                    + `deposit`
+                    + `balance`
+        + bankTranfer - required for bank Transfer payment method
+            + bankId (number, required) -  bank id.
+            + firstName (number, required) - transformer first name
+            + lastName (number, required) -  transformer last name
 
     + Body
     
