@@ -8,6 +8,7 @@ The Auction API provides a list of API for developers to interact with Auction s
 
 ## Changelog  
 * Feb 22th, 2018
+* Mar 8th, 2018
 
 ## Definitions
 ### Payment 
@@ -27,12 +28,12 @@ The Auction API provides a list of API for developers to interact with Auction s
 ## HLD
 ### Frist Section 
 ###### To determine the various channels and their interactions with the auction system , there are three main elements:
-* <b>Front-end Channels:</b> that is responsible for the presentation of data, receiving user elements and controlling the user interface. 
-* <b>OCP layer:</b> that is responsible for securing the auction system, expose auction web services to front-end channels, audit service request/response and provide some services to the front-end channels.
-* <b>Auction system:</b> that is responsible for providing all auction business services of the system, and to store data in a database.
-* <b>igate system:</b> 
-* <b>ePayment system:</b> 
-* <b>NC system:</b> 
+* <b>Front-end Channels:</b> Responsible for the presentation of data, receiving user elements and controlling the user interface. 
+* <b>OCP system:</b> Responsible for securing the auction system, expose auction web services to front-end channels, audit service request/response and provide some services to the front-end channels.
+* <b>Auction system:</b> Responsible for providing all auction business services of the system, and to store data in a database.
+* <b>igate system:</b> Responsible for Adding Auction batch to Auution System through OCP system .
+* <b>ePayment system:</b> Responsible for (Authorize/capture) payment. 
+* <b>notification center system:</b> Responsible for sending notifications to the customer .
 
 ![name](http://i66.tinypic.com/orj7gw.png)
 
@@ -46,68 +47,114 @@ The Auction API provides a list of API for developers to interact with Auction s
 ![name](http://i63.tinypic.com/2djoxn4.jpg)
 
 ## Requirements
-here is the [Auction requirements](https://drive.google.com/file/d/1bv_DFwefh3-W_H-_qiAFEF22SRJjcxBD/view?usp=sharing)
+here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5W1u7uL6AHgZZAtcRLx4a/view?usp=sharing)
 
-## Sequence Diagrams 
+## Sequence Diagrams
 ### Digram 1 :  Adding prodcuts to Auction system 
 <b>Auction API :</b> 
 * (Add Products)
-![name](http://i68.tinypic.com/16hix34.png)
+![name](http://i67.tinypic.com/20h7aec.png)
 
-### Digram 2 : Customer viewing Auction numbers 
+### Digram 2.1 : Customer viewing Auction numbers 
 <b>Auction API :</b>
 * (Customer Eligibility)
 * (List all Categories) 
+![name](http://i63.tinypic.com/29c5k6t.png)
+
+### Digram 2.2 : Customer viewing Auction numbers 
 * (List all Products By Category) 
 * (Get Products Detail) 
-![name](http://i65.tinypic.com/104l1sk.png)
+![name](http://i64.tinypic.com/2hr33gj.jpg)
 
-### Digram 3 :  watchlist 
+### Digram 3.1 :  Add product to Watchlist
 <b>Auction API :</b>
 * (Add product to Watchlist)
-* (Remove product from watchlist) 
-* (List all watchlist products) 
-![name](http://i64.tinypic.com/2rx8qbt.png)
+![name](http://i68.tinypic.com/2uojw51.png)
 
-### Digram 4 :  bidding 
+### Digram 3.2 :  Remove product from watchlist
+<b>Auction API :</b>
+* (Remove product from watchlist) 
+![name](http://i64.tinypic.com/2u76ixc.png)
+
+### Digram 3.3 :  List all watchlist products
+<b>Auction API :</b>
+* (List all watchlist products) 
+![name](http://i67.tinypic.com/a1o3ty.png)
+
+
+### Digram 4.1 :  bidding 
 <b>Auction API :</b>
 * (Place Bid) 
 * (Place Payment) 
-![name](http://i64.tinypic.com/2a98a5v.png)
+![name](http://i68.tinypic.com/25tdmxf.png)
 
-### Digram 5 :  Reversal/Transfer Deposit 
+### Digram 4.2 :  Purchase 
+<b>Auction API :</b>
+* (Place Bid) 
+* (Place Payment) 
+![name](http://i65.tinypic.com/29c1lhz.png)
+
+### Digram 5.1 :  Reversal Deposit 
 <b>Auction API :</b>
 * (Reversal Deposit)
+![name](http://i65.tinypic.com/xd5gfl.png)
+
+### Digram 5.2 :  Transfer Deposit 
+<b>Auction API :</b>
 * (Get Customer Deposit) 
 * (Transfer Deposit) 
-![name](http://i67.tinypic.com/9j0g3q.png)
+![name](http://i64.tinypic.com/2rejno2.png)
 
 ### Digram 6 :  Widgets 
 <b>Auction API :</b>
 * (Get Widgets Details ) 
-![name](http://i63.tinypic.com/1079vur.png)
+![name](http://i65.tinypic.com/xqlw09.png)
 
-### Digram 7 :  Auction History Details 
-<b>Auction API :</b>
-* (Get Customer Auction History Details) 
-![name](http://i68.tinypic.com/10x546e.png)
-
-### Digram 8 : find an Auction number 
+### Digram 7 : find an Auction number 
 <b>Auction API :</b> 
 (Search) 
-![name](http://i67.tinypic.com/2u6hisy.png)
+![name](http://i66.tinypic.com/2196q9l.png)
 
-### Digram 9 :  Winner  Customer pay with creditCard
+### Digram 8 :  Auction History Details 
 <b>Auction API :</b>
+* (Get Customer Auction History Details) 
+![name](http://i65.tinypic.com/29m0zzr.png)
+
+
+### Digram 9.1 : Winner Customer pay the balance amount with creditCard (unpaid)
+<b>Auction API :</b>
+* (Get Customer Auction History Details) 
 * (Get Payment Method List)
 * (Place Payment) 
-![name](http://i67.tinypic.com/2sb1sax.png)
+![name](http://i65.tinypic.com/19w2n9.png)
 
-### Digram 10 :  Winner  Customer pay with bankTransfer
+### Digram 10.1 : Winner Customer pay the balance amount with bankTransfer (unpaid)
 <b>Auction API :</b>
+* (Get Customer Auction History Details) 
 * (Get Payment Method List)
 * (Place Payment) 
-![name](http://i66.tinypic.com/9i9ptt.png)
+![name](http://i65.tinypic.com/2ecom15.png)
+
+### Digram 10.2 : Winner Customer pay the balance amount with bankTransfer (pending)
+<b>Auction API :</b>
+* (Get Customer Auction History Details) 
+![name](http://i68.tinypic.com/70uvc6.png)
+
+### Digram 10.3 : Winner Customer pay the balance amount with bankTransfer (rejected)
+<b>Auction API :</b>
+* (Get Customer Auction History Details) 
+* (Place Payment) 
+![name](http://i63.tinypic.com/wapkwn.png)
+
+### Digram 11.1 : Winner Customer with balance amount (paid)
+<b>Auction API :</b>
+* (Get Customer Auction History Details) 
+![name](http://i66.tinypic.com/vxnlaw.png)
+
+### Digram 11.2 : Winner Customer with balance amount (expired)
+<b>Auction API :</b>
+* (Get Customer Auction History Details) 
+![name](http://i63.tinypic.com/2cf3wvo.png)
 
 ## Consideration
 * Any new channel should be confugried in auction system. otherwise all requests from this channel will be rejected. 
@@ -119,11 +166,11 @@ here is the [Auction requirements](https://drive.google.com/file/d/1bv_DFwefh3-W
 ###### The following is a mandatory header tags, that must be sent with each request: 
   * `content-type` - The format of the request body - only `application/json` is supported at this time. 
   * `accept-language` - The language that you want the descriptions returned in - example `en`,`ar`. 
-  * `date` - the date and time at which the message was originated. example `dd-mm-yyyy hh:mm:ss`
+  * `date` - the date and time at which the message was originated - example`dd-mm-yyyy hh:mm:ss`
   * `channel-name` - The channel name - example `MYSTC-PORTAL`,`MYSTC-IPHONE`,`MYSTC-ANDROID`.
   * `client-ip`  - The ip4 address of client - example `xxx.xxx.xxx.xxx`
-  * `user-agent` - The app version of the mobile application that tries to consume the API -  example `v3.8.1`.
-  * `api-version` - The API version of auction application - eg. `v1`.
+  * `user-agent` - The app version of the mobile application that tries to consume the API - example `v3.8.1`.
+  * `api-version` - The API version of auction application - example `v1`.
   * `authorization` - HTTP basic authentication. We use a HTTP header where we add 
                      'username:password' encoded in base64, you have to add '<B>Basic</B>' as a static prefix with each encoded credential.
                       <P><B> Example : </B></P> - `authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=` 
@@ -611,18 +658,7 @@ Used to get all products in watchlist
       + Default: 0
     + size       (number, optional)
       + Default: 20
-    + sort     (optional)
-      + Default: `id`
-      + Members
-            + `price`
-            + `numberOfBids`
-            + `views` 
-            + `id`
-    + order     (optional)
-      + Default: `asc`
-      + Members
-            + `asc`
-            + `desc`
+
 
 + Response 200 (application/json)
 
