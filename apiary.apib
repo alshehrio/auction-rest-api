@@ -484,7 +484,7 @@ Used to get all available customer notifications.
 ---
 
 + Parameters
-    + nationalId: `2154895231` (number, required) - customer national Id.
+    + nationalId: `2154895231` (string, required) - customer national Id.
     
 + Request (application/json)
  
@@ -524,7 +524,7 @@ Used to check if the customer is blacklisted in auction.
 OCP will check if the customer is blacklisted in STC, and maintain customer error messages in case of the customer is blacklisted in auction and STC.
 
 + Parameters
-    + nationalId: `2154895231` (number, required) - Customer national Id.
+    + nationalId: `2154895231` (string, required) - Customer national Id.
     + customerType : `S` (string , required) - Customer type in auction
         + Members
             + `S` - iqama type.
@@ -582,7 +582,7 @@ Used to the transfer a deposit from a product to another product
 - `NATIONAL_ID_NOT_FOUND` : customer id not found.
 ---
 + Parameters
-    + nationalId: `2154895231` (number, required) - customer national Id.
+    + nationalId: `2154895231` (string, required) - customer national Id.
     
 + Attributes 
     + fromProductId     (number, required)  
@@ -656,7 +656,7 @@ Used to get all products in watchlist
 
 + Parameters
     
-    + nationalId (number, required) - national Id of a customer.
+    + nationalId (string, required) - national Id of a customer.
     + page       (number, optional)
       + Default: 0
     + size       (number, optional)
@@ -735,7 +735,7 @@ Used to remove an product from customer watchlist
 
 + Parameters
 
-    + nationalId: `21254879985` (number, required) - national Id of a customer.
+    + nationalId: `21254879985` (string, required) - national Id of a customer.
     + productId: `1001` (number, required) - Id of a product.
             
 + Response 204 (application/json)
@@ -759,7 +759,7 @@ Used to Add an product to customer watchlist
     
 + Parameters
 
-    + nationalId: `21254879985` (number, required) - national Id of a customer.
+    + nationalId: `21254879985` (string, required) - national Id of a customer.
 
 + Request   (application/json)
 
@@ -785,7 +785,7 @@ Used to get specific auction customer history.
 ### Get Customer Auction History Details [GET]    
 
 + Parameters
-    + nationalId  (number, required) - customer national Id.
+    + nationalId  (string, required) - customer national Id.
     + historyType  (number, required) - Possible Value for auction history type.
       + Members
             + `won`
@@ -1743,7 +1743,7 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
 
     + Attributes 
         + productId         (number, required)
-        + nationalId        (number, required)
+        + nationalId        (string, required)
         + agreedTerms       (boolean, required)
         + customerType (enum[string], required) - the following is allowed customer type in auction
             + Members
@@ -1784,7 +1784,7 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
 
     + Attributes 
         + productId         (number, required)
-        + nationalId        (number, required)
+        + nationalId        (string, required)
         + agreedTerms       (boolean, required)
         + customerType (enum[string], required) - the following is allowed customer type in auction
             + Members
@@ -1901,7 +1901,7 @@ the response back used to refersh value of transfer deposit and cancel deposit
     
     + Attributes 
         + productId        (number, required)  
-        + nationalId       (number, required) 
+        + nationalId       (string, required) 
         
     + Body
 
