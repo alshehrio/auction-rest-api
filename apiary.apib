@@ -1742,7 +1742,10 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
         + productId         (number, required)
         + nationalId        (number, required)
         + agreedTerms       (boolean, required)
-        + customerType      (string, required)
+        + customerType (enum[string]) - allowed customer type
+            + Members
+                + `S` 
+                + `I`
         + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
             + Members
                 + `purchase`
