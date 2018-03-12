@@ -1755,7 +1755,7 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
                 + `bid`
         + transaction
             + id  (string, required) - payment transaction id
-            + amount (number, required) - payment transaction amount (inculded VAT)
+            + amount (number, required) - payment transaction amount (inculded VAT).
             + confirmationNumber (string, required) - STC confirmation number.
             + date (string, required) - payment transaction date, timestamp format yyyy-MM-dd'T'HH:mm:ss 
             + type (enum[string], required) - transaction type
@@ -1890,7 +1890,6 @@ the response back used to refersh value of transfer deposit and cancel deposit
 - `DEPOSIT_NOT_FOUND` : no deposit found for this product.
 - `PRODUCT_IS_EXPIRED` : product is expired
 - `NOT_ALLOWED_FOR_HIGHEST_BIDDER` : highest bidders cannot reversed their deposit
-- `REVERSED_NOT_ALLOWED` : reversal not allowed for purchase deposit.
 - `INVALID_NATIONAL` : customer id is null or invalid
 - `INVALID_PRODUCT_ID` : product id is not valid 
 ---
@@ -1910,16 +1909,7 @@ the response back used to refersh value of transfer deposit and cancel deposit
                 "nationalId": 2125487952
             }
             
-+ Response 201 (application/json)
-
-    + Attributes 
-        + hasDeposit  (boolean) - return if the customer has deposit or not
-    
-    + Body
-
-            {
-                "hasDeposit": false
-            }
++ Response 204 (application/json)
 
 + Response 400 (application/json)
  
