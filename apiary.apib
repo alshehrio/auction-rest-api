@@ -1840,6 +1840,70 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
 + Response 500 (application/json)
 
 
+## Validate Payment [/payments/validate]
+
+### Validate Payment [POST]
+
+Used to check a payment transaction before actually processing it, We'll perform our internal checks on the payment 
+without adding it to the auction system.
+
+---
+**Error Code:**
+
+- `INVALID_PRODUCT_ID` - product id is invalid.
+- `AGREED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
+- `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
+- `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
+- `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
+- `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product.
+- `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
+- `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
+- `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
+- `PENDING_PURCHASE_PAYMENT_EXIST` - the product reserved from another buyer,
+- `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts, this error code is designed for bank transfer only
+- `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist
+- `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
+- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
+
+---
+
++ Request (application/json)
+
+    + Attributes 
+        + productId         (number, required)
+        + nationalId        (string, required)
+        + agreedTerms       (boolean, required)
+        + customerType (enum[string], required) - the following is allowed customer type in auction
+            + Members
+                + `S` - iqama type.
+                + `I` - saudi type.
+        + intent   (enum[string], required)
+            + Members
+                + `purchase`
+                + `bid`
+        + transaction
+            + amount (number, required) - payment transaction amount (inculded VAT).
+            + type (enum[string], required) - transaction type
+                + Members
+                    + `deposit`
+                    + `balance`
+    + Body
+    
+            {
+              "productId": 1001,
+              "nationalId": "2154879562",
+              "agreedTerms": true,
+              "customerType" : "S",
+              "intent": "purchase",
+              "transaction": {
+                "amount": 1300,
+                "type": "deposit",
+              }
+            }
+       
++ Response 200 (application/json)
++ Response 400 (application/json)
++ Response 500 (application/json)
 
 ## Payments Reconcile Collection [/payments/reconcile{?batchId,transactionType}]
 
