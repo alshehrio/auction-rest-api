@@ -1714,7 +1714,6 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
               <li>TYPE_MISMATCH</li>
               <li>PRODUCT_IS_EXPIRED</li>  
               <li>FEATURE_UNSUPPORTED_FOR_PRODUCT</li>
-              <li>PENDING_PURCHASE_PAYMENT_EXIST</li>
               <li>BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE</li>
             </ul> </td>  
     </tr>
@@ -1730,7 +1729,6 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `PENDING_PURCHASE_PAYMENT_EXIST` - the product reserved from another buyer,
 - `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts, this error code is designed for bank transfer only
 - `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist
 - `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
@@ -1859,7 +1857,6 @@ without adding it to the auction system.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `PENDING_PURCHASE_PAYMENT_EXIST` - the product reserved from another buyer,
 - `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
 - `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 
