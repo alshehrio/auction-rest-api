@@ -1848,7 +1848,36 @@ without adding it to the auction system.
 ---
 **Error Code:**
 
+<table>
+    <tr>
+        <td>Technical Error </td>              
+        <td> <ul style="list-style-type:number">
+              <li>UNKNOWN_ERROR</li>
+            </ul> </td> 
+    </tr>
+    <tr>
+        <td>Functional Error</td>              
+         <td> <ul style="list-style-type:number">
+              <li>CUSTOMER_IS_BLACKLISTED</li>
+              <li>INVALID_PRODUCT_ID</li>
+              <li>DEPOSIT_ALREADY_PAID</li>
+              <li>AGREED_TERMS_MUST_ACCEPTED</li>
+              <li>AMOUNT_MISMATCH</li>
+              <li>VALIDATION_ERROR</li>
+              <li>DEPOSIT_NOT_PAID</li>
+              <li>BALANCE_ALREADY_PAID</li>
+              <li>PAYMENT_NOT_ALLOWED</li>
+              <li>TYPE_MISMATCH</li>
+              <li>PRODUCT_IS_EXPIRED</li>  
+              <li>FEATURE_UNSUPPORTED_FOR_PRODUCT</li>
+              <li>BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE</li>
+            </ul> </td>  
+    </tr>
+</table>
+
 - `INVALID_PRODUCT_ID` - product id is invalid.
+- `CUSTOMER_IS_BLACKLISTED` - customer is blacklisted in auction.
+- `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction
 - `AGREED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
@@ -1857,6 +1886,7 @@ without adding it to the auction system.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
+- `UNKNOWN_ERROR` -  an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
 
 ---
 
