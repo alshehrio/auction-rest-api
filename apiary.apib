@@ -1721,9 +1721,11 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
 
 
 - `INVALID_PRODUCT_ID` - product id is invalid.
+- `CUSTOMER_IS_BLACKLISTED` - customer is blacklisted in auction.
 - `AGREED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
+- `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
 - `BALANCE_ALREADY_PAID` - the customer already paid blance payment for this product.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
@@ -1887,6 +1889,7 @@ without adding it to the auction system.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
 - `UNKNOWN_ERROR` -  an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
+- `TYPE_MISMATCH` : Type does not match on parameter 'parameter name' expected value of type 'parameter type', possible values: [value 1, value 2, ..etc]
 
 ---
 
