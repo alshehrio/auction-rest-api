@@ -65,48 +65,53 @@ here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5
 ![name](http://i63.tinypic.com/29c5k6t.png)
 
 ### Digram 2.2 : Customer viewing Auction numbers 
+<b>Auction API :</b>
 * (List all Products By Category) 
 * (Get Products Detail) 
-![name](http://i64.tinypic.com/2hr33gj.jpg)
+![name](http://i64.tinypic.com/33c0v4j.png)
+
+### Digram 2.3 : Customer Notification 
+<b>Auction API :</b>
+* (Get Customer Notification) 
+![name](http://i65.tinypic.com/nd2zhy.png)
 
 ### Digram 3.1 :  Add product to Watchlist
 <b>Auction API :</b>
 * (Add product to Watchlist)
-![name](http://i68.tinypic.com/2uojw51.png)
+![name](http://i67.tinypic.com/14cxk4i.png)
 
 ### Digram 3.2 :  Remove product from watchlist
 <b>Auction API :</b>
 * (Remove product from watchlist) 
-![name](http://i64.tinypic.com/2u76ixc.png)
+![name](http://i65.tinypic.com/2n6awli.png)
 
 ### Digram 3.3 :  List all watchlist products
 <b>Auction API :</b>
 * (List all watchlist products) 
 ![name](http://i67.tinypic.com/a1o3ty.png)
 
-
-### Digram 4.1 :  bidding 
+### Digram 4.1 :  bidding Deposit
 <b>Auction API :</b>
 * (Place Bid) 
 * (Place Payment) 
-![name](http://i68.tinypic.com/25tdmxf.png)
+![name](http://i67.tinypic.com/2a9z4ub.png)
 
-### Digram 4.2 :  Purchase 
+### Digram 4.2 :  Purchase Deposit 
 <b>Auction API :</b>
 * (Place Bid) 
 * (Place Payment) 
-![name](http://i65.tinypic.com/29c1lhz.png)
+![name](http://i67.tinypic.com/2cf7bs2.png)
 
 ### Digram 5.1 :  Reversal Deposit 
 <b>Auction API :</b>
 * (Reversal Deposit)
-![name](http://i65.tinypic.com/xd5gfl.png)
+![name](http://i63.tinypic.com/2njhngl.png)
 
 ### Digram 5.2 :  Transfer Deposit 
 <b>Auction API :</b>
 * (Get Customer Deposit) 
 * (Transfer Deposit) 
-![name](http://i64.tinypic.com/2rejno2.png)
+![name](http://i64.tinypic.com/2eld0k5.png)
 
 ### Digram 6 :  Widgets 
 <b>Auction API :</b>
@@ -121,8 +126,7 @@ here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5
 ### Digram 8 :  Auction History Details 
 <b>Auction API :</b>
 * (Get Customer Auction History Details) 
-![name](http://i65.tinypic.com/29m0zzr.png)
-
+![name](http://i64.tinypic.com/e9xjsw.png)
 
 ### Digram 9.1 : Winner Customer pay the balance amount with creditCard (unpaid)
 <b>Auction API :</b>
@@ -136,18 +140,22 @@ here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5
 * (Get Customer Auction History Details) 
 * (Get Payment Method List)
 * (Place Payment) 
-![name](http://i65.tinypic.com/2ecom15.png)
+![name](http://i64.tinypic.com/2r4hkwn.png)
 
 ### Digram 10.2 : Winner Customer pay the balance amount with bankTransfer (pending)
 <b>Auction API :</b>
 * (Get Customer Auction History Details) 
 ![name](http://i68.tinypic.com/70uvc6.png)
 
-### Digram 10.3 : Winner Customer pay the balance amount with bankTransfer (rejected)
+### Digram 10.3 : back office 
+<b>Auction API :</b>
+![name](http://i63.tinypic.com/osucjq.png)
+
+### Digram 10.4 : Winner Customer pay the balance amount with bankTransfer (rejected)
 <b>Auction API :</b>
 * (Get Customer Auction History Details) 
 * (Place Payment) 
-![name](http://i63.tinypic.com/wapkwn.png)
+![name](http://i64.tinypic.com/10qcvom.png)
 
 ### Digram 11.1 : Winner Customer with balance amount (paid)
 <b>Auction API :</b>
@@ -1698,6 +1706,7 @@ in case of paymentMethod = `bankTransfer` the consumer is OCP System.
          <td> <ul style="list-style-type:number">
               <li>CUSTOMER_IS_BLACKLISTED</li>
               <li>INVALID_PRODUCT_ID</li>
+              <li>DEPOSIT_ALREADY_PAID</li>
               <li>AGREED_TERMS_MUST_ACCEPTED</li>
               <li>AMOUNT_MISMATCH</li>
               <li>VALIDATION_ERROR</li>
