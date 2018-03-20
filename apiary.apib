@@ -851,7 +851,6 @@ Used to get specific auction customer history.
                     + `creditCard`  
                     + `bankTransfer` 
             + amount (number) - payment amount
-        + numberOfBids (number, required) - total number of bid
         + expiryDate (string, required) - tion expiry date
         
         
@@ -1668,6 +1667,7 @@ Used to add payment to auction.
 in case of paymentMethod = `creditCard` the consumer is payment system. 
 in case of paymentMethod = `bankTransfer` the consumer is OCP System. 
 
+The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `American Express` is not accepted in the auction system.
 
 ---
 **Error Code:**
