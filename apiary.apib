@@ -1697,7 +1697,6 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
               <li>DEPOSIT_NOT_PAID</li>
               <li>BALANCE_ALREADY_PAID</li>
               <li>PAYMENT_NOT_ALLOWED</li>
-              <li>MAX_NUMBER_OF_ATTEMPTS_EXCEEDED</li>
               <li>PENDING_BANK_TRANSFER_PAYMENT_EXIST</li>
               <li>INVALID_BANK_ID</li>
             </ul> </td> 
@@ -1724,14 +1723,13 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 - `AGREED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
-- `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction
+- `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
 - `BALANCE_ALREADY_PAID` - the customer already paid blance payment for this product.
-- `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
+- `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `MAX_NUMBER_OF_ATTEMPTS_EXCEEDED` - You have exceeded the maximum number of bank transfer attempts, this error code is designed for bank transfer only
-- `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist
+- `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist.
 - `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
 - `INVALID_BANK_ID` : bank id is not valid. 
 
