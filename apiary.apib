@@ -863,66 +863,25 @@ Used to get specific auction customer history.
               "products": [
                 {
                   "id": 100,
-                  "vatRate": 5,
                   "msisdn": "0566587458",
                   "customerBid": 6,
-                  "balanceDueBefore": "2017-12-09T13:11:39",
                   "currentPrice": 8000,
+                  "paymentStatus": "paid",
                   "category": {
                     "Id": 27,
                     "name": "Bronze Numbers"
-                  },
-                  "balancePayment": {
-                    "status": "rejected",
-                    "reasonMessage": {
-                      "messageKey": "INVALID_PAYMENT_AMOUNT",
-                      "parameters": [
-                        "0566666666",
-                         500
-                      ]
-                    }
-                  },
-                  "intent": "purchase",
-                  "payments": [
-                    {
-                      "type": "deposit",
-                      "method": "CC",
-                      "amount": 300
-                    },
-                    {
-                      "type": "balance",
-                      "method": "CC",
-                      "amount": 500
-                    }
-                  ]
+                  }
                 },
                 {
                   "id": 101,
-                  "vatRate": 5,
                   "msisdn": "056659999",
                   "customerBid": 61,
-                  "balanceDueBefore": "2017-12-09T13:11:39",
-                  "intent": "bid",
+                  "paymentStatus": "paid",
                   "currentPrice": 8000,
                   "category": {
                     "Id": 27,
                     "name": "Bronze Numbers"
-                  },
-                  "balancePayment": {
-                    "status": "paid"
-                  },
-                  "payments": [
-                    {
-                      "type": "deposit",
-                      "method": "CC",
-                      "amount": 300
-                    },
-                    {
-                      "type": "balance",
-                      "method": "CC",
-                      "amount": 500
-                    }
-                  ]
+                  }
                 }
               ],
               "page": {
