@@ -822,39 +822,19 @@ Used to get specific auction customer history.
 
     + Attributes 
         + id (number, required)   - id of a product
-        + vatRate (number, required)   - rate of VAT percentage
         + msisdn (string , required) -  auction number
         + customerBid (number, required) - the last customer bid.
-        + balanceDueBefore (string, required) - the due date to pay balance payment.
-        + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
-            + Members
-                + `purchase` -  
-                + `bid`
         + currentPrice (number, required) - the total auction price.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
-        + balancePayment (object)
-            + status (enum[string]) - one of the below status will be returned 
-                + Members
-                    + `paid` - it means that the auction number has been alredy paid and there is no farther action .  
-                    + `pending` - it means the customer has alredy submit the baank Transfer information and need approval from Finance business there is no farther action .  
-                    + `unpaid` - it means the user did not paid the balance payment and it need Action to show to customer to buy the balance amount .  
-                    + `expired` - it means the Auction has been experid and the customer did not pay the balance payment and there is no farther action . 
-                    + `rejected` - it means the customer has submit the baank Transfer information but he got rejected with reason and it need Action to show to customer to buy the balance amount . 
-            + reasonMessage (object) 
-                + messageKey (string) - notification message key.
-                + parameters (array[string]) - notification message parameters.
-        + payments -
-            + type (enum[string])  - payment type
-                + Members
-                    + `deposit` 
-                    + `balance` 
-            + method (enum[string]) - payment method
-                + Members
-                    + `creditCard`  
-                    + `bankTransfer` 
-            + amount (number) - payment amount
+        + paymentStatus (enum[string]) - balance oayment statusone of the below status will be returned 
+            + Members
+                + `paid` - it means that the auction number has been alredy paid and there is no farther action .  
+                + `pending` - it means the customer has alredy submit the baank Transfer information and need approval from Finance business there is no farther action .  
+                + `unpaid` - it means the user did not paid the balance payment and it need Action to show to customer to buy the balance amount .  
+                + `expired` - it means the Auction has been experid and the customer did not pay the balance payment and there is no farther action . 
+                + `rejected` - it means the customer has submit the baank Transfer information but he got rejected with reason and it need Action to show to customer to buy the balance amount . 
 
         
     + Body
