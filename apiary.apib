@@ -479,6 +479,51 @@ Get All groups
                 ]
             }    
             
+### Add Group [POST]
+
+
+---
+**Error Code:**
+- `GROUP_ALREADY_EXIST`
+- `AUTHORITY_NOT_FOUND`
+---
+
++ Request
+
+            {
+              "name": "auction-admin",
+              "authorities": [
+                {
+                  "id": 1,
+                  "name": "ADMIN"
+                },
+                {
+                  "id": 3,
+                  "name": "OCP"
+                }
+              ]
+            }
+            
++ Response 201 (application/json)
+
+            {
+                "id": 10981,
+                "name": "auction-admin",
+                "authorities": [
+                    {
+                        "id": 1,
+                        "name": "ADMIN"
+                    },
+                    {
+                        "id": 3,
+                        "name": "OCP"
+                    }
+                ]
+            }
+
++ Response 400 (application/json)
++ Response 500 (application/json)
+
 # Group Customer
 
 
