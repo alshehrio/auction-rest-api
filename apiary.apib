@@ -1434,27 +1434,27 @@ Return a single product detail resource.
     + Body
     
             {
-              "id": 1001,
-              "msisdn": "533996655",
-              "currentPrice": 8000,
-              "expiryDate": "2017-05-24T14:25:10",
-              "numberOfBids": 15,
-              "isAutoBidAllowed": false,
-              "productStatus": "sold",
-              "customerBidStatus": "noBid",
-              "hasDeposit" : true,
-              "isProductInWatchlist" : true,
-              "depositAmount": 300,
-              "minimumIncrement": 200,
-              "purchase": {
-                "isPurchaseAllowed":true,
-                "price": 800000,
-                "depositAmount": 20000
-              }
-              "category": {
-                "Id": 27,
-                "name": "Bronze Numbers"
-              }
+                "id": 10953,
+                "msisdn": "500000001",
+                "currentPrice": 2100,
+                "expiryDate": "2018-03-28T16:38:25",
+                "numberOfBids": 6,
+                "productStatus": "sold",
+                "category": {
+                    "name": "Momaiz Numbers",
+                    "id": 5
+                },
+                "isAutoBidAllowed": false,
+                "customerBidStatus": "noBid",
+                "minimumIncrement": 100,
+                "hasDeposit": false,
+                "depositAmount": 300,
+                "isProductInWatchlist": false,
+                "purchase": {
+                    "isPurchaseAllowed": true,
+                    "depositAmount": 2000,
+                    "purchasePrice": 10000
+                }
             }
 
 + Request In case of request sent without nationalId (application/json)
