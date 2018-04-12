@@ -1565,7 +1565,25 @@ Return a list of all matched msisdn
                 ]
             }
             
+## Address [/products/{productId}/address]
+
+### Update Winner Shipping Address [PUT]
+
+Used to update winner shipping address, the default winner shipping address is branch.
+
++ Request (application/json)
+    + Body
+                        
+            {
+              "address": "24.757698250561216,46.71589829027653"
+            }
+
+ 
             
++ Response 204 
++ Response 404 (application/json)
++ Response 500 (application/json)
+
 # Group Batch
 
 ## Batches Collection [/batches{?startDate,endDate}]
