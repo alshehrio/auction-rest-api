@@ -841,9 +841,10 @@ Used to Add an product to customer watchlist
 
 ## Customer Auction History Details [/customers/{nationalId}/auction-history/{historyType}{?page,size,order}]    
 
-Used to get specific auction customer history.
 
 ### Get Customer Auction History Details [GET]    
+
+Used to get specific auction customer history.
 
 + Parameters
     + nationalId  (string, required) - customer national Id.
@@ -871,6 +872,12 @@ Used to get specific auction customer history.
         + msisdn (string , required) -  auction number
         + customerBid (number, required) - the last customer bid.
         + currentPrice (number, required) - the total auction price.
+        + shipping  - return shipping method
+            + method  (string) - return method type
+                 + Members
+                    + `delivery`
+                    + `branch`
+            + address (string) - returned when shipping method is delivery.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -893,6 +900,10 @@ Used to get specific auction customer history.
                   "customerBid": 6,
                   "currentPrice": 8000,
                   "paymentStatus": "paid",
+                  "shipping": {
+                    "method": "delivery",
+                    "address": "24.757698250561216,46.71589829027653"
+                  },
                   "category": {
                     "Id": 27,
                     "name": "Bronze Numbers"
@@ -904,6 +915,9 @@ Used to get specific auction customer history.
                   "customerBid": 61,
                   "paymentStatus": "paid",
                   "currentPrice": 8000,
+                  "shipping": {
+                    "method": "branch"
+                  },
                   "category": {
                     "Id": 27,
                     "name": "Bronze Numbers"
