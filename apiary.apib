@@ -1047,6 +1047,45 @@ Used to get specific auction customer history.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
+## Shipping [/customers/{id}/shipping]
+
+### Update Winner Shipping Address [PUT]
+
+Used to update winner shipping address, the default winner shipping address is branch.
+
+---
+**Error Code:**
+- `INVALID_PRODUCT_ID` : product id is null or invalid. 
+- `PRODUCT_IS_NOT_EXPIRED` - product must expire.
+- `WINNER_DOESNT_EXIST` - customer is not the winner of the product.
+---
+
++ Parameters
+    + id: `1234567899` (number, required) - national id
+
+    
++ Request  (application/json)
+
+    + Attributes
+    
+        + productId (string) - the product id.
+        + method (string) - shipping method [DELIVERY, BRANCH].
+        + address (string) - describe longitudes and latitudes. 
+        
+        
+    + Body
+                        
+            {
+                "productId":40,
+                "method":"DELIVERY",
+                "address": "24.757698250561216,46.71589829027653"
+            }
+            
++ Response 204 
++ Response 404 (application/json)
++ Response 500 (application/json)
+ 
+
 # Group Category
 
 ## Categories Collection [/categories]     
@@ -1576,38 +1615,7 @@ Return a list of all matched msisdn
                 ]
             }
             
-## Address [/products/{id}/address]
 
-### Update Winner Shipping Address [PUT]
-
-Used to update winner shipping address, the default winner shipping address is branch.
-
----
-**Error Code:**
-- `INVALID_PRODUCT_ID` : product id is null or invalid. 
-- `PRODUCT_IS_NOT_EXPIRED` - product must expire.     
----
-
-+ Parameters
-    + id: `19570` (number, required) - Id of a product
-    
-+ Request  (application/json)
-
-    + Attributes
-    
-        + address (string) - describe longitudes and latitudes. 
-        
-        
-    + Body
-                        
-            {
-                "address": "24.757698250561216,46.71589829027653"
-            }
-            
-+ Response 204 
-+ Response 404 (application/json)
-+ Response 500 (application/json)
- 
 # Group Batch
 
 ## Batches Collection [/batches{?startDate,endDate}]
