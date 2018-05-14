@@ -4,7 +4,7 @@ HOST: http://172.20.162.198:17001/auction
 
 # Auction 2 REST API v1.1
 
-The Auction API provides a list of API for developers to interact with Auction system.
+The Auction API provides a list of API for developers to interact with the Auction system.
 
 ## Changelog  
 * Feb 22th, 2018
@@ -12,18 +12,18 @@ The Auction API provides a list of API for developers to interact with Auction s
 
 ## Definitions
 ### Payment 
-* <b>Deposit :</b> The amount is authorized using e-Payments system , and not captured unless the user wins the auction
+* <b>Deposit :</b> The amount is authorized using e-Payments system, and not captured unless the user wins the auction
 * <b>Balance :</b> The deposit payment for the winning bidder is captured during the end-of-auction process.  There is no required intervention by the user.
-* <b>Reverse authorization :</b> The end-of-auction process reverses all deposits held on behalf of non-winning bidders or Non-winning user decides to withdraw from the auction
+* <b>Reverse authorization :</b> The end-of-auction process reverses all deposits held on behalf of non-winning bidders or the Non-winning user decides to withdraw from the auction
 * <b>Transfer deposit payment :</b> the customer can transfer their deposit from the first auction to the new auction
-* <b>Reversal deposit :</b> If a user no longer wishes to participate in an auction they may request reversal of their authorization. (withdraw from auction)
+* <b>Reversal deposit :</b> If a user no longer wishes to participate in an auction they may request reversal of their authorization. (withdraw from the auction)
 
 ### Auction Feature 
-* <b>Blacklisted :</b> when the customer wim an Auction number and he did not buy the reming amount within the payment window he will be blacklisted in Auction system . 
-* <b>Purchase auction :</b> it is feature to let the user to buy the Auction number immediately .  
+* <b>Blacklisted :</b> when the customer wim an Auction number and he did not buy the remaining amount within the payment window he will be blacklisted in the Auction system. 
+* <b>Purchase auction :</b> it is a feature to let the user buy the Auction number immediately.  
 * <b>Auto bidding :</b> When you place your bid on an auction item, you will be prompted to enter Automatic (or Auto) bid, which is the maximum you are prepared to pay for the item
-* <b>Regular bidding :</b> which is the noraml bid for auction .  
-* <b>Rolling expiry (extend) :</b> The Auction should start a 10 days countdown for each number in the Auction with the first bid on it . 
+* <b>Regular bidding :</b> which is the normal bid for auction .  
+* <b>Rolling expiry (extend) :</b> The Auction should start a 10 days countdown for each number in the Auction with the first bid on it. 
 
 ## HLD
 ### Frist Section 
@@ -51,7 +51,7 @@ here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5
 
 ## Sequence Diagrams
 
-<b>Note</b> : you can drag and drop the sequence diagrams to browser tab to zoom in.
+<b>Note</b>: you can drag and drop the sequence diagrams to browser tab to zoom in.
 
 ### Digram 1 :  Adding prodcuts to Auction system 
 <b>Auction API :</b> 
@@ -168,7 +168,7 @@ here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5
 ![name](http://i63.tinypic.com/2cf3wvo.png)
 
 ## Consideration
-* Any new channel should be confugried in auction system. otherwise all requests from this channel will be rejected. 
+* Any new channel should be configured in the auction system. otherwise, all requests from this channel will be rejected. 
 * the base URL for all request is : 
 * Test environment: https://xxx.xx.xxx.xxx:xxxxx/auction
 * Prod environment: https://xxx.xx.xxx.xxx:xxxxx/auction
@@ -189,11 +189,11 @@ here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5
   
 ## HTTP Response Codes
   * `200` - The request completed OK
-  * `201` - The specified object was created sucessfully
+  * `201` - The specified object was created successfully
   * `202` - The request has been accepted for processing, but the processing has not been completed. 
   * `204` - The request completed OK (No Content)
   * `400` - The request was not understood
-  * `401` - authentication failed or user doesn't have permissions for requested operation.
+  * `401` - authentication failed or the user doesn't have permissions for the requested operation.
   * `403` - You do not have access to the requested object
   * `404` - The object that was requested doesn't exist
   * `405` - The resource exists, but the wrong method was used. 
@@ -207,7 +207,7 @@ here is the [Auction requirements](https://drive.google.com/file/d/1WKcHtQlVTMX5
   * `date` - the date and time at which the message was originated. example `dd-mm-yyyy hh:mm:ss`.
   
 ## General Errors
-In the responses for failed requests, Auction returns HTTP `4XX` or `5XX` status codes.
+In the responses to failed requests, Auction returns HTTP `4XX` or `5XX` status codes.
 
 In addition, the Auction API can return the following errors.
 
@@ -216,7 +216,7 @@ In addition, the Auction API can return the following errors.
 - `QUERY_PARAMETER_NOT_PRESENT` : Required parameter of name 'parameter name' with type "parameter type".
 - `QUERY_PARAMETER_IS_NULL` :  Required parameter value cannot be null.
 
-For all errors except validation errors, auction returns an error response body in following format:
+For all errors except validation errors, auction returns an error response body in the following format:
 
      
 ```
@@ -238,7 +238,7 @@ The server could not understand the request. Indicates one of these conditions:
 * A simple data validation error occurred.
 
 
-The response body for validation errors includes additional error details in following format:
+The response body for validation errors includes additional error details in the following format:
 
 ```
 {
@@ -481,7 +481,7 @@ Get All groups
             
 ### Add Group [POST]
 
-used to create new group and assign authority to group.
+used to create a new group and assign authority to the group.
 
 ---
 **Error Code:**
@@ -577,7 +577,7 @@ Used to get all available customer notifications.
 
 ### Customer eligibility [GET]
 
-Used to check if the customer is blacklisted in auction.
+Used to check if the customer is blacklisted in the auction.
 OCP will check if the customer is blacklisted in STC, and maintain customer error messages in case of the customer is blacklisted in auction and STC.
 
 + Parameters
@@ -786,7 +786,7 @@ Used to get all products in watchlist
 
 ### Remove product from watchlist [DELETE]
 
-Used to remove an product from customer watchlist
+Used to remove a product from customer watchlist
 
 ---
 **Error Code:**
@@ -808,14 +808,14 @@ Used to remove an product from customer watchlist
 
 ### Add product to Watchlist [POST]
 
-Used to Add an product to customer watchlist
+Used to Add a product to customer watchlist
 
 ---
 **Error Code:**
 
 - `INVALID_PRODUCT_ID` : product id is invalid 
 - `WATCHLIST_FULL`: max number of items in watchlist has been reached.
-- `WATCHLIST_ITEM_EXIST` : Product already exists in watchlist
+- `WATCHLIST_ITEM_EXIST` : Product already exists in the watchlist
 ---
     
 + Parameters
@@ -1102,13 +1102,13 @@ Used to get lost auctions history Details.
 
 ### Update Winner Shipping Address [PUT]
 
-Used to update winner shipping address, the default winner shipping address is branch.
+Used to update winner shipping address, the default winner shipping address is a branch.
 
 ---
 **Error Code:**
-- `INVALID_PRODUCT_ID` : product id is null or invalid. 
-- `PRODUCT_IS_NOT_EXPIRED` - product must expire.
-- `WINNER_DOESNT_EXIST` - customer is not the winner of the product.
+- `INVALID_PRODUCT_ID`: product id is null or invalid. 
+- `PRODUCT_IS_NOT_EXPIRED` - the product must expire.
+- `WINNER_DOESNT_EXIST` - the customer is not the winner of the product.
 ---
 
 + Parameters
@@ -1192,7 +1192,7 @@ Returns a single Category
 
 ---
 **Error Code:**
-- `CATEGORY_NOT_FOUND` : category id not found.
+- `CATEGORY_NOT_FOUND`: category id not found.
 ---
 
 + Request (application/json)
@@ -1226,7 +1226,7 @@ Used to Update Category by Id
 
 ---
 **Error Code:**
-- `CATEGORY_NOT_FOUND` : category id not found.
+- `CATEGORY_NOT_FOUND`: category id not found.
 ---
 
 + Request (application/json)
@@ -1341,7 +1341,7 @@ Used to return a specific auction widgets
 
 ### Add Products [POST]
 
-Used to Add a list of prodcuts to Auction system.
+Used to Add a list of products to the Auction system.
 
 ---
 **Error Code:**
@@ -1723,9 +1723,9 @@ Used to get all available payment method for specific productId.
 
 ---
 **Error Code:**
-- `INVALID_PRODUCT_ID` : product id is null or invalid. 
-- `PRODUCT_IS_NOT_EXPIRED` - product must expire to provide list of payment method.
-- `PAYMENT_NOT_ALLOWED` : payment is not allwoed due the product payment is ended.
+- `INVALID_PRODUCT_ID`: product id is null or invalid. 
+- `PRODUCT_IS_NOT_EXPIRED` - the product must expire to provide a list of payment method.
+- `PAYMENT_NOT_ALLOWED`: payment is not allowed due the product payment is ended.
        
 ---
 
@@ -1811,18 +1811,18 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 
 
 - `INVALID_PRODUCT_ID` - product id is invalid.
-- `CUSTOMER_IS_BLACKLISTED` - customer is blacklisted in auction.
-- `AGREED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
+- `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
+- `AGREED_TERMS_MUST_ACCEPTED` - agreed to terms and condition cannot be null, or not accepted.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
 - `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
-- `BALANCE_ALREADY_PAID` - the customer already paid blance payment for this product.
+- `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
 - `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist.
-- `UNKNOWN_ERROR` : an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
+- `UNKNOWN_ERROR`: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
 - `INVALID_BANK_ID` : bank id is not valid. 
 
 ---
@@ -1967,9 +1967,9 @@ without adding it to the auction system.
 </table>
 
 - `INVALID_PRODUCT_ID` - product id is invalid.
-- `CUSTOMER_IS_BLACKLISTED` - customer is blacklisted in auction.
+- `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in an auction.
 - `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction
-- `AGREED_TERMS_MUST_ACCEPTED` - agreed of terms and condition cannot be null, or not accepted.
+- `AGREED_TERMS_MUST_ACCEPTED` - agreed to terms and condition cannot be null, or not accepted.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
@@ -1977,7 +1977,7 @@ without adding it to the auction system.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `UNKNOWN_ERROR` -  an internal server error has occurred. Resend the request at another time.If this error persists, contact Auction Team Support.
+- `UNKNOWN_ERROR` -  an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
 
 ---
 
@@ -2066,7 +2066,7 @@ Return a list of all payment reconcile transaction for specific batch and transa
     
 ### Reversal Deposit  [POST]
 Used to released a deposit amount for a specific product.
-the response back used to refersh value of transfer deposit and cancel deposit
+the response back used to refresh value of transfer deposit and cancel the deposit
 
 ---
 **Error Code:**
@@ -2105,7 +2105,7 @@ the response back used to refersh value of transfer deposit and cancel deposit
 ### Place Bid [POST]
 
 used to place a new bid for a specific product to a customer.
-Note That :  in not allowed to send both value for  `regularBidAmount` , `autoBidAmount`, it should one of them.
+Note That: in not allowed to send both values for  `regularBidAmount`, `autoBidAmount`, it should one of them.
 
 ---
 **Error Code:**
