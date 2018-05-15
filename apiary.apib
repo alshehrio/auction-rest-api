@@ -1098,28 +1098,28 @@ Used to get lost auctions history Details.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Shipping [/customers/{nationalId}/shipping]
+# Group Winner
 
-### Update Winner Shipping Address [PUT]
+## Shipping [/winners/{productId}/shippingMethod]
 
-Used to update winner shipping address, the default winner shipping address is a branch.
+### Update Winner Shipping Method [PUT]
+
+Used to update winner shipping method, the default winner shipping address is a branch.
 
 ---
 **Error Code:**
 - `INVALID_PRODUCT_ID`: product id is null or invalid. 
 - `PRODUCT_IS_NOT_EXPIRED` - the product must expire.
-- `WINNER_DOESNT_EXIST` - the customer is not the winner of the product.
 ---
 
 + Parameters
-    + nationalId: `1234567899` (number, required) - national id
+    + productId: `11041` (number, required) - product id
 
     
 + Request  (application/json)
 
     + Attributes
     
-        + productId (string) - the product id.
         + method (string) - shipping method [DELIVERY, BRANCH].
         + address (string) - describe longitudes and latitudes. 
         
@@ -1127,7 +1127,6 @@ Used to update winner shipping address, the default winner shipping address is a
     + Body
                         
             {
-                "productId":40,
                 "method":"DELIVERY",
                 "address": "24.757698250561216,46.71589829027653"
             }
