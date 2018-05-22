@@ -1706,7 +1706,88 @@ Return a remaining balance payment details for a specific product
             }
 
 + Response 404 (application/json)
-+ Response 500 (application/json)            
++ Response 500 (application/json)    
+
+##  Product Payments [/products/{productId}/payments?customer="2000000003"]
+
+### Get all Product Payment Transactions[GET]
+
+Return all payment transactions for a specific product
+
+---
+**Error Code:**
+- `PRODUCT_IS_NOT_EXPIRED` : product is not expired
+- `INVALID_PRODUCT_ID` : product id is not valid 
+     
+---
+ 
++ Response 200 (application/json)
+
+    + Attributes  
+        + productId (number) - Id of a product. 
+        + msisdn (string) - Auction number.
+        + vatRate (number) - Value added tax rate.
+        + payments
+            + amount (number, required) - payment transaction amount (included VAT).
+            + type (enum[string])
+                + Members
+                    + `DEPOSIT`
+                    + `BALANCE`
+            + status (enum[string])        
+                + Members
+                    + `PAID` 
+                    + `PENDING`   
+                    + `UNPAID`  
+                    + `EXPIRED`  
+                    + `REJECTED`
+            + method (enum[string])
+                 + Members
+                     + `CREDIT_CARD`              
+                     + `BANK_TRANSFER`
+            + date (string, required) - payment transaction date, timestamps format yyyy-MM-dd'T'HH:mm:ss.
+            + reasonMessage (object)
+                 + messageKey (string) - notification message key.
+                 + parameters (array[string]) - notification message parameters.
+    + Body  
+    
+            {
+              "productId": 721,
+              "msisdn": "500000001",
+              "vatRate": 5,
+              "payments": [
+                {
+                  "amount": "3150",
+                  "type": "DEPOSIT",
+                  "method": "CREDIT_CARD",
+                  "status": "COMPLETED",
+                  "date": "5/14/2018 11:18:00.000000 AM"
+                },
+                {
+                  "amount": "3150",
+                  "type": "balance",
+                  "method": "BT",
+                  "status": "rejected",
+                  "reasonMessage": {
+                    "messageKey": "INVALID_PAYMENT_AMOUNT",
+                    "parameters": [
+                      "0566666666",
+                      500
+                    ]
+                  },
+                  "date": "5/20/2018 11:18:00.000000 AM"
+                },
+                {
+                  "amount": "3150",
+                  "type": "balance",
+                  "method": "BT",
+                  "status": "COMPLETED",
+                  "date": "5/20/2018 11:18:00.000000 AM"
+                }
+              ]
+            }
+
++ Response 404 (application/json)
++ Response 500 (application/json)
 
 # Group Batch
 
