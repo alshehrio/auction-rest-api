@@ -1751,7 +1751,7 @@ Return all payment transactions for a specific product
             + reasonMessage (object)
                  + messageKey (string) - notification message key.
                  + parameters (array[string]) - notification message parameters.
-    + Body  
+    + Body
     
             {
               "productId": 721,
@@ -1762,14 +1762,14 @@ Return all payment transactions for a specific product
                   "amount": "3150",
                   "type": "DEPOSIT",
                   "method": "CREDIT_CARD",
-                  "status": "COMPLETED",
+                  "status": "PAID",
                   "date": "5/14/2018 11:18:00.000000 AM"
                 },
                 {
                   "amount": "3150",
-                  "type": "balance",
-                  "method": "BT",
-                  "status": "rejected",
+                  "type": "BALANCE",
+                  "method": "BANK_TRANSFER",
+                  "status": "REJECTED",
                   "reasonMessage": {
                     "messageKey": "INVALID_PAYMENT_AMOUNT",
                     "parameters": [
@@ -1781,9 +1781,9 @@ Return all payment transactions for a specific product
                 },
                 {
                   "amount": "3150",
-                  "type": "balance",
-                  "method": "BT",
-                  "status": "COMPLETED",
+                  "type": "BALANCE",
+                  "method": "BANK_TRANSFER",
+                  "status": "PAID",
                   "date": "5/20/2018 11:18:00.000000 AM"
                 }
               ]
