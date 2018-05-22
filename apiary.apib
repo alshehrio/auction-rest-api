@@ -1689,15 +1689,20 @@ Return a remaining balance payment details for a specific product
         + vatRate (number) - Value added tax rate.
         + balanceDueBefore  (string) - The last allowed time to pay remaining balance amount.
         + remainingBalanceAmount (number) - Remaining balance amount to be paid.
+        + intent   (enum[string], required)
+            + Members
+                + `purchase`
+                + `bid`
       
     + Body  
     
             {
                 "productId": 721,
                 "msisdn": "500000001",
-                "vatRate": 721,
-                "balanceDueBefore": "500000001",
-                "remainingBalanceAmount": 100040
+                "vatRate": 5,
+                "balanceDueBefore": "2017-12-09T13:11:39",
+                "remainingBalanceAmount": 100040,
+                "intent" : "purchase"
             }
 
 + Response 404 (application/json)
