@@ -1708,7 +1708,7 @@ Return a remaining balance payment details for a specific product
 + Response 404 (application/json)
 + Response 500 (application/json)    
 
-##  Product Payments History [/products/{productId}/payments?customer="2000000003"]
+##  Product Payments History [/products/{productId}/payments{?nationalId}]
 
 ### Get all Product Payment Transactions[GET]
 
@@ -1716,11 +1716,14 @@ Return all payment transactions for a specific product
 
 ---
 **Error Code:**
-- `PRODUCT_IS_NOT_EXPIRED` : product is not expired
-- `INVALID_PRODUCT_ID` : product id is not valid 
-     
+- `PRODUCT_IS_NOT_EXPIRED` : product is not expired.
+- `INVALID_PRODUCT_ID` : product id is not valid.
 ---
- 
+
++ Parameters
+    + productId: `721` (number, required) - Id of a product.
+    + nationalId: `2000000003` (string, optional) - customer national Id.
+     
 + Response 200 (application/json)
 
     + Attributes  
