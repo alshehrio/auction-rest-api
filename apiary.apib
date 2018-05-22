@@ -1664,7 +1664,9 @@ Return a list of all matched msisdn
                     }
                 ]
             }
-            
+
++ Response 400 (application/json)
++ Response 500 (application/json)            
             
 ##  Remaining Balance Payment Details [/products/{productId}/remainingBalancePaymentDetails]
 
@@ -1689,9 +1691,11 @@ Return a remaining balance payment details for a specific product
                 "msisdn": "500000001",
                 "vatRate": 721,
                 "balanceDueBefore": "500000001",
-                "remainingBalanceAmount": 721
+                "remainingBalanceAmount": 100040
             }
-            
+
++ Response 404 (application/json)
++ Response 500 (application/json)            
 
 # Group Batch
 
