@@ -1665,6 +1665,33 @@ Return a list of all matched msisdn
                 ]
             }
             
+            
+##  Remaining Balance Payment Details [/products/{productId}/remainingBalancePaymentDetails]
+
+### Remaining Balance Payment Details [GET]
+
+Return a remaining balance payment details for a specific product
+
+ 
++ Response 200 (application/json)
+
+    + Attributes  
+        + productId (number) - Id of a product. 
+        + msisdn (string) - Auction number.
+        + vatRate (number) - Value added tax rate.
+        + balanceDueBefore  (string) - The last allowed time to pay remaining balance amount.
+        + remainingBalanceAmount (number) - Remaining balance amount to be paid.
+      
+    + Body  
+    
+            {
+                "productId": 721,
+                "msisdn": "500000001",
+                "vatRate": 721,
+                "balanceDueBefore": "500000001",
+                "remainingBalanceAmount": 721
+            }
+            
 
 # Group Batch
 
