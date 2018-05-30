@@ -965,16 +965,16 @@ Used to get ongoing auctions.
 + Response 200 (application/json)
 
     + Attributes 
-        + id (number, required)   - id of a product
-        + msisdn (string , required) -  auction number.
-        + numberOfBids (number, required) - total number of bid.
-        + currentPrice (number, required) - the total auction price.
-        + customerBid (number, required) - the last customer bid.
-        + customerBidPrice (number, required) - the last customer bid price.
+        + id (number)   - id of a product
+        + msisdn (string) -  auction number.
+        + numberOfBids (number) - total number of bid.
+        + currentPrice (number) - the total auction price.
+        + customerBid (number) - the last customer bid.
+        + customerBidPrice (number) - the last customer bid price.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
-        + expiryDate (string, required) - auction expiry date.
+        + expiryDate (string) - auction expiry date.
             
     + Body
     
