@@ -592,7 +592,7 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 + Response 200 (application/json)
 
             {
-               "isEligible": true
+               "eligible": true
             }
 
 + Request in case of the customer is not eligible (application/json) 
@@ -600,7 +600,7 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 + Response 200 (application/json)
 
             {
-              "isEligible": false,
+              "eligible": false,
               "notifications": [
                 {
                   "messageKey": "AUCTION_BLACKLISTED",
