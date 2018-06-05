@@ -942,7 +942,7 @@ Used to get won auction customer history.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Customer ongoing Auction History Details [/customers/{nationalId}/auction-history/ongoing{?page,size,order}]    
+## Customer ongoing Auction History Details [/customers/{nationalId}/auction-history/ongoing{?page,size}]    
 
 ### Get Customer ongoing Auction History Details [GET]    
 
@@ -954,11 +954,6 @@ Used to get ongoing auctions.
       + Default: 0
     + size      (number, optional)
       + Default: 10
-    + order     (optional)
-      + Default: `ASC`
-      + Members
-            + `ASC`
-            + `DESC`
             
 + Request (application/json)
  
@@ -1020,7 +1015,7 @@ Used to get ongoing auctions.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Customer lost Auction History Details [/customers/{nationalId}/auction-history/lost{?page,size,order}]    
+## Customer lost Auction History Details [/customers/{nationalId}/auction-history/lost{?page,size}]    
 
 ### Get Customer lost Auctions History Details [GET]    
 
@@ -1032,11 +1027,6 @@ Used to get lost auctions history Details.
       + Default: 0
     + size      (number, optional)
       + Default: 10
-    + order     (optional)
-      + Default: `DESC`
-      + Members
-            + `ASC`
-            + `DESC`
             
 + Request (application/json)
  
