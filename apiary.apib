@@ -600,20 +600,11 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 + Response 200 (application/json)
 
             {
-              "eligible": false,
-              "notifications": [
-                {
-                  "messageKey": "AUCTION_BLACKLISTED",
-                  "parameters": [
-                    "0566666666",
-                    "500"
-                  ]
-                },
-                {
-                  "messageKey": "EXAMPLE_2",
-                  "parameters": []
+                "eligible": false,
+                "notification": {
+                    "messageKey": "CUSTOMER_IS_BLACKLISTED",
+                    "parameters": [ "param1", "param2" ]
                 }
-              ]
             }
             
 + Response 404 (application/json)
