@@ -1492,7 +1492,7 @@ Return a single product detail resource.
         + isAutoBidAllowed  (boolean) - return if auto bid featuer allowed
         + hasDeposit  (boolean) - return if the customer has deposit or not
         + isProductInWatchlist (boolean) - used to know the product in watchlist or not.
-        + depositAmount - product deposit amount.
+        + depositAmount - product deposit amount included VAT amount.
         + minimumIncrement (string)  - product minimum Increment
         + productStatus (enum[string]) - return list of product status
             + Members
@@ -1505,8 +1505,8 @@ Return a single product detail resource.
                 + `outbid` 
         + purchase  - 
             + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
-            + purchasePrice (number)- fixed product price. 
-            + depositAmount (number) - product deposit amount.
+            + purchasePrice (number)- fixed product price included VAT amount . 
+            + depositAmount (number) - product deposit amount included VAT amount.
         + category  - auction category
             + id  (number) - Id of a category.
             + name (string) - name of a category
