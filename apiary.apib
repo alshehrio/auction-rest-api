@@ -1650,7 +1650,7 @@ Return a list of all matched msisdn
 + Response 400 (application/json)
 + Response 500 (application/json)            
             
-##  Remaining Balance Payment Details [/products/{productId}/remainingBalancePaymentDetails]
+##  Remaining Balance Payment Details [/products/{id}/remainingBalancePaymentDetails]
 
 ### Remaining Balance Payment Details [GET]
 
@@ -1659,9 +1659,13 @@ Return a remaining balance payment details for a specific product
 ---
 **Error Code:**
 - `PRODUCT_IS_NOT_EXPIRED` : product is not expired
-- `INVALID_PRODUCT_ID` : product id is not valid 
+- `INVALID_PRODUCT_ID` : product id is not valid
+- `PAYMENT_OVERDUE` : Product balance payment time exceeded
      
 ---
+
++ Parameters
+    + id: `1001` (number, required) - Id of a product.
  
 + Response 200 (application/json)
 
