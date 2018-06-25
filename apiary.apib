@@ -1116,6 +1116,136 @@ Used to update winner shipping method, the default winner shipping address is a 
 + Response 404 (application/json)
 + Response 500 (application/json)
  
+##  Remaining Balance Payment Details [/winner/{productId}/remainingBalancePaymentDetails]
+
+### Remaining Balance Payment Details [GET]
+
+Return a remaining balance payment details for a specific product
+
+---
+**Error Code:**
+- `PRODUCT_IS_NOT_EXPIRED` : product is not expired
+- `INVALID_PRODUCT_ID` : product id is not valid
+- `PAYMENT_OVERDUE` : Product balance payment time exceeded
+- `BALANCE_PAYMENT_ALREADY_PAID` : balance payment already paid for this product.
+- `PAYMENT_NOT_FOUND` : No payment found for this product
+- `DEPOSIT_NOT_FOUND` : No deposit found for this product
+---
+
++ Parameters
+    + productId: `1001` (number, required) - Id of a product.
+ 
++ Response 200 (application/json)
+
+    + Attributes  
+        + productId (number) - Id of a product. 
+        + msisdn (string) - Auction number.
+        + vatRate (number) - Value added tax rate.
+        + balanceDueBefore  (string) - The last allowed time to pay remaining balance amount.
+        + remainingBalanceAmount (number) - Remaining balance amount to be paid.
+        + intent   (enum[string], required)
+            + Members
+                + `PURCHASE`
+                + `BID`
+      
+    + Body  
+    
+            {
+                "productId": 721,
+                "msisdn": "500000001",
+                "vatRate": 5,
+                "balanceDueBefore": "2017-12-09T13:11:39",
+                "remainingBalanceAmount": 100040,
+                "intent" : "purchase"
+            }
+
++ Response 404 (application/json)
++ Response 500 (application/json)    
+
+##  Winner Payments History [/winners/{productId}/payments]
+
+### Get Winner Payments [GET]
+
+Return all payment transactions history for a specific winner
+
+---
+**Error Code:**
+- `INVALID_PRODUCT_ID` : product id is not valid.
+- `PAYMENT_NOT_FOUND` : No payment found for this product
+---
+
++ Parameters
+    + productId: `721` (number, required) - Id of a product.
+
++ Response 200 (application/json)
+
+    + Attributes  
+        + productId (number) - Id of a product. 
+        + msisdn (string) - Auction number.
+        + vatRate (number) - Value added tax rate.
+        + payments
+            + amount (number, required) - payment transaction amount (included VAT).
+            + type (enum[string])
+                + Members
+                    + `DEPOSIT`
+                    + `BALANCE`
+            + status (enum[string])        
+                + Members
+                    + `AUTHORIZED` 
+                    + `CANCELLED`   
+                    + `COMPLETED`  
+                    + `TRANSFERRED`  
+                    + `REJECTED`
+                    + `PENDING`
+            + method (enum[string])
+                 + Members
+                     + `CREDIT_CARD`              
+                     + `BANK_TRANSFER`
+            + date (string, required) - payment transaction date, timestamps format yyyy-MM-dd'T'HH:mm:ss.
+            + reasonMessage (object)
+                 + messageKey (string) - notification message key.
+                 + parameters (array[string]) - notification message parameters.
+    + Body
+    
+            {
+              "productId": 721,
+              "msisdn": "500000001",
+              "vatRate": 5,
+              "payments": [
+                {
+                  "amount": "3150",
+                  "type": "DEPOSIT",
+                  "method": "CREDIT_CARD",
+                  "status": "PAID",
+                  "date": "5/14/2018 11:18:00.000000 AM"
+                },
+                {
+                  "amount": "3150",
+                  "type": "BALANCE",
+                  "method": "BANK_TRANSFER",
+                  "status": "REJECTED",
+                  "reasonMessage": {
+                    "messageKey": "INVALID_PAYMENT_AMOUNT",
+                    "parameters": [
+                      "0566666666",
+                      500
+                    ]
+                  },
+                  "date": "5/20/2018 11:18:00.000000 AM"
+                },
+                {
+                  "amount": "3150",
+                  "type": "BALANCE",
+                  "method": "BANK_TRANSFER",
+                  "status": "PAID",
+                  "date": "5/20/2018 11:18:00.000000 AM"
+                }
+              ]
+            }
+
++ Response 404 (application/json)
++ Response 500 (application/json)
+
 
 # Group Category
 
@@ -1650,136 +1780,6 @@ Return a list of all matched msisdn
 + Response 400 (application/json)
 + Response 500 (application/json)            
             
-##  Remaining Balance Payment Details [/products/{productId}/remainingBalancePaymentDetails]
-
-### Remaining Balance Payment Details [GET]
-
-Return a remaining balance payment details for a specific product
-
----
-**Error Code:**
-- `PRODUCT_IS_NOT_EXPIRED` : product is not expired
-- `INVALID_PRODUCT_ID` : product id is not valid
-- `PAYMENT_OVERDUE` : Product balance payment time exceeded
-- `BALANCE_PAYMENT_ALREADY_PAID` : balance payment already paid for this product.
-- `PAYMENT_NOT_FOUND` : No payment found for this product
-- `DEPOSIT_NOT_FOUND` : No deposit found for this product
----
-
-+ Parameters
-    + productId: `1001` (number, required) - Id of a product.
- 
-+ Response 200 (application/json)
-
-    + Attributes  
-        + productId (number) - Id of a product. 
-        + msisdn (string) - Auction number.
-        + vatRate (number) - Value added tax rate.
-        + balanceDueBefore  (string) - The last allowed time to pay remaining balance amount.
-        + remainingBalanceAmount (number) - Remaining balance amount to be paid.
-        + intent   (enum[string], required)
-            + Members
-                + `PURCHASE`
-                + `BID`
-      
-    + Body  
-    
-            {
-                "productId": 721,
-                "msisdn": "500000001",
-                "vatRate": 5,
-                "balanceDueBefore": "2017-12-09T13:11:39",
-                "remainingBalanceAmount": 100040,
-                "intent" : "purchase"
-            }
-
-+ Response 404 (application/json)
-+ Response 500 (application/json)    
-
-##  Product Payments History [/products/{productId}/payments{?nationalId}]
-
-### Get Product Payments [GET]
-
-Return all payment transactions history for a specific product
-
----
-**Error Code:**
-- `INVALID_PRODUCT_ID` : product id is not valid.
-- `PAYMENT_NOT_FOUND` : No payment found for this product
----
-
-+ Parameters
-    + productId: `721` (number, required) - Id of a product.
-    + nationalId: `2000000003` (string, optional) - customer national Id.
-     
-+ Response 200 (application/json)
-
-    + Attributes  
-        + productId (number) - Id of a product. 
-        + msisdn (string) - Auction number.
-        + vatRate (number) - Value added tax rate.
-        + payments
-            + amount (number, required) - payment transaction amount (included VAT).
-            + type (enum[string])
-                + Members
-                    + `DEPOSIT`
-                    + `BALANCE`
-            + status (enum[string])        
-                + Members
-                    + `AUTHORIZED` 
-                    + `CANCELLED`   
-                    + `COMPLETED`  
-                    + `TRANSFERRED`  
-                    + `REJECTED`
-                    + `PENDING`
-            + method (enum[string])
-                 + Members
-                     + `CREDIT_CARD`              
-                     + `BANK_TRANSFER`
-            + date (string, required) - payment transaction date, timestamps format yyyy-MM-dd'T'HH:mm:ss.
-            + reasonMessage (object)
-                 + messageKey (string) - notification message key.
-                 + parameters (array[string]) - notification message parameters.
-    + Body
-    
-            {
-              "productId": 721,
-              "msisdn": "500000001",
-              "vatRate": 5,
-              "payments": [
-                {
-                  "amount": "3150",
-                  "type": "DEPOSIT",
-                  "method": "CREDIT_CARD",
-                  "status": "PAID",
-                  "date": "5/14/2018 11:18:00.000000 AM"
-                },
-                {
-                  "amount": "3150",
-                  "type": "BALANCE",
-                  "method": "BANK_TRANSFER",
-                  "status": "REJECTED",
-                  "reasonMessage": {
-                    "messageKey": "INVALID_PAYMENT_AMOUNT",
-                    "parameters": [
-                      "0566666666",
-                      500
-                    ]
-                  },
-                  "date": "5/20/2018 11:18:00.000000 AM"
-                },
-                {
-                  "amount": "3150",
-                  "type": "BALANCE",
-                  "method": "BANK_TRANSFER",
-                  "status": "PAID",
-                  "date": "5/20/2018 11:18:00.000000 AM"
-                }
-              ]
-            }
-
-+ Response 404 (application/json)
-+ Response 500 (application/json)
 
 # Group Batch
 
