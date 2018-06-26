@@ -933,6 +933,7 @@ Used to get won auction customer history.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
+
 ## Customer ongoing Auction History Details [/customers/{nationalId}/auction-history/ongoing{?page,size}]    
 
 ### Get Customer ongoing Auction History Details [GET]    
@@ -1081,6 +1082,8 @@ Used to get lost auctions history Details.
 
 # Group Winner
 
+
+
 ## Shipping [/winners/{productId}/shippingMethod]
 
 ### Update Winner Shipping Method [PUT]
@@ -1189,14 +1192,13 @@ Return all payment transactions history for a specific winner
                 + Members
                     + `DEPOSIT`
                     + `BALANCE`
-            + status (enum[string])        
+            + status (enum[string]) - balance payment status one of the below statuses will be returned 
                 + Members
-                    + `AUTHORIZED` 
-                    + `CANCELLED`   
-                    + `COMPLETED`  
-                    + `TRANSFERRED`  
-                    + `REJECTED`
-                    + `PENDING`
+                    + `PAID` - it means that the auction number has been already paid and there is no farther action.  
+                    + `PENDING` - it means the customer has already submitted the bank Transfer information and need approval from Finance business there is no farther action.  
+                    + `UNPAID` - it means the user did not pay the balance payment and it needs Action to show to the customer to buy the balance amount.  
+                    + `EXPIRED` - it means the Auction has been expired and the customer did not pay the balance payment and there is no farther action. 
+                    + `REJECTED` - it means the customer has submitted the bank Transfer information but he got rejected with reason and it need Action to show to the customer to buy the balance amount. 
             + method (enum[string])
                  + Members
                      + `CREDIT_CARD`              
