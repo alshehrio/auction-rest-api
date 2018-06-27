@@ -980,46 +980,7 @@ Used to get lost auctions history Details.
 
 # Group Winner
 
-
-
-## Winner Shipping Method[/winners/{nationalId}/products/{productId}/shippingMethod]
-
-### Update Winner Shipping Method [PUT]
-
-Used to update winner shipping method, the default winner shipping address is a branch.
-
----
-**Error Code:**
-- `INVALID_PRODUCT_ID`: product id is null or invalid. 
-- `PRODUCT_IS_NOT_EXPIRED` - the product must expire.
----
-
-+ Parameters
-    + nationalId (string, required) - national Id of a winner.
-    + productId  (number, required) - product Id of a winner.
-    
-    
-+ Request  (application/json)
-
-    + Attributes
-    
-        + method (string) - shipping method [DELIVERY, BRANCH].
-        + address (string) - describe longitudes and latitudes. 
-        
-        
-    + Body
-                        
-            {
-                "method":"DELIVERY",
-                "address": "24.757698250561216,46.71589829027653"
-            }
-            
-+ Response 204 
-+ Response 404 (application/json)
-+ Response 500 (application/json)
- 
-
-##  Winner Balance Payment [/winners/{nationalId}/products/{productId}/remainingBalancePayment]
+## Winner Remaining Balance Payment [/winners/{nationalId}/products/{productId}/remainingBalancePayment]
 
 ### Get Remaining Balance Payment Details [GET]
 
@@ -1067,7 +1028,7 @@ Return a remaining balance payment details for a specific product
 + Response 500 (application/json)    
 
  
-##  Winner Payments [/winners/{nationalId}/products/{productId}/payments]
+## Winner Payments [/winners/{nationalId}/products/{productId}/payments]
 
 ### Get Winner Payments Details [GET]
 
@@ -1151,6 +1112,42 @@ Return all payment transactions history for a specific winner
 + Response 404 (application/json)
 + Response 500 (application/json)
 
+
+ 
+## Winner Shipping [/winners/{nationalId}/products/{productId}/shippingMethod]
+
+### Update Winner Shipping Method [PUT]
+
+Used to update winner shipping method, the default winner shipping address is a branch.
+
+---
+**Error Code:**
+- `INVALID_PRODUCT_ID`: product id is null or invalid. 
+- `PRODUCT_IS_NOT_EXPIRED` - the product must expire.
+---
+
++ Parameters
+    + nationalId (string, required) - national Id of a winner.
+    + productId  (number, required) - product Id of a winner.
+
++ Request  (application/json)
+
+    + Attributes
+    
+        + method (string) - shipping method [DELIVERY, BRANCH].
+        + address (string) - describe longitudes and latitudes. 
+        
+        
+    + Body
+                        
+            {
+                "method":"DELIVERY",
+                "address": "24.757698250561216,46.71589829027653"
+            }
+            
++ Response 204 
++ Response 404 (application/json)
++ Response 500 (application/json)
 
 ## Winner Products [/winners/{nationalId}/products{?page,size,order}]
 
@@ -1255,11 +1252,13 @@ Used to get won auction customer history.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
+
 # Group Category
+
 
 ## Categories Collection [/categories]     
 
-### List all Categories [GET]  
+### List all Categories [GET]
 
 Used to return a list of all available categories in the auction system.
 
