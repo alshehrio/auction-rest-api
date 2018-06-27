@@ -830,108 +830,6 @@ Used to Add a product to customer watchlist
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Customer Won Auction History Details [/customers/{nationalId}/auction-history/won{?page,size,order}]    
-
-### Get Customer Won Auction History Details [GET]    
-
-Used to get won auction customer history.
-
-+ Parameters
-    + nationalId  (string, required) - customer national Id.
-    + page      (number, optional)
-      + Default: 0
-    + size      (number, optional)
-      + Default: 10
-    + order     (optional)
-      + Default: `DESC`
-      + Members
-            + `ASC`
-            + `DESC`
-            
-+ Request (application/json)
- 
-+ Response 200 (application/json)
-
-    + Attributes 
-        + id (number )   - Product Id.
-        + msisdn (string    ) -  auction number.
-        + customerBid (number,  ) - Customer bids count.
-        + currentPrice (number ) - the total auction price includes vat amount.
-        + shipping  - return shipping method
-            + method  (string) - return method type [delivery, branch]
-            + address (string) - return longitudes and latitudes description when shipping method is delivery.
-        + category  - auction category
-            + id  (number) - Id of a category.
-            + name (string) - name of a category
-        + paymentStatus (enum[string]) - balance payment status one of the below statuses will be returned 
-            + Members
-                + `PAID` - it means that the auction number has been already paid and there is no farther action.  
-                + `PENDING` - it means the customer has already submitted the bank Transfer information and need approval from Finance business there is no farther action.  
-                + `UNPAID` - it means the user did not pay the balance payment and it needs Action to show to the customer to buy the balance amount.  
-                + `EXPIRED` - it means the Auction has been expired and the customer did not pay the balance payment and there is no farther action. 
-                + `REJECTED` - it means the customer has submitted the bank Transfer information but he got rejected with reason and it need Action to show to the customer to buy the balance amount. 
-
-    + Body
-        
-            {
-                "page": {
-                    "size": 100,
-                    "number": 0,
-                    "totalElements": 3,
-                    "totalPages": 1
-                },
-                "products": [
-                    {
-                        "id": 11047,
-                        "msisdn": "500000007",
-                        "customerBid": 4,
-                        "currentPrice": 6300,
-                        "category": {
-                            "name": "Momaiz Numbers",
-                            "id": 5
-                        },
-                        "paymentStatus": "PENDING",
-                        "shipping": {
-                            "method": "DELIVERY",
-                            "address": "24.757698250561216,46.71589829027653"
-                        }
-                    },
-                    {
-                        "id": 11042,
-                        "msisdn": "500000002",
-                        "customerBid": 0,
-                        "currentPrice": 21000,
-                        "category": {
-                            "name": "Gold Numbers",
-                            "id": 2
-                        },
-                        "paymentStatus": "PAID",
-                        "shipping": {
-                            "method": "BRANCH"
-                        }
-                    },
-                    {
-                        "id": 11041,
-                        "msisdn": "500000001",
-                        "customerBid": 1,
-                        "currentPrice": 26250,
-                        "category": {
-                            "name": "Diamond Numbers",
-                            "id": 1
-                        },
-                        "paymentStatus": "UNPAID",
-                        "shipping": {
-                            "method": "BRANCH"
-                        }
-                    }
-                ]
-            }
-            
-   
-            
-+ Response 400 (application/json)
-+ Response 404 (application/json)
-+ Response 500 (application/json)
 
 
 ## Customer ongoing Auction History Details [/customers/{nationalId}/auction-history/ongoing{?page,size}]    
@@ -1084,7 +982,7 @@ Used to get lost auctions history Details.
 
 
 
-## Shipping [/winners/{productId}/shippingMethod]
+## Winner Shipping Method[/winners/{nationalId}/products/{productId}/shippingMethod]
 
 ### Update Winner Shipping Method [PUT]
 
@@ -1097,8 +995,9 @@ Used to update winner shipping method, the default winner shipping address is a 
 ---
 
 + Parameters
-    + productId: `11041` (number, required) - product id
-
+    + nationalId (string, required) - national Id of a winner.
+    + productId  (number, required) - product Id of a winner.
+    
     
 + Request  (application/json)
 
@@ -1119,9 +1018,10 @@ Used to update winner shipping method, the default winner shipping address is a 
 + Response 404 (application/json)
 + Response 500 (application/json)
  
-##  Remaining Balance Payment Details [/winner/{productId}/remainingBalancePaymentDetails]
 
-### Remaining Balance Payment Details [GET]
+##  Winner Balance Payment [/winners/{nationalId}/products/{productId}/remainingBalancePayment]
+
+### Get Remaining Balance Payment Details [GET]
 
 Return a remaining balance payment details for a specific product
 
@@ -1136,7 +1036,8 @@ Return a remaining balance payment details for a specific product
 ---
 
 + Parameters
-    + productId: `1001` (number, required) - Id of a product.
+    + nationalId (string, required) - national Id of a winner.
+    + productId  (number, required) - product Id of a winner.
  
 + Response 200 (application/json)
 
@@ -1165,9 +1066,10 @@ Return a remaining balance payment details for a specific product
 + Response 404 (application/json)
 + Response 500 (application/json)    
 
-##  Winner Payments History [/winners/{productId}/payments]
+ 
+##  Winner Payments [/winners/{nationalId}/products/{productId}/payments]
 
-### Get Winner Payments [GET]
+### Get Winner Payments Details [GET]
 
 Return all payment transactions history for a specific winner
 
@@ -1178,7 +1080,8 @@ Return all payment transactions history for a specific winner
 ---
 
 + Parameters
-    + productId: `721` (number, required) - Id of a product.
+    + nationalId (string, required) - national Id of a winner.
+    + productId  (number, required) - product Id of a winner.
 
 + Response 200 (application/json)
 
@@ -1248,6 +1151,109 @@ Return all payment transactions history for a specific winner
 + Response 404 (application/json)
 + Response 500 (application/json)
 
+
+## Winner Products [/winners/{nationalId}/products{?page,size,order}]
+
+### Get Winner products Details [GET]
+
+Used to get won auction customer history.
+
++ Parameters
+    + nationalId  (string, required) - customer national Id.
+    + page      (number, optional)
+      + Default: 0
+    + size      (number, optional)
+      + Default: 10
+    + order     (optional)
+      + Default: `DESC`
+      + Members
+            + `ASC`
+            + `DESC`
+            
++ Request (application/json)
+ 
++ Response 200 (application/json)
+
+    + Attributes 
+        + id (number )   - Product Id.
+        + msisdn (string    ) -  auction number.
+        + customerBid (number,  ) - Customer bids count.
+        + currentPrice (number ) - the total auction price includes vat amount.
+        + shipping  - return shipping method
+            + method  (string) - return method type [delivery, branch]
+            + address (string) - return longitudes and latitudes description when shipping method is delivery.
+        + category  - auction category
+            + id  (number) - Id of a category.
+            + name (string) - name of a category
+        + paymentStatus (enum[string]) - balance payment status one of the below statuses will be returned 
+            + Members
+                + `PAID` - it means that the auction number has been already paid and there is no farther action.  
+                + `PENDING` - it means the customer has already submitted the bank Transfer information and need approval from Finance business there is no farther action.  
+                + `UNPAID` - it means the user did not pay the balance payment and it needs Action to show to the customer to buy the balance amount.  
+                + `EXPIRED` - it means the Auction has been expired and the customer did not pay the balance payment and there is no farther action. 
+                + `REJECTED` - it means the customer has submitted the bank Transfer information but he got rejected with reason and it need Action to show to the customer to buy the balance amount. 
+
+    + Body
+        
+            {
+                "page": {
+                    "size": 100,
+                    "number": 0,
+                    "totalElements": 3,
+                    "totalPages": 1
+                },
+                "products": [
+                    {
+                        "id": 11047,
+                        "msisdn": "500000007",
+                        "customerBid": 4,
+                        "currentPrice": 6300,
+                        "category": {
+                            "name": "Momaiz Numbers",
+                            "id": 5
+                        },
+                        "paymentStatus": "PENDING",
+                        "shipping": {
+                            "method": "DELIVERY",
+                            "address": "24.757698250561216,46.71589829027653"
+                        }
+                    },
+                    {
+                        "id": 11042,
+                        "msisdn": "500000002",
+                        "customerBid": 0,
+                        "currentPrice": 21000,
+                        "category": {
+                            "name": "Gold Numbers",
+                            "id": 2
+                        },
+                        "paymentStatus": "PAID",
+                        "shipping": {
+                            "method": "BRANCH"
+                        }
+                    },
+                    {
+                        "id": 11041,
+                        "msisdn": "500000001",
+                        "customerBid": 1,
+                        "currentPrice": 26250,
+                        "category": {
+                            "name": "Diamond Numbers",
+                            "id": 1
+                        },
+                        "paymentStatus": "UNPAID",
+                        "shipping": {
+                            "method": "BRANCH"
+                        }
+                    }
+                ]
+            }
+            
+   
+            
++ Response 400 (application/json)
++ Response 404 (application/json)
++ Response 500 (application/json)
 
 # Group Category
 
