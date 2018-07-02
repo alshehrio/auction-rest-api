@@ -550,7 +550,11 @@ Used to get all available customer notifications.
     + Attributes 
         + messageKey (string) - notification message key.
         + parameters (array[string]) - notification message parameters.
-        + priority (number) - notification priority order.
+        + priority (enum[string]) -  notification priority type.
+            + Members
+                + `LOW` 
+                + `MEDIUM`
+                + `HIGH`
              
                     
     + Body
@@ -559,12 +563,12 @@ Used to get all available customer notifications.
               "notifications": [
                 {
                   "messageKey": "BALANCE_PAYMENT",
-                  "priority": 1,
+                  "priority": "LOW",
                   "parameters": [ "0566666666", "500" ]
                 },
                 {
                   "messageKey": "HIGHEST_BIDDER",
-                  "priority": 2,
+                  "priority": "HIGHT",
                   "parameters": []
                 }
               ]
