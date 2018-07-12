@@ -1906,7 +1906,7 @@ Used to get all available payment method for specific productId.
 
 ## Credit Card Payment [/payments/creditCard]
 
-### Add Payment [POST]
+### Place Credit Card Payment [POST]
 
 Used to add a new credit card payment transaction. 
 
@@ -1924,7 +1924,7 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `CUSTOMER_NOT_FOUND` : customer not found.
+- `INVALID_CUSTOMER_TOKEN` : customer not found.
 - `UNKNOWN_ERROR  (Technical Error) `: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
 ---
 
@@ -1970,7 +1970,7 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 
 ## Bank Transfer Payment [/payments/bankTransfer]
 
-### Add Payment [POST]
+### Place Bank Transfer Payment [POST]
 
 Used to place a new bank transfer transaction. 
 
