@@ -1904,63 +1904,16 @@ Used to get all available payment method for specific productId.
 + Response 400 (application/json)
 + Response 500 (application/json)
 
-## Add Payments [/payments/{paymentMethod}]
+## Credit Card Payment [/payments/creditCard]
 
-### Place Payment [POST]
+### Place a new payment transaction [POST]
 
-Used to add payment to auction. 
-in case of paymentMethod = `creditCard` the consumer is payment system. 
-in case of paymentMethod = `bankTransfer` the consumer is OCP System. 
+Used to add a new credit card payment transaction. 
 
 The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `American Express` is not accepted in the auction system.
 
 ---
 **Error Code:**
-
-<table>
-    <tr>
-          <td></td>
-          <td>Bank Transfer</td>   
-          <td>Credit Card</td>  
-    </tr>
-    <tr>
-        <td>Technical Error </td>              
-        <td> <ul style="list-style-type:number">
-              <li>UNKNOWN_ERROR</li>
-            </ul> </td> 
-         <td> <ul style="list-style-type:number">
-              <li>UNKNOWN_ERROR</li>
-            </ul> </td>  
-    </tr>
-    <tr>
-        <td>Functional Error</td>              
-              <td> <ul style="list-style-type:number">
-              <li>INVALID_PRODUCT_ID</li>
-              <li>AMOUNT_MISMATCH</li>
-              <li>VALIDATION_ERROR</li>
-              <li>DEPOSIT_NOT_PAID</li>
-              <li>BALANCE_ALREADY_PAID</li>
-              <li>PAYMENT_NOT_ALLOWED</li>
-              <li>PENDING_BANK_TRANSFER_PAYMENT_EXIST</li>
-              <li>INVALID_BANK_ID</li>
-            </ul> </td> 
-         <td> <ul style="list-style-type:number">
-              <li>CUSTOMER_IS_BLACKLISTED</li>
-              <li>INVALID_PRODUCT_ID</li>
-              <li>DEPOSIT_ALREADY_PAID</li>
-              <li>AMOUNT_MISMATCH</li>
-              <li>VALIDATION_ERROR</li>
-              <li>DEPOSIT_NOT_PAID</li>
-              <li>BALANCE_ALREADY_PAID</li>
-              <li>PAYMENT_NOT_ALLOWED</li>
-              <li>PRODUCT_IS_EXPIRED</li>  
-              <li>FEATURE_UNSUPPORTED_FOR_PRODUCT</li>
-              <li>BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE</li>
-            </ul> </td>  
-    </tr>
-</table>
-
-
 - `INVALID_PRODUCT_ID` - product id is invalid.
 - `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
@@ -1971,21 +1924,11 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist.
-- `UNKNOWN_ERROR`: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
-- `INVALID_BANK_ID` : bank id is not valid. 
 - `CUSTOMER_NOT_FOUND` : customer not found.
-
+- `UNKNOWN_ERROR  (Technical Error) `: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
 ---
 
-+ Parameters
-    + paymentMethod       (enum[string], required) 
-        + Members
-            + `creditCard`  
-            + `bankTransfer` 
-            
-
-+ Request In case of paymentMethod value equal creditCard (application/json)
++ Request (application/json)
 
     + Attributes 
         + productId      (number, required) - Product ID
@@ -2019,7 +1962,34 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
               }
             }
         
-+ Request In case of paymentMethod value equal bankTransfer (application/json)
+
++ Response 204 (application/json)
++ Response 400 (application/json)
++ Response 500 (application/json)
+
+
+## Bank Transfer Payment [/payments/bankTransfer]
+
+### Place a new payment transaction [POST]
+
+Used to place a new bank transfer transaction. 
+
+---
+**Error Code:**
+- `INVALID_PRODUCT_ID` - product id is invalid.
+- `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
+- `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
+- `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
+- `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product.
+- `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
+- `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
+- `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist.
+- `INVALID_BANK_ID` : bank id is not valid. 
+- `CUSTOMER_NOT_FOUND` : customer not found.
+- `UNKNOWN_ERROR`: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
+---
+
++ Request (application/json)
 
     + Attributes 
         + productId         (number, required) - product id.
@@ -2042,7 +2012,6 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
             + lastName (number, required) -  transformer last name
 
     + Body
-    
             
             {
               "productId": 11047,
@@ -2063,11 +2032,13 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
        
 + Response 204 (application/json)
 + Response 400 (application/json)
-+ Response 404 (application/json)
 + Response 500 (application/json)
 
 
-## Validate Payment [/payments/validate]
+
+
+
+## Validate Credit Card Payment [/payments/validate]
 
 ### Validate Payment [POST]
 
@@ -2075,45 +2046,20 @@ Used to check a payment transaction before actually processing it, We'll perform
 without adding it to the auction system.
 
 ---
+---
 **Error Code:**
-
-<table>
-    <tr>
-        <td>Technical Error </td>              
-        <td> <ul style="list-style-type:number">
-              <li>UNKNOWN_ERROR</li>
-            </ul> </td> 
-    </tr>
-    <tr>
-        <td>Functional Error</td>              
-         <td> <ul style="list-style-type:number">
-              <li>CUSTOMER_IS_BLACKLISTED</li>
-              <li>INVALID_PRODUCT_ID</li>
-              <li>DEPOSIT_ALREADY_PAID</li>
-              <li>AMOUNT_MISMATCH</li>
-              <li>VALIDATION_ERROR</li>
-              <li>DEPOSIT_NOT_PAID</li>
-              <li>BALANCE_ALREADY_PAID</li>
-              <li>PAYMENT_NOT_ALLOWED</li>
-              <li>PRODUCT_IS_EXPIRED</li>  
-              <li>FEATURE_UNSUPPORTED_FOR_PRODUCT</li>
-              <li>BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE</li>
-            </ul> </td>  
-    </tr>
-</table>
-
 - `INVALID_PRODUCT_ID` - product id is invalid.
-- `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in an auction.
-- `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction
+- `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 - `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
+- `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
 - `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product.
-- `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed
+- `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
-- `UNKNOWN_ERROR` -  an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
-
+- `CUSTOMER_NOT_FOUND` : customer not found.
+- `UNKNOWN_ERROR  (Technical Error) `: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
 ---
 
 + Request (application/json)
