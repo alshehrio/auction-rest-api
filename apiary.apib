@@ -529,7 +529,7 @@ used to create a new group and assign authority to the group.
 
 
 
-## Customer Notification [/customers/{nationalId}/notifications]
+## Customer Notification [/customers/{customerToken}/notifications]
 
 ### Get Customer Notification[GET]
 
@@ -537,11 +537,11 @@ Used to get all available customer notifications.
 
 ---
 **Error Code:**
- - `NATIONAL_ID_NOT_FOUND` : customer id not found.
+ - `CUSTOMER_NOT_FOUND` : customer not found.
 ---
 
 + Parameters
-    + nationalId: `2154895231` (string, required) - customer national Id.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
     
 + Request (application/json)
  
@@ -576,19 +576,20 @@ Used to get all available customer notifications.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Customer Eligibility [/customers/{nationalId}/eligibility?{customerType}]
+## Customer Eligibility [/customers/{customerToken}/eligibility]
 
 ### Customer eligibility [GET]
 
 Used to check if the customer is blacklisted in the auction.
 OCP will check if the customer is blacklisted in STC, and maintain customer error messages in case of the customer is blacklisted in auction and STC.
 
+---
+**Error Code:**
+ - `CUSTOMER_NOT_FOUND` : customer not found.
+---
+
 + Parameters
-    + nationalId: `2154895231` (string, required) - Customer national Id.
-    + customerType : `S` (string , required) - Customer type in auction
-        + Members
-            + `S` - iqama type.
-            + `I` - saudi type.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
 
 + Request in case of the customer is eligible (application/json) 
 
@@ -611,12 +612,9 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
             }
             
 + Response 404 (application/json)
-    
-+ Response 400 (application/json)
-  
 + Response 500 (application/json)
 
-## Customer Deposit Transfer [/customers/{nationalId}/deposit-transfer]
+## Customer Deposit Transfer [/customers/{customerToken}/deposit-transfer]
     
 ### Transfer Deposit [POST]
 Used to the transfer a deposit from a product to another product
@@ -631,9 +629,11 @@ Used to the transfer a deposit from a product to another product
 - `DEPOSIT_TRANSFER_BACK_NOT_ALLOWED` : user cannot transfer back to original product.
 - `HIGHEST_BIDDER_CANNOT_TRANSFER` : highest bidder cannot transfer their deposit.
 - `DEPOSIT_TRANSFER_NOT_ALLOWED` : transfer not allowed.
+- `CUSTOMER_NOT_FOUND` : customer not found.
 ---
+
 + Parameters
-    + nationalId: `2154895231` (string, required) - customer national Id.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
     
 + Attributes 
     + fromProductId     (number, required)  
@@ -650,11 +650,11 @@ Used to the transfer a deposit from a product to another product
             
 + Response 201 (application/json)
 
-+ Response 400 (application/json)
++ Response 404 (application/json)
  
 + Response 500 (application/json)
 
-## Customer Deposit [/customers/{nationalId}/deposit?{categoryId}]
+## Customer Deposit [/customers/{customerToken}/deposit?{categoryId}]
 
 ### Get Customer Deposit [GET]
 
@@ -664,12 +664,12 @@ Used to get all customer deposit.
 **Error Code:**
  
 - `INVALID_CATEGORY_ID` : category id is invalid. 
+- `CUSTOMER_NOT_FOUND` : customer not found.
        
 ---
 
 + Parameters
-    + nationalId: `2154895231` (number, required) - customer national Id.
-    + categoryId: `5` (number, required) - category Id .
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
     
 + Request (application/json)
  
@@ -703,15 +703,22 @@ Used to get all customer deposit.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Watchlist Collection [/customers/{nationalId}/watchlist{?page,size,sort,order}]
+## Watchlist Collection [/customers/{customerToken}/watchlist{?page,size,sort,order}]
 
 ### List all watchlist products [GET]
 
 Used to get all products in watchlist
 
+---
+**Error Code:**
+ 
+- `CUSTOMER_NOT_FOUND` : customer not found.
+       
+---
+
 + Parameters
     
-    + nationalId (string, required) - national Id of a customer.
+    + customerToken (string, required) - Customer token is a customer national Id and type.
     + page       (number, optional)
       + Default: 0
     + size       (number, optional)
@@ -776,7 +783,7 @@ Used to get all products in watchlist
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Remove Watchlist product [/customers/{nationalId}/watchlist{?productId}]
+## Remove Watchlist product [/customers/{customerToken}/watchlist{?productId}]
 
 ### Remove product from watchlist [DELETE]
 
@@ -786,11 +793,13 @@ Used to remove a product from customer watchlist
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid 
 - `NOT_IN_WATCHLIST` : Product is not in watchlist.
+- `CUSTOMER_NOT_FOUND` : customer not found.
+
 ---
 
 + Parameters
 
-    + nationalId: `21254879985` (string, required) - national Id of a customer.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
     + productId: `1001` (number, required) - Id of a product.
             
 + Response 204 (application/json)
@@ -798,7 +807,7 @@ Used to remove a product from customer watchlist
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Add Watchlist product [/customers/{nationalId}/watchlist]  
+## Add Watchlist product [/customers/{customerToken}/watchlist]  
 
 ### Add product to Watchlist [POST]
 
@@ -809,12 +818,13 @@ Used to Add a product to customer watchlist
 
 - `INVALID_PRODUCT_ID` : product id is invalid 
 - `WATCHLIST_FULL`: max number of items in watchlist has been reached.
-- `WATCHLIST_ITEM_EXIST` : Product already exists in the watchlist
+- `WATCHLIST_ITEM_EXIST` : Product already exists in the watchlist.
+- `CUSTOMER_NOT_FOUND` : customer not found.
 ---
     
 + Parameters
 
-    + nationalId: `21254879985` (string, required) - national Id of a customer.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
 
 + Request   (application/json)
 
@@ -835,19 +845,26 @@ Used to Add a product to customer watchlist
 
 
 
-## Customer ongoing Auction History Details [/customers/{nationalId}/ongoing-products{?page,size}]    
+## Customer ongoing Auction History Details [/customers/{customerToken}/ongoing-products{?page,size}]    
 
 ### Get Customer ongoing Auction History Details [GET]    
 
 Used to get ongoing auctions.
 
+---
+**Error Code:**
+ - `CUSTOMER_NOT_FOUND` : customer not found.
+---
+
 + Parameters
-    + nationalId  (string, required) - customer national Id.
+    + customerToken   (string, required) - Customer token is a customer national Id and type.
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
       + Default: 10
-            
+      
+
+
 + Request (application/json)
  
 + Response 200 (application/json)
@@ -908,14 +925,19 @@ Used to get ongoing auctions.
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Customer lost Auction History Details [/customers/{nationalId}/lost-products{?page,size}]    
+## Customer lost Auction History Details [/customers/{customerToken}/lost-products{?page,size}]    
 
 ### Get Customer lost Auctions History Details [GET]    
 
 Used to get lost auctions history Details.
 
+---
+**Error Code:**
+ - `CUSTOMER_NOT_FOUND` : customer not found.
+---
+
 + Parameters
-    + nationalId  (string, required) - customer national Id.
+    + customerToken  (string, required) - Customer token is a customer national Id and type.
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
@@ -983,14 +1005,19 @@ Used to get lost auctions history Details.
 
 # Group Winner
 
-## Winner Products [/winners/{nationalId}/products{?page,size,order}]
+## Winner Products [/winners/{customerToken}/products{?page,size,order}]
 
 ### Get Winner products Details [GET]
 
 Used to get customer winning products
 
+---
+**Error Code:**
+ - `CUSTOMER_NOT_FOUND` : customer not found.
+---
+
 + Parameters
-    + nationalId  (string, required) - customer national Id.
+    + customerToken  (string, required) - Customer token is a customer national Id and type.
     + page      (number, optional)
       + Default: 0
     + size      (number, optional)
@@ -1086,7 +1113,7 @@ Used to get customer winning products
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Winner Shipping [/winners/{nationalId}/products/{productId}/shippingMethod]
+## Winner Shipping [/winners/{customerToken}/products/{productId}/shippingMethod]
 
 ### Update Winner Shipping Method [PUT]
 
@@ -1096,10 +1123,11 @@ Used to update winner shipping method, the default winner shipping address is a 
 **Error Code:**
 - `INVALID_PRODUCT_ID`: product id is null or invalid. 
 - `PRODUCT_IS_NOT_EXPIRED` - the product must expire.
+- `CUSTOMER_NOT_FOUND` : customer not found.
 ---
 
 + Parameters
-    + nationalId (string, required) - national Id of a winner.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
     + productId  (number, required) - product Id of a winner.
 
 + Request  (application/json)
@@ -1117,11 +1145,11 @@ Used to update winner shipping method, the default winner shipping address is a 
                 "address": "24.757698250561216,46.71589829027653"
             }
             
-+ Response 204 
++ Response 204  
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Winner Remaining Balance Payment [/winners/{nationalId}/products/{productId}/remainingBalancePayment]
+## Winner Remaining Balance Payment [/winners/{customerToken}/products/{productId}/remainingBalancePayment]
 
 ### Get Remaining Balance Payment Details [GET]
 
@@ -1134,11 +1162,12 @@ Return a remaining balance payment details for a specific product
 - `PAYMENT_OVERDUE` : Product balance payment time exceeded
 - `BALANCE_ALREADY_PAID` : balance payment already paid for this product.
 - `PAYMENT_NOT_FOUND` : No payment found for this product
-- `DEPOSIT_NOT_FOUND` : No deposit found for this product
+- `DEPOSIT_NOT_FOUND` : No deposit found for this product.
+- `CUSTOMER_NOT_FOUND` : customer not found.
 ---
 
 + Parameters
-    + nationalId (string, required) - national Id of a winner.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
     + productId  (number, required) - product Id of a winner.
  
 + Response 200 (application/json)
@@ -1169,7 +1198,7 @@ Return a remaining balance payment details for a specific product
 + Response 500 (application/json)    
 
  
-## Winner Payments [/winners/{nationalId}/products/{productId}/payments]
+## Winner Payments [/winners/{customerToken}/products/{productId}/payments]
 
 ### Get Winner Payments Details [GET]
 
@@ -1178,11 +1207,12 @@ Return all payment transactions history for a specific winner
 ---
 **Error Code:**
 - `INVALID_PRODUCT_ID` : product id is not valid.
-- `PAYMENT_NOT_FOUND` : No payment found for this product
+- `PAYMENT_NOT_FOUND` : No payment found for this product.
+- `CUSTOMER_NOT_FOUND` : customer not found.
 ---
 
 + Parameters
-    + nationalId (string, required) - national Id of a winner.
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
     + productId  (number, required) - product Id of a winner.
 
 + Response 200 (application/json)
@@ -1253,10 +1283,6 @@ Return all payment transactions history for a specific winner
 + Response 404 (application/json)
 + Response 500 (application/json)
  
-
-
-
-
 
 # Group Category
 
@@ -1610,7 +1636,7 @@ Return a list of all products in a specific category
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Products Detail [/products/{id}{?nationalId}]     
+## Products Detail [/products/{id}{?customerToken}]     
 
 ### Get Product Detail [GET]
 
@@ -1619,9 +1645,10 @@ Return a single product detail resource.
 + Parameters
 
     + id: `1001` (number, required) - Id of a product.
-    + nationalId: `2154879542` (string, optional) - send nationalId if you looking for customer bid status. 
+    + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
 
-+ Request In case of request sent with nationalId (application/json)
+
++ Request In case of request sent with customerToken (application/json)
                               
 + Response 200 (application/json)
 
@@ -1681,7 +1708,7 @@ Return a single product detail resource.
                 }
             }
 
-+ Request In case of request sent without nationalId (application/json)
++ Request In case of request sent without customerToken (application/json)
                               
 + Response 200 (application/json)
 
@@ -1947,6 +1974,7 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 - `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist.
 - `UNKNOWN_ERROR`: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
 - `INVALID_BANK_ID` : bank id is not valid. 
+- `CUSTOMER_NOT_FOUND` : customer not found.
 
 ---
 
@@ -1960,12 +1988,8 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 + Request In case of paymentMethod value equal creditCard (application/json)
 
     + Attributes 
-        + productId         (number, required)
-        + nationalId        (string, required)
-        + customerType (enum[string], required) - the following is allowed customer type in auction
-            + Members
-                + `S` - iqama type.
-                + `I` - saudi type.
+        + productId      (number, required) - Product ID
+        + customerToken  (string, required) - Customer token is a customer national Id and type.
         + intent   (enum[string], required)
             + Members
                 + `purchase`
@@ -1984,8 +2008,7 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
     
             {
               "productId": 10890,
-              "nationalId": "2015487908",
-              "customerType": "s",
+              "customerToken": "S-2000000001",
               "intent": "bid",
               "transaction": {
                 "id": "09b8acf0-939f34-09bddfff",
@@ -1999,12 +2022,8 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 + Request In case of paymentMethod value equal bankTransfer (application/json)
 
     + Attributes 
-        + productId         (number, required)
-        + nationalId        (string, required)
-        + customerType (enum[string], required) - the following is allowed customer type in auction
-            + Members
-                + `S` - iqama type.
-                + `I` - saudi type.
+        + productId         (number, required) - product id.
+        + customerToken     (string, required) - Customer token is a customer national Id and type.
         + intent   (enum[string], required)  - return if the customer is won the product by bidding or purchasing.
             + Members
                 + `purchase`
@@ -2027,8 +2046,7 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
             
             {
               "productId": 11047,
-              "nationalId": "2000000001",
-              "customerType": "S",
+              "customerToken": "S-2000000001",
               "intent": "bid",
               "transaction": {
                 "id": "09b8acf0-939f34-09bdd7er",
@@ -2101,12 +2119,8 @@ without adding it to the auction system.
 + Request (application/json)
 
     + Attributes 
-        + productId         (number, required)
-        + nationalId        (string, required)
-        + customerType (enum[string], required) - the following is allowed customer type in auction
-            + Members
-                + `S` - iqama type.
-                + `I` - saudi type.
+        + productId         (number, required) - product id
+        + customerToken     (string, required) - Customer token is a customer national Id and type.
         + intent   (enum[string], required)
             + Members
                 + `purchase`
@@ -2121,8 +2135,7 @@ without adding it to the auction system.
     
             {
               "productId": 1001,
-              "nationalId": "2154879562",
-              "customerType" : "S",
+              "customerToken": "S-2000000001",
               "intent": "purchase",
               "transaction": {
                 "amount": 1300,
@@ -2197,14 +2210,14 @@ the response back used to refresh value of transfer deposit and cancel the depos
 + Request (application/json)
     
     + Attributes 
-        + productId        (number, required)  
-        + nationalId       (string, required) 
+        + productId        (number, required)  - Product Id
+        + customerToken       (string, required) - Customer token is a customer national Id and type.
         
     + Body
 
             {
                 "productId": 15,
-                "nationalId": 2125487952
+                "customerToken": "S-2000000001"
             }
             
 + Response 204 (application/json)
@@ -2230,6 +2243,7 @@ Note That: in not allowed to send both values for  `regularBidAmount`, `autoBidA
 - `BID_IS_LESS_THAN_MINIMUM_INCREMENT` : Bid is less than minimum bid.
 - `WRONG_BID_TYPE` : bid type in request does not match auction bid type. (auto bid / regular bid) 
 - `CUSTOMER_IS_HIGHEST_BIDDER` : the highest bidder cannot bid on himself.
+- `CUSTOMER_NOT_FOUND` : customer not found.
 
 ---  
 + Request in case of biding type is regular bid (application/json) 
@@ -2242,8 +2256,7 @@ Note That: in not allowed to send both values for  `regularBidAmount`, `autoBidA
     + Body
             
             {
-                "nationalId": 10999999,
-                "customerType" : "S",
+                "customerToken": "S-2000000001",
                 "regularBidAmount": 5000,
                 "productId": 1005
             }
@@ -2286,8 +2299,7 @@ Note That: in not allowed to send both values for  `regularBidAmount`, `autoBidA
     + Body
             
             {
-                "nationalId": 10999999,
-                "customerType" : "s",
+                "customerToken": "S-2000000001",
                 "autoBidAmount" : 50000,
                 "productId": 1001
             }
