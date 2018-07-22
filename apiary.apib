@@ -1838,11 +1838,12 @@ Return list of all expired batches
     + endDate    (date) - timestamp format yyyy-MM-dd'T'HH:mm:ss
 
     
-+ Request (application/json)
++ Request
 
     + Headers
 
-            Accept-Language: en
+            Authorization: Basic [add 'username:password' encoded in base64]
+            api-version: v1 OR v2
             
 + Response 200 (application/json)
 
