@@ -2103,12 +2103,19 @@ Return a list of all payment reconcile transaction for specific batch and transa
 - `INVALID_BATCH_ID` : Batch Id is null or invalid.
 - `INVALID_TRANSACTION_TYPE` : TransactionType value is invalid.
 ---
+    
 + Parameters
     + batchId            (String, required)
     + transactionType    (enum[string]) 
         + Members
             + `CAPTURE` 
             + `REVERSAL`
+            
++ Request
+    + Headers
+
+            Authorization: Basic [add 'username:password' encoded in base64]
+            api-version: v1 OR v2
             
 + Response 200 (application/json)
 
