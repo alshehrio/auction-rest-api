@@ -712,17 +712,13 @@ OCP will check if the customer is blacklisted in STC, and maintain customer erro
 + Parameters
     + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
 
-+ Request in case of the customer is eligible (application/json) 
-
 + Response 200 (application/json)
 
             {
                "eligible": true
             }
 
-+ Request in case of the customer is not eligible (application/json) 
-
-+ Response 200 (application/json)
++ Response 200 (application/json)  
 
             {
                 "eligible": false,
@@ -791,6 +787,7 @@ Used to get all customer deposit.
 
 + Parameters
     + customerToken: `S-2000000001` (string, required) - Customer token is a customer national Id and type.
+    + categoryId: 2 (number, optional) - Customer token is a customer national Id and type.
     
 + Request (application/json)
  
