@@ -2031,10 +2031,10 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 - `INVALID_PRODUCT_ID` - product id is invalid.
 - `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
-- `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment. 
+- `DEPOSIT_NOT_PAID` - the deposit amount must be paid before attempt balance payment.
 - `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
-- `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
-- `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product.
+- `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product, the action need it is to reversal payment if it's already created.
+- `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product. the action need it is to reversal payment if it's already created.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `BIDDING_AMOUNT_EXCEEDED_FIXED_PRICE` - the bidding amount exceeded 80% of the product fixed price.
