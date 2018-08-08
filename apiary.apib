@@ -1355,45 +1355,46 @@ Return all payment transactions history for a specific winner
             + reasonMessage (object)
                  + messageKey (string) - notification message key.
                  + parameters (array[string]) - notification message parameters.
-            + bankTransferId (string) - bank payment referance id.
+            + bankReferanceId (string) - bank payment referance id.
             
     + Body
     
             {
-              "productId": 721,
-              "msisdn": "500000001",
-              "vatRate": 5,
-              "payments": [
-                {
-                  "amount": "3150",
-                  "type": "DEPOSIT",
-                  "method": "CREDIT_CARD",
-                  "status": "PAID",
-                  "date": "5/14/2018 11:18:00.000000 AM"
-                },
-                {
-                  "amount": "3150",
-                  "type": "BALANCE",
-                  "method": "BANK_TRANSFER",
-                  "status": "REJECTED",
-                  "bankTransferId": "1-332545666"
-                  "reasonMessage": {
-                    "messageKey": "INVALID_PAYMENT_AMOUNT",
-                    "parameters": [
-                      "0566666666",
-                      500
-                    ]
-                  },
-                  "date": "5/20/2018 11:18:00.000000 AM"
-                },
-                {
-                  "amount": "3150",
-                  "type": "BALANCE",
-                  "method": "BANK_TRANSFER",
-                  "status": "PAID",
-                  "date": "5/20/2018 11:18:00.000000 AM"
-                }
-              ]
+                  "productId": 721,
+                  "msisdn": "500000001",
+                  "vatRate": 5,
+                  "payments": [
+                    {
+                      "amount": "3150",
+                      "type": "DEPOSIT",
+                      "method": "CREDIT_CARD",
+                      "status": "PAID",
+                      "date": "5/14/2018 11:18:00.000000 AM"
+                    },
+                    {
+                      "amount": "3150",
+                      "type": "BALANCE",
+                      "method": "BANK_TRANSFER",
+                      "status": "REJECTED",
+                      "date": "5/20/2018 11:18:00.000000 AM",
+                      "bankReferanceId" : "068TB01827517",
+                      "reasonMessage": {
+                        "messageKey": "INVALID_PAYMENT_AMOUNT",
+                        "parameters": [
+                          "0566666666",
+                          500
+                        ]
+                      }
+                    },
+                    {
+                      "Id": "eefa29f2-a016-4fdc-89b8-7d46117992fb",
+                      "amount": "3150",
+                      "type": "BALANCE",
+                      "method": "BANK_TRANSFER",
+                      "status": "PAID",
+                      "date": "5/20/2018 11:18:00.000000 AM"
+                    }
+                  ]
             }
 
 + Response 404 (application/json)
