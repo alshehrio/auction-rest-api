@@ -1351,10 +1351,12 @@ Return all payment transactions history for a specific winner
                  + Members
                      + `CREDIT_CARD`              
                      + `BANK_TRANSFER`
-            + date (string, required) - payment transaction date, timestamps format yyyy-MM-dd'T'HH:mm:ss.
+            + date (string) - payment transaction date, timestamps format yyyy-MM-dd'T'HH:mm:ss.
             + reasonMessage (object)
                  + messageKey (string) - notification message key.
                  + parameters (array[string]) - notification message parameters.
+            + bankTransferId (string) - bank payment referance id.
+            
     + Body
     
             {
@@ -1374,6 +1376,7 @@ Return all payment transactions history for a specific winner
                   "type": "BALANCE",
                   "method": "BANK_TRANSFER",
                   "status": "REJECTED",
+                  "bankTransferId": "1-332545666"
                   "reasonMessage": {
                     "messageKey": "INVALID_PAYMENT_AMOUNT",
                     "parameters": [
@@ -2098,7 +2101,6 @@ Used to place a new bank transfer transaction.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
 - `FEATURE_UNSUPPORTED_FOR_PRODUCT` - The feature is disabled or unsupported.
 - `PENDING_BANK_TRANSFER_PAYMENT_EXIST` - already pending bank payment exist.
-- `INVALID_BANK_ID` : bank id is not valid. 
 - `CUSTOMER_NOT_FOUND` : customer not found.
 - `DUPLICATE_PAYMENT_TRANSACTION` : Transaction already exsit.
 - `UNKNOWN_ERROR`: an internal server error has occurred. Resend the request at another time. If this error persists, contact Auction Team Support.
@@ -2122,7 +2124,7 @@ Used to place a new bank transfer transaction.
                     + `deposit`
                     + `balance`
         + bankTranfer - required for bank Transfer payment method
-            + bankId (number, required) -  bank id.
+            + bankId (number, required) -  predefined in OCP, we will use it in the admin console to retrieve bank name.
             + firstName (number, required) - transformer first name
             + lastName (number, required) -  transformer last name
 
@@ -2139,7 +2141,7 @@ Used to place a new bank transfer transaction.
                 "type": "BALANCE"
               },
               "bankTransfer": {
-                "bankId": 1,
+                "bankId": 075,
                 "firstName": "waseem",
                 "lastName": "judeh"
               }
