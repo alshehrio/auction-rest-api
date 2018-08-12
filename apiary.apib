@@ -2034,7 +2034,7 @@ The accepted payment credit card type is `Visa` or `Mastercard`, Therefore `Amer
 - `INVALID_PRODUCT_ID` -  Product id was null or invalid [productId].
 - `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
-- `DEPOSIT_NOT_PAID` - The deposit amount must be paid before attempting to settle the balance payment. the deposit transaction not attempted or captured yet
+- `DEPOSIT_NOT_PAID` - The deposit amount must be paid before attempting to settle the balance payment. the deposit transaction not attempted or not captured yet
 - `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product, the action need it is to reversal payment if it's already created.
 - `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product. the action need it is to reversal payment if it's already created.
@@ -2095,7 +2095,7 @@ Used to place a new bank transfer transaction.
 **Error Code:**
 - `INVALID_PRODUCT_ID` - Product id was null or invalid [productId].
 - `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
-- `DEPOSIT_NOT_PAID` - The deposit amount must be paid before attempting to settle the balance payment, the deposit transaction not attempted or captured yet
+- `DEPOSIT_NOT_PAID` - The deposit amount must be paid before attempting to settle the balance payment, the deposit transaction not attempted or not captured yet
 - `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
 - `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product.
 - `PAYMENT_NOT_ALLOWED` - The payment related to this request not allowed.
@@ -2168,7 +2168,7 @@ without adding it to the auction system.
 - `INVALID_PRODUCT_ID` - Product id was null or invalid [productId].
 - `CUSTOMER_IS_BLACKLISTED` - the customer is blacklisted in the auction.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
-- `DEPOSIT_NOT_PAID` - The deposit amount must be paid before attempting to settle the balance payment, the deposit transaction not attempted or captured yet
+- `DEPOSIT_NOT_PAID` - The deposit amount must be paid before attempting to settle the balance payment, the deposit transaction not attempted or not captured yet
 - `AMOUNT_MISMATCH` - the amount sent in the request doesn't match the actual amount in the auction.
 - `DEPOSIT_ALREADY_PAID` - the customer already paid deposit payment for this product.
 - `BALANCE_ALREADY_PAID` - the customer already paid balance payment for this product.
