@@ -1752,7 +1752,7 @@ Return a list of all products in a specific category
 + Response 404 (application/json)
 + Response 500 (application/json)
 
-## Products Detail [/products/{id}{?customerToken,field}]     
+## Products Detail [/products/{id}{?customerToken,fields}]     
 
 ### Get Product Details [GET]
 
@@ -1762,8 +1762,10 @@ Return a single product detail resource.
 
     + id: `1001` (number, required) - Id of a product.
     + customerToken: `S-2000000001` (string, optional) - Customer token is a customer national Id and type.
-    + field: `currentPrice` (string, optional) - used to return a subset of API response.
-
+    + fields (enum[string],optional) - used to return a subset of API response.
+        + Members
+            + `currentPrice` 
+            + `numberOfBids`
 
 + Request In case of request sent with customerToken (application/json)
                               
