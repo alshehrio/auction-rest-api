@@ -1762,7 +1762,7 @@ Return a single product detail resource.
 
     + id: `1001` (number, required) - Id of a product.
     + customerToken: `S-2000000001` (string, optional) - Customer token is a customer national Id and type.
-    + fields (enum[string],optional) - used to return a subset of API response.
+    + fields:  `currentPrice,numberOfBids` (enum[string],optional)  - used to return a subset of the response, send subset or all possible value to reterned in the response.
         + Members
             + `currentPrice` 
             + `numberOfBids`
