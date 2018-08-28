@@ -1347,6 +1347,7 @@ Return all payment transactions history for a specific winner
                     + `UNPAID` - it means the user did not pay the balance payment and it needs Action to show to the customer to buy the balance amount.  
                     + `EXPIRED` - it means the Auction has been expired and the customer did not pay the balance payment and there is no farther action. 
                     + `REJECTED` - it means the customer has submitted the bank Transfer information but he got rejected with reason and it need Action to show to the customer to buy the balance amount. 
+                    + `CANCELLED` -  the transaction is reversed  by the customer or auction revered in case the customer tried to purchase the auction
             + method (enum[string])
                  + Members
                      + `CREDIT_CARD`              
