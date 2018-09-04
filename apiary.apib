@@ -851,6 +851,7 @@ Used to get all products in watchlist
                 + `sold` 
                 + `new`
                 + `expired`
+                + `none`
         + category  - 
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -1559,6 +1560,7 @@ Used to return a specific auction widgets
                 + `sold` 
                 + `new`
                 + `expired`
+                + `none`
         + category  - 
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -1710,6 +1712,7 @@ Return a list of all products in a specific category
                 + `sold` 
                 + `new`
                 + `expired`
+                + `none`
         + category  - 
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -1790,6 +1793,7 @@ Return a single product detail resource.
                 + `sold` 
                 + `new`
                 + `expired`
+                + `none`
         + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
             + Members
                 + `noBid`
@@ -1847,6 +1851,8 @@ Return a single product detail resource.
             + Members
                 + `sold` 
                 + `new`
+                + `none`
+                + `expired`
         + purchase  - 
             + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
             + purchasePrice (number)- fixed product price. 
