@@ -846,12 +846,12 @@ Used to get all products in watchlist
         + currentPrice (string) - auction last price.
         + expiryDate  (string) - auction expiry date, timestamp format yyyy-MM-dd'T'HH:mm:ss
         + numberOfBids (number) - totale number of bids.
-        + productStatus (enum[string]) - return list of product status
+        + productStatus (enum[string]) - return a list of product status
             + Members
-                + `sold` 
-                + `new`
-                + `expired`
-                + `none`
+                + `SOLD` 
+                + `NEW`
+                + `EXPIRED`
+                + `ACTIVE`
         + category  - 
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -872,7 +872,7 @@ Used to get all products in watchlist
                         "currentPrice": 300,
                         "expiryDate": "2018-03-10T11:12:08",
                         "numberOfBids": 0,
-                        "productStatus": "expired",
+                        "productStatus": "EXPIRED",
                         "category": {
                             "name": "Momaiz Numbers",
                             "id": 5
@@ -884,7 +884,7 @@ Used to get all products in watchlist
                         "currentPrice": 300,
                         "expiryDate": "2018-03-10T11:12:08",
                         "numberOfBids": 0,
-                        "productStatus": "expired",
+                        "productStatus": "EXPIRED",
                         "category": {
                             "name": "Momaiz Numbers",
                             "id": 5
@@ -1555,12 +1555,12 @@ Used to return a specific auction widgets
         + currentPrice (string) - auction last price.
         + expiryDate (string) - auction expiry date.
         + numberOfBids(string) - number of bid on product
-        + productStatus (enum[string]) - return list of product status
+        + productStatus (enum[string]) - return a list of product status
             + Members
-                + `sold` 
-                + `new`
-                + `expired`
-                + `none`
+                + `SOLD` 
+                + `NEW`
+                + `EXPIRED`
+                + `ACTIVE`
         + category  - 
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -1581,7 +1581,7 @@ Used to return a specific auction widgets
                         "currentPrice": 20000,
                         "expiryDate": "2018-03-30T12:02:59",
                         "numberOfBids": 0,
-                        "productStatus": "new",
+                        "productStatus": "NEW",
                         "category": {
                             "name": "Diamond Numbers",
                             "id": 1
@@ -1593,7 +1593,7 @@ Used to return a specific auction widgets
                         "currentPrice": 20000,
                         "expiryDate": "2018-03-30T12:02:59",
                         "numberOfBids": 0,
-                        "productStatus": "new",
+                        "productStatus": "NEW",
                         "category": {
                             "name": "Diamond Numbers",
                             "id": 1
@@ -1707,12 +1707,12 @@ Return a list of all products in a specific category
         + currentPrice (string) - auction last price.
         + expiryDate (string) - auction expiry date.
         + numberOfBids(string) - number of bid on product
-        + productStatus (enum[string]) - return list of product status
+        + productStatus (enum[string]) - return a list of product status
             + Members
-                + `sold` 
-                + `new`
-                + `expired`
-                + `none`
+                + `SOLD` 
+                + `NEW`
+                + `EXPIRED`
+                + `ACTIVE`
         + category  - 
             + id  (number) - Id of a category.
             + name (string) - name of a category
@@ -1733,7 +1733,7 @@ Return a list of all products in a specific category
                         "currentPrice": 20000,
                         "expiryDate": "2018-04-24T12:02:59",
                         "numberOfBids": 0,
-                        "productStatus": "new",
+                        "productStatus": "NEW",
                         "category": {
                             "name": "Diamond Numbers",
                             "id": 1
@@ -1745,7 +1745,7 @@ Return a list of all products in a specific category
                         "currentPrice": 20000,
                         "expiryDate": "2018-04-24T12:02:59",
                         "numberOfBids": 0,
-                        "productStatus": "new",
+                        "productStatus": "NEW",
                         "category": {
                             "name": "Diamond Numbers",
                             "id": 1
@@ -1788,13 +1788,13 @@ Return a single product detail resource.
         + isProductInWatchlist (boolean) - used to know the product in watchlist or not.
         + depositAmount - product deposit amount included VAT amount.
         + minimumIncrement (string)  - product minimum Increment
-        + productStatus (enum[string]) - return list of product status
+        + productStatus (enum[string]) - return a list of product status
             + Members
-                + `sold` 
-                + `new`
-                + `expired`
-                + `none`
-        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request 
+                + `SOLD` 
+                + `NEW`
+                + `EXPIRED`
+                + `ACTIVE`
+        + customerBidStatus (enum[string]) -  return list of bid status belongs to a specific customer, return none if no customer sent in the request.
             + Members
                 + `noBid`
                 + `highestBidder`
@@ -1816,7 +1816,7 @@ Return a single product detail resource.
                 "currentPrice": 2100,
                 "expiryDate": "2018-03-28T16:38:25",
                 "numberOfBids": 6,
-                "productStatus": "sold",
+                "productStatus": "SOLD",
                 "category": {
                     "name": "Momaiz Numbers",
                     "id": 5
@@ -1847,12 +1847,12 @@ Return a single product detail resource.
         + isAutoBidAllowed  (boolean) - return if auto bid featuer allowed
         + minimumIncrement (string)  - product minimum Increment.
         + depositAmount - product deposit amount.
-        + productStatus (enum[string]) - return list of product status
+        + productStatus (enum[string]) - return a list of product status
             + Members
-                + `sold` 
-                + `new`
-                + `none`
-                + `expired`
+                + `SOLD` 
+                + `NEW`
+                + `EXPIRED`
+                + `ACTIVE`
         + purchase  - 
             + isPurchaseAllowed  (boolean) - return if  product purchase featuer is allowed  
             + purchasePrice (number)- fixed product price. 
@@ -1870,7 +1870,7 @@ Return a single product detail resource.
                 "currentPrice": 2100,
                 "expiryDate": "2018-03-28T16:38:25",
                 "numberOfBids": 6,
-                "productStatus": "sold",
+                "productStatus": "SOLD",
                 "category": {
                     "name": "Momaiz Numbers",
                     "id": 5
