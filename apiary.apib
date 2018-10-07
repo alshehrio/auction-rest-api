@@ -1892,7 +1892,7 @@ Return a single product detail resource.
 + Response 400 (application/json)
 + Response 500 (application/json)
 
-## Search Products [/products/search{?page,size,msisdn}]
+## Search Products [/products/search{?page,size,msisdn,categoryId}]
 
 ### Search [GET]
 
@@ -1903,7 +1903,8 @@ Return a list of all matched msisdn
       + Default: 0
     + size      (number, optional)
       + Default: 10
-    + msisdn    (number) - complate or a part of auction number
+    + msisdn    (number) - complate or a part of auction number.
+    + categoryId (number, optional) - category id
     
 + Response 200 (application/json)
 
