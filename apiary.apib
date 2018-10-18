@@ -1616,7 +1616,7 @@ Used to Add a list of products to the Auction system.
 **Error Code:**
 - `BATCHES_OVERLAP_NOT_ALLOWED` : Auction Batches overlap is not allowed.
 - `BATCH_EXISTS` : batch id already exists.
-- `NO_ACTIVE_BATCH_AVAILABLE` : the first auction batch doesn't start, this error code will be shown at the first batch only.
+- `NO_ACTIVE_BATCH_AVAILABLE` : This error code will be shown if and only if when the first auction batch hasn't started yet.
 ---
 + Request (application/json)
     + Body
