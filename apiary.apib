@@ -933,7 +933,6 @@ Used to Add a product to customer watchlist
 - `INVALID_PRODUCT_ID` : product id is invalid 
 - `WATCHLIST_FULL`: max number of items in watchlist has been reached.
 - `WATCHLIST_ITEM_EXIST` : Product already exists in the watchlist.
-- `CUSTOMER_NOT_FOUND` : customer not found.
 - `PRODUCT_IS_EXPIRED` - product has expired. The product related to this request has expired.
 
 ---
@@ -1616,7 +1615,6 @@ Used to Add a list of products to the Auction system.
 **Error Code:**
 - `BATCHES_OVERLAP_NOT_ALLOWED` : Auction Batches overlap is not allowed.
 - `BATCH_EXISTS` : batch id already exists.
-- `NO_ACTIVE_BATCH_AVAILABLE` : This error code will be shown if and only if the first auction batch hasn't started yet.
 ---
 + Request (application/json)
     + Body
@@ -1671,6 +1669,8 @@ Return a list of all products in a specific category
 ---
 **Error Code:**
 - `CATEGORY_NOT_FOUND` : category not found
+- `NO_ACTIVE_BATCH_AVAILABLE` : This error code will be shown if and only if the first auction batch hasn't started yet.
+
 ---
 + Parameters
     
